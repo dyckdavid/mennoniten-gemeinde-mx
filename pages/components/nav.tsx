@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image } from '@mantine/core';
+import { Burger } from '@mantine/core';
 
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [opened, setOpened] = useState(false);
+  const title = opened ? 'Close navigation' : 'Open navigation';
 
   return (
     <nav className="navbar">
@@ -21,9 +23,12 @@ function Navbar() {
       />
         </div>
         <div className="navbar-menu">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="navbar-menu-toggle">
-            <FontAwesomeIcon icon="bars" />
-          </button>
+          <Burger
+          className="navbar-menu-toggle"
+      opened={opened}
+      onClick={() => setOpened((o) => !o)}
+      title={title}
+    />
           <div className={`navbar-menu-items ${menuOpen ? 'open' : ''}`}>
             <a href="#" className="navbar-menu-item">Home</a>
             <a href="#" className="navbar-menu-item">About</a>

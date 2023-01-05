@@ -133,14 +133,13 @@ a {
 }
 
 .navbar-menu-toggle {
-  display: block;
+  display: none;
   cursor: pointer;
-  background: rgb(255, 0, 0);
-  border: none;
   outline: none;
-  color: rgb(255, 0, 0);
+
   font-size: 1.5rem;
   font-weight: bold;
+  
 }
 
 .navbar-menu-items {
@@ -181,5 +180,8 @@ a {
   }
   .navbar-menu-toggle {
     display: block;
+  }
+  .navbar-logo {
+    display: none;
   }
 }
