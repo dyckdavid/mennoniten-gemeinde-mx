@@ -12,6 +12,13 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
+      <Burger
+          color="white"
+          className="navbar-menu-toggle"
+      opened={opened}
+      onClick={() => setOpened((o) => !o)}
+      title={title}
+    />
         <div className="navbar-logo">
         <Image
         radius="xs"
@@ -23,17 +30,11 @@ function Navbar() {
       />
         </div>
         <div className="navbar-menu">
-          <Burger
-          className="navbar-menu-toggle"
-      opened={opened}
-      onClick={() => setOpened((o) => !o)}
-      title={title}
-    />
+          
           <div className={`navbar-menu-items ${menuOpen ? 'open' : ''}`}>
-            <a href="#" className="navbar-menu-item">Home</a>
-            <a href="#" className="navbar-menu-item">About</a>
-            <a href="#" className="navbar-menu-item">Contact</a>
-            <a href="#" className="navbar-menu-item">Blog</a>
+            <a href="#" className="navbar-menu-item">Hause</a>
+            <a href="#" className="navbar-menu-item">Predigten</a>
+            <a href="#" className="navbar-menu-item">Live</a>
           </div>
         </div>
       </div>

@@ -124,6 +124,7 @@ a {
 .navbar-logo {
   font-size: 1.5rem;
   font-weight: bold;
+  margin-top: 5px;
 }
 
 .navbar-menu {
@@ -171,7 +172,7 @@ a {
   background-color: rgba(30, 42, 181, 0.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 650px) {
   .navbar-menu {
     display: flex;
   }
@@ -182,6 +183,15 @@ a {
     display: block;
   }
   .navbar-logo {
-    display: none;
+    margin-left: 35%;
+    margin-top: 5px;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(33, 89, 186);
+    color: #fff;
   }
 }
