@@ -56,7 +56,7 @@ interface HeaderSearchProps {
   links: { link: string; label: string; links: { link: string; label: string }[] }[];
 }
 
-export function HeaderMenuColored({ links }: HeaderSearchProps) {
+export default function HeaderMenuColored({ links }: HeaderSearchProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
