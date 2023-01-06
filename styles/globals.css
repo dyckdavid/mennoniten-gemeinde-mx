@@ -130,7 +130,7 @@ a {
 .navbar-menu {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 60px;
 }
 
 .navbar-menu-toggle {
@@ -200,3 +200,31 @@ a {
 }
 
 
+
+
+
+.navbar.expanded {
+  /* Add styles for the navbar when it is expanded */
+  height: 200%;
+}
+
+
+.navbar.expanded .navbar-menu {
+  /* Add styles for the navbar menu when the navbar is expanded */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar.expanded .navbar-menu-items {
+  /* Add styles for the navbar menu items when the navbar is expanded */
+  display: flex;
+  flex-direction: column;
+}
+
+
+.navbar.expended .navbar-logo {
+  margin-left: 35%;
+    margin-top: 1px;
+}

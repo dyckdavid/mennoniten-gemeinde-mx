@@ -2,9 +2,29 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import Navbar from './components/nav'
+import { HeaderMenuColored } from './components/nav';
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
+import Link from 'next/link'
+
+
+const links = [
+  {
+    link: '/',
+    label: 'Hause',
+  },
+  {
+    link: '/',
+    label: 'Predigten',
+  },
+  {
+    link: '/',
+    label: 'Live',
+  },
+
+];
+
+
 
 
 
@@ -19,12 +39,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar></Navbar>
-      <Image
-      width={1300}
-        height={900}
-        src="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
-      />
+      
+
+      
+      <HeaderMenuColored links={links} />
+      
 
       <Center><h1>Mennoniten-Gemeinde</h1></Center>
     </>
