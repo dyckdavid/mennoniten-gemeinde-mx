@@ -12,17 +12,23 @@ const links = [
   {
     link: '/',
     label: 'Hause',
+    links: [],
   },
   {
     link: '/',
     label: 'Predigten',
+    links: [],
+
   },
   {
     link: '/',
     label: 'Live',
+    links: [],
   },
 
 ];
+
+
 
 
 
@@ -39,11 +45,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-
-      
       <HeaderMenuColored links={links} />
-      
 
       <Center><h1>Mennoniten-Gemeinde</h1></Center>
     </>
