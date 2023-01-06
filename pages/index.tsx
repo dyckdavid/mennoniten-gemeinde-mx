@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Navbar from './components/nav'
+import { Center } from '@mantine/core'
+import { Image } from '@mantine/core';
 
 
 
@@ -18,8 +20,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar></Navbar>
+      <Image
+      width={1300}
+        height={900}
+        src="https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp"
+      />
 
-      <h1>Mennoniten-Gemeinde</h1>
+      <Center><h1>Mennoniten-Gemeinde</h1></Center>
     </>
   )
 }
