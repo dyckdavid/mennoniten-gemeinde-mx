@@ -1,16 +1,15 @@
+/* eslint-disable react/no-children-prop */
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown, IconTopologyComplex } from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
+import { IconChevronDown } from '@tabler/icons';
 import { Image } from '@mantine/core';
-import { useState } from 'react';
-
+import { Text, Space } from '@mantine/core';
+import { Flex, Button } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   header: {
     backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
     borderBottom: 0,
-    height: '100px',
   },
 
   inner: {
@@ -25,14 +24,6 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
-
-  linking: {
-    [theme.fn.smallerThan('xs')]: {
-      display: 'block',
-    },
-  },
-
-
 
   burger: {
     [theme.fn.largerThan('sm')]: {
@@ -67,11 +58,9 @@ interface HeaderSearchProps {
   links: { link: string; label: string; links: { link: string; label: string }[] }[];
 }
 
-export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
+export default function HeaderMenuColored({ links }: HeaderSearchProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
-  const [showDiv, setShowDiv] = useState(false);
-
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -121,10 +110,11 @@ export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
         alt="Random unsplash image"
       />
     </div>
+
+
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
-          
           <Burger
             opened={opened}
             onClick={toggle}
@@ -132,12 +122,9 @@ export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
             size="sm"
             color="#fff"
           />
-          {opened && <Center><div className={classes.linking}><Group spacing={5}>{items}</Group></div></Center>}
+          {opened && <Center><div className={classes.link}><Flex direction="column" gap="xl" justify="center" align="center" wrap="wrap">{items}</Flex></div></Center>}
         </div>
-          
       </Container>
     </Header>
-    
   );
-
 }
