@@ -6,8 +6,10 @@ import styles from '../styles/Home.module.css'
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
-import { Card, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Badge, Button, Group } from '@mantine/core';
 import Cards from '../components/card'
+import { Text, Space } from '@mantine/core';
+
 
 
 
@@ -22,10 +24,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Space h="md" />
       <Center><h1>Predigten</h1></Center>
-      
+      <Space h="md" />
       <Cards></Cards>
+      <Space h="md" />
  
 
     </>

@@ -2,8 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import NavItem from "./NavItem";
-import { Text, Space } from '@mantine/core';
-import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
 
 const MENU_LIST = [
   { text: "Hause", href: "/" },
@@ -13,8 +11,6 @@ const MENU_LIST = [
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);
   const [activeIdx, setActiveIdx] = useState(-1);
-
-  
 
   return (
     <header>

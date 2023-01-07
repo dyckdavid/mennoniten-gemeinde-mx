@@ -6,6 +6,9 @@ import styles from '../styles/Home.module.css'
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
+import { Text, Space } from '@mantine/core';
+import { AspectRatio } from '@mantine/core';
+
 
 
 const links = [
@@ -45,7 +48,18 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Live</h1>
+      <Space h="md" />
+      <Center><h1>Live Streams</h1></Center>
+      <Space h="md" />
+      <AspectRatio ratio={16 / 9}>
+      <iframe
+        src="https://youtube.com/embed/ZMK6g1NLSqU"
+        title="Live"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </AspectRatio>
     </>
   )
 }

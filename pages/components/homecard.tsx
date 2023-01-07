@@ -9,6 +9,8 @@ import Link from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
 import { SimpleGrid } from '@mantine/core';
 import { MantineProvider } from '@mantine/core';
+import { Space } from '@mantine/core';
+
 
 
 
@@ -19,7 +21,7 @@ export default function Cards() {
     <>
     
 
-<SimpleGrid cols={4}>
+
       <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
 
@@ -40,6 +42,8 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
+    <Space h="md" />
+
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
 
@@ -60,6 +64,8 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
+    <Space h="md" />
+
     <Card shadow="sm" p="lg" radius="md" withBorder>
       <Card.Section>
 
@@ -80,67 +86,9 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Card.Section>
 
-      </Card.Section>
+ 
 
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
-          1/8/22
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-Enrique Bartsch
-      </Text>
-
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
-      </Button>
-    </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Card.Section>
-
-      </Card.Section>
-
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
-          1/8/22
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-Enrique Bartsch
-      </Text>
-
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
-      </Button>
-    </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
-      <Card.Section>
-
-      </Card.Section>
-
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
-          1/8/22
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-Enrique Bartsch
-      </Text>
-
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
-      </Button>
-    </Card>
-    </SimpleGrid>
     </>
   )
 }

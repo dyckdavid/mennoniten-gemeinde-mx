@@ -7,6 +7,9 @@ import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
 import TestNav from './components/Navbar'
+import { Text, Space } from '@mantine/core';
+import Card from './components/homecard'
+
 
 
 const links = [
@@ -46,6 +49,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <img className='image-home-screen' src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'></img>
+      <Space h="md" />
+      <Center><h1>Predigten</h1></Center>
+      <Space h="md" />
+      <Card></Card>
+
+
+
 
     </>
   )
