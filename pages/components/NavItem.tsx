@@ -9,7 +9,7 @@ type NavItemProps = PropsWithChildren<{
 
 const NavItem = ({ text, href, active }: NavItemProps) => {
   return (
-    <Link href={href} legacyBehavior>
+    <Link href="/">
       {text}
     </Link>
   );

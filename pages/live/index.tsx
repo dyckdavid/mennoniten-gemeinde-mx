@@ -3,11 +3,10 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import HeaderMenuColored from '../components/nav';
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
-import TestNav from '../components/testnav'
+import TestNav from '../components/Navbar'
 
 
 const links = [
