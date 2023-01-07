@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
@@ -46,8 +47,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeaderMenuColored links={links} />
+      <img className='image-homescreen' src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8="></img>
 
-      <Center><h1>Mennoniten-Gemeinde</h1></Center>
+      <Center><h1 className='title-home'>Mennoniten-Gemeinde</h1></Center>
     </>
   )
 }

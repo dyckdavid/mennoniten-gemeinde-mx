@@ -238,3 +238,15 @@ a {
   align-content: center;
   margin-left: 20%;
 }
+
+.image-homescreen {
+  width: 100%;
+  height: auto;
+  margin-top: -120px;
+}
+
+.title-home {
+  margin-top: -60%;
+  color: red;
+  font-size: 70px;
+}
