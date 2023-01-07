@@ -196,6 +196,8 @@ a {
   }
 
 
+
+
   
 }
 
@@ -227,4 +229,12 @@ a {
 .navbar.expended .navbar-logo {
   margin-left: 35%;
     margin-top: 1px;
+}
+
+.div__open {
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  margin-left: 20%;
 }

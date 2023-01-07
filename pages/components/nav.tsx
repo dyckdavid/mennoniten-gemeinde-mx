@@ -1,8 +1,10 @@
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown } from '@tabler/icons';
+import { IconChevronDown, IconTopologyComplex } from '@tabler/icons';
 import { MantineLogo } from '@mantine/ds';
 import { Image } from '@mantine/core';
+import { useState } from 'react';
+
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -22,6 +24,14 @@ const useStyles = createStyles((theme) => ({
       display: 'none',
     },
   },
+
+  linking: {
+    [theme.fn.smallerThan('xs')]: {
+      display: 'block',
+    },
+  },
+
+
 
   burger: {
     [theme.fn.largerThan('sm')]: {
@@ -59,6 +69,8 @@ interface HeaderSearchProps {
 export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
+  const [showDiv, setShowDiv] = useState(false);
+
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -111,6 +123,7 @@ export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
+          
           <Burger
             opened={opened}
             onClick={toggle}
@@ -118,8 +131,12 @@ export default function HeaderMenuColored({ links = [] }: HeaderSearchProps) {
             size="sm"
             color="#fff"
           />
+          {opened && <Center><div className={classes.linking}><Group spacing={5}>{items}</Group></div></Center>}
         </div>
+          
       </Container>
     </Header>
+    
   );
+
 }
