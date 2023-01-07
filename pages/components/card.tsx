@@ -7,13 +7,12 @@ import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
-import Cards from '../components/card'
 
 
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Cards() {
   return (
     <>
       <Head>
@@ -22,11 +21,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Center><h1>Predigten</h1></Center>
-      
-      <Cards></Cards>
  
+
+      <Card shadow="sm" p="lg" radius="md" withBorder>
+      <Card.Section>
+
+      </Card.Section>
+
+      <Group position="apart" mt="md" mb="xs">
+        <Text weight={500}>Sontags Predigt</Text>
+        <Badge color="pink" variant="light">
+          1/8/22
+        </Badge>
+      </Group>
+
+      <Text size="sm" color="dimmed">
+Enrique Bartsch
+      </Text>
+
+      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+        Open
+      </Button>
+    </Card>
 
     </>
   )

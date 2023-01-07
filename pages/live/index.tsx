@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.css'
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
-import TestNav from '../components/Navbar'
 
 
 const links = [
