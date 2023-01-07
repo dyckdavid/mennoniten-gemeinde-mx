@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { PropsWithChildren } from 'react';
 
-type NavItemProps = PropsWithChildren<{
-  text: string;
-  href: string;
-  active: boolean;
-}>;
+type Props = {
+    text: string;
+    href: string;
+    active: boolean;
+  };
 
-const NavItem = ({ text, href, active }: NavItemProps) => {
+const NavItem = ({ text, href, active } : Props) => {
   return (
-    <Link href="/">
-      {text}
+    <Link href="href" legacyBehavior as={href}>
+      <a className={`nav__link`}>{text}</a>
     </Link>
   );
 };
