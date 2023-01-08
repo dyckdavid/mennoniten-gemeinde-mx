@@ -16,7 +16,7 @@ import { Space } from '@mantine/core';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Cards() {
+export default function CardsHome() {
   return (
     <>
     
