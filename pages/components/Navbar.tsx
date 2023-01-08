@@ -1,9 +1,13 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
 import NavItem from "./NavItem";
 import { Text, Space } from '@mantine/core';
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
+
+
 
 const MENU_LIST = [
   { text: "Hause", href: "/" },
@@ -13,6 +17,7 @@ const MENU_LIST = [
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);
   const [activeIdx, setActiveIdx] = useState(-1);
+  const title = navActive ? 'Close navigation' : 'Open navigation';
 
   
 
@@ -21,17 +26,16 @@ const Navbar = () => {
       <nav className={`nav`}>
         <Link href={"/"} legacyBehavior>
           <a>
-            <h1 className="logo">Mennonitem - Gemeinde</h1>
+            <img className="navbar__logo" src="http://mennonitengemeinde.mx/2.jpg" ></img>
           </a>
         </Link>
-        <div
-          onClick={() => setNavActive(!navActive)}
-          className={`nav__menu-bar`}
-        >
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <Burger
+      opened={navActive}
+      onClick={() => setNavActive(!navActive)}
+      title={title}
+      className={`nav__menu-bar-two`}
+    />
+
         <div className={`${navActive ? "active" : ""} nav__menu-list`}>
           {MENU_LIST.map((menu, idx) => (
             <div

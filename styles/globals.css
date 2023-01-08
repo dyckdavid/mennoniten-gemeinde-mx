@@ -282,14 +282,9 @@ body {
   position: relative;
 }
 
-.logo {
-}
 
 .menu-icon {
   display: none;
-}
-
-.nav-elements {
 }
 
 .nav-elements ul {
@@ -363,10 +358,6 @@ body {
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
   font-family: 'Waterfall';
   font-style: normal;
@@ -399,6 +390,7 @@ header{
 nav{
   display: flex;
   padding: 16px;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
   background-color: #008cff;
@@ -451,6 +443,10 @@ nav{
   .nav__menu-bar{
     display: none;
   }
+
+  .nav__menu-bar-two {
+    display: none;
+  }
   .nav__menu-list{
     position: unset;
     flex-direction: row;
@@ -478,5 +474,10 @@ nav{
 
 .image-home-screen {
   width: 100%;
+  height: auto;
+}
+
+.navbar__logo {
+  width: 100px;
   height: auto;
 }
