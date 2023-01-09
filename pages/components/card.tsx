@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
 import { SimpleGrid } from '@mantine/core';
 import { MantineProvider } from '@mantine/core';
+import { MediaQuery } from '@mantine/core';
 
 
 
@@ -19,7 +20,7 @@ export default function Cards() {
     <>
     
 
-<SimpleGrid cols={3}>
+
       <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
@@ -140,7 +141,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    </SimpleGrid>
+
     </>
   )
 }

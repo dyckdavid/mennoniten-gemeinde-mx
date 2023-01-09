@@ -390,7 +390,7 @@ header{
 nav{
   display: flex;
   padding: 16px;
-  height: 80px;
+  height: 70px;
   justify-content: space-between;
   align-items: center;
   background-color: #008cff;
@@ -469,6 +469,8 @@ nav{
   .nav__link:hover:before{
    width: 100%;
   }
+
+ 
 }
 
 
@@ -488,5 +490,16 @@ nav{
 
 .card__predigten {
   margin-left: 10px;
-  margin-right: 10px;
+
+  margin-bottom: 10px;
+  float: left;
+  width: 32%;
+}
+
+@media screen and (max-width: 600px) {
+  .card__predigten {
+    width: 95%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
