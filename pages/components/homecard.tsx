@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/google-font-display */
+/* eslint-disable @next/next/no-page-custom-font */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head'
@@ -11,6 +13,8 @@ import { SimpleGrid } from '@mantine/core';
 import { MantineProvider } from '@mantine/core';
 import { Space } from '@mantine/core';
 import { createStyles } from '@mantine/core';
+import { ActionIcon } from '@mantine/core';
+import { IconCalendar } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -35,7 +39,7 @@ export default function CardsHome() {
     const { classes } = useStyles();
   return (
     <>
-    
+
 
     <Center>
       <Card shadow="sm" p="lg" radius="md" mt="md" withBorder className='conatiner-home-screen'>
@@ -45,7 +49,9 @@ export default function CardsHome() {
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light" size="lg">
+        <Badge color="red" variant="light" size="lg">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -69,8 +75,10 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light" size="lg">
-          2/8/22
+        <Badge color="red" variant="light" size="lg">
+        
+            <IconCalendar size={16} className="align-calendar"></IconCalendar>
+         2/8/22
         </Badge>
       </Group>
 
@@ -93,7 +101,9 @@ John Dyck
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light" size="lg">
+        <Badge color="red" variant="light" size="lg">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           3/8/22
         </Badge>
       </Group>

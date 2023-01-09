@@ -13,6 +13,7 @@ import { Button } from '@mantine/core';
 
 
 
+
 const links = [
   {
     link: '/',
@@ -58,7 +59,7 @@ export default function Home() {
       <Space h="md" />
       <Center>
         <Link href="/predigten">
-      <Button radius="xl" size="xl" uppercase>
+      <Button radius="sm" size="xl" uppercase compact>
       Predigten
     </Button></Link>
       </Center>

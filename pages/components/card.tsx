@@ -10,6 +10,8 @@ import { Card, Text, Badge, Button, Group } from '@mantine/core';
 import { SimpleGrid } from '@mantine/core';
 import { MantineProvider } from '@mantine/core';
 import { MediaQuery } from '@mantine/core';
+import { IconCalendar } from '@tabler/icons';
+
 
 
 
@@ -28,7 +30,9 @@ export default function Cards() {
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -48,7 +52,9 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -68,7 +74,9 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -88,7 +96,9 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -108,7 +118,9 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>
@@ -128,7 +140,9 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="pink" variant="light">
+        <Badge color="red" variant="light">
+        <IconCalendar size={16} className="align-calendar"></IconCalendar>
+
           1/8/22
         </Badge>
       </Group>

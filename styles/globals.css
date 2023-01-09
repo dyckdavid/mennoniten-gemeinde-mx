@@ -496,10 +496,35 @@ nav{
   width: 32%;
 }
 
+@media screen and (max-width: 800px) {
+  .card__predigten {
+    width: 48%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .card__predigten {
     width: 95%;
     display: block;
     margin-bottom: 20px;
   }
+}
+
+
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+.align-calendar {
+  text-align: center;
+  margin-top: 15%;
 }
