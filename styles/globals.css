@@ -481,3 +481,12 @@ nav{
   width: 100px;
   height: auto;
 }
+
+.conatiner-home-screen {
+  width: 90%;
+}
+
+.card__predigten {
+  margin-left: 10px;
+  margin-right: 10px;
+}

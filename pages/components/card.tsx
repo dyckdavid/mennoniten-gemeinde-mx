@@ -19,8 +19,8 @@ export default function Cards() {
     <>
     
 
-<SimpleGrid cols={4}>
-      <Card shadow="sm" p="lg" radius="md" withBorder>
+<SimpleGrid cols={3}>
+      <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>
@@ -40,7 +40,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>
@@ -60,7 +60,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>
@@ -80,7 +80,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>
@@ -100,7 +100,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>
@@ -120,7 +120,7 @@ Enrique Bartsch
         Open
       </Button>
     </Card>
-    <Card shadow="sm" p="lg" radius="md" withBorder>
+    <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
       </Card.Section>

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import TestNav from './components/Navbar'
 import { Text, Space } from '@mantine/core';
 import Card from './components/homecard'
+import { Button } from '@mantine/core';
 
 
 
@@ -54,6 +55,14 @@ export default function Home() {
       <Center><h1>Predigten</h1></Center>
       <Space h="md" />
       <Card></Card>
+      <Space h="md" />
+      <Center>
+        <Link href="/predigten">
+      <Button radius="xl" size="xl" uppercase>
+      Predigten
+    </Button></Link>
+      </Center>
+      <Space h="xl" />
 
 
 
