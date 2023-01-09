@@ -30,9 +30,8 @@ export default function Cards() {
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
-
           1/8/22
         </Badge>
       </Group>
@@ -41,9 +40,11 @@ export default function Cards() {
 Enrique Bartsch
       </Text>
 
+      <Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
     <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
@@ -52,7 +53,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -63,9 +64,11 @@ Enrique Bartsch
 Enrique Bartsch
       </Text>
 
+      <Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
     <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
@@ -74,7 +77,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -85,9 +88,11 @@ Enrique Bartsch
 Enrique Bartsch
       </Text>
 
+      <Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
     <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
@@ -96,7 +101,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -107,9 +112,11 @@ Enrique Bartsch
 Enrique Bartsch
       </Text>
 
+      <Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
     <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
@@ -118,7 +125,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -129,9 +136,11 @@ Enrique Bartsch
 Enrique Bartsch
       </Text>
 
+      <Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
     <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
@@ -140,7 +149,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -151,9 +160,12 @@ Enrique Bartsch
 Enrique Bartsch
       </Text>
 
+
+<Link href="./sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Open
+      Öffnen
       </Button>
+      </Link>
     </Card>
 
     </>

@@ -431,6 +431,7 @@ nav{
 
 .nav__link:hover{
  font-weight: bold;
+ transition: all 0.2s;
 }
 
 .center{
@@ -482,6 +483,7 @@ nav{
 .navbar__logo {
   width: 100px;
   height: auto;
+  margin-top: 7px;
 }
 
 .conatiner-home-screen {
@@ -493,7 +495,7 @@ nav{
 
   margin-bottom: 10px;
   float: left;
-  width: 32%;
+  width: 32.25%;
 }
 
 @media screen and (max-width: 800px) {
@@ -528,3 +530,9 @@ nav{
   text-align: center;
   margin-top: 15%;
 }
+
+.live-stream {
+  width: 95%;
+  height: auto;
+}
+

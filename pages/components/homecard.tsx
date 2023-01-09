@@ -16,6 +16,7 @@ import { createStyles } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons';
 
+
 const useStyles = createStyles((theme) => ({
     container: {
       width: 1200,
@@ -49,7 +50,7 @@ export default function CardsHome() {
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light" size="lg">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           1/8/22
@@ -57,11 +58,12 @@ export default function CardsHome() {
       </Group>
 
       <Text size="sm" color="dimmed">
+        
 Enrique Bartsch
       </Text>
-      <Link href="/predigten">
+      <Link href="/sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-      Öfnen
+      Öffnen
       </Button>
     </Link>
     </Card>
@@ -75,7 +77,7 @@ Enrique Bartsch
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light" size="lg">
+        <Badge color="red" variant="light" size="xl">
         
             <IconCalendar size={16} className="align-calendar"></IconCalendar>
          2/8/22
@@ -85,9 +87,9 @@ Enrique Bartsch
       <Text size="sm" color="dimmed">
 John Dyck
       </Text>
-      <Link href="/predigten">
+      <Link href="/sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-      Öfnen
+      Öffnen
       </Button>
     </Link>
     </Card>
@@ -101,7 +103,7 @@ John Dyck
 
       <Group position="apart" mt="md" mb="xs">
         <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light" size="lg">
+        <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
           3/8/22
@@ -111,9 +113,9 @@ John Dyck
       <Text size="sm" color="dimmed">
 Riky Wall
       </Text>
-    <Link href="/predigten">
+    <Link href="/sermons">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Öfnen
+        Öffnen
       </Button>
     </Link>
     </Card>
