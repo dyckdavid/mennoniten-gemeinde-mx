@@ -33,6 +33,7 @@ const Navbar = () => {
       opened={navActive}
       onClick={() => setNavActive(!navActive)}
       title={title}
+      color="#ffffff"
       className={`nav__menu-bar-two`}
     />
 

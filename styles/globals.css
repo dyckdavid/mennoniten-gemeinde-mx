@@ -245,10 +245,15 @@ a {
   margin-left: 20%;
 }
 
+
+
 .image-homescreen {
   width: 100%;
   height: auto;
-  margin-top: -120px;
+
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .title-home {
@@ -380,7 +385,7 @@ body {
 }
 a{
   text-decoration: none;
-  color: inherit;
+  color: white;
 }
 header{
   position: sticky;
@@ -471,13 +476,18 @@ nav{
    width: 100%;
   }
 
+
+
  
 }
 
 
 .image-home-screen {
-  width: 100%;
+  width: 95%;
   height: auto;
+  margin-top: 10px;
+  border-radius: 25px;
+
 }
 
 .navbar__logo {
@@ -511,6 +521,15 @@ nav{
     width: 95%;
     display: block;
     margin-bottom: 20px;
+  }
+
+  .image-home-screen {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    margin-top: 0;
+
+  
   }
 }
 

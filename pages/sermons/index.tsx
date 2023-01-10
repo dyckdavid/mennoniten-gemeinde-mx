@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { Text, Space } from '@mantine/core';
 import { AspectRatio } from '@mantine/core';
 import { Button } from '@mantine/core';
+import { useRouter } from 'next/router';
 
 
 
@@ -42,6 +43,7 @@ const links = [
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+    const router = useRouter();
   return (
     <>
       <Head>
@@ -53,10 +55,10 @@ export default function Home() {
       <Space h="md" />
       <Space h="md" />
       
-        <Link href="/predigten">
-        <Button radius="sm" size="xl" uppercase compact className='back-button-sermons-page'>
+        
+        <Button radius="sm" size="xl" uppercase compact className='back-button-sermons-page' onClick={() => router.back()}>
       Züruck
-    </Button></Link>
+    </Button>
       <Space h="xl" />
       <Center>
       <div className='sermons-center-container'>
