@@ -514,6 +514,8 @@ nav{
     display: block;
     margin-bottom: 20px;
   }
+
+
 }
 
 @media screen and (max-width: 600px) {
@@ -531,6 +533,9 @@ nav{
 
   
   }
+
+ 
+  
 }
 
 
@@ -594,4 +599,35 @@ nav{
 .download-button {
   margin-bottom: 80px;
   margin-left: 40px;
+}
+
+.stream-main-stream-page {
+  width: 95%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.live-stream-main-iframe {
+  width: 95%;
+  height: 600px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+
+}
+
+
+@media screen and (max-width: 600px) {
+  .live-stream-main-iframe {
+    width: 95%;
+    height: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+  
+  }
+
 }

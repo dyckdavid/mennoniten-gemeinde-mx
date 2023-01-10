@@ -51,16 +51,18 @@ export default function Home() {
       <Space h="md" />
       <Center><h1>Live Streams</h1></Center>
       <Space h="md" />
-      <AspectRatio ratio={16 / 9}>
+      <Center>
+      <div className='stream-main-stream-page'>
       <iframe
-      className='live-stream'
+      className='live-stream-main-iframe'
         src="https://youtube.com/embed/ZMK6g1NLSqU"
         title="Live"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
-    </AspectRatio>
+      </div>
+      </Center>
     </>
   )
 }
