@@ -53,7 +53,7 @@ export default function Home() {
       </Head>
       <Center>
 
-      <img className='image-home-screen' src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'></img>
+      <img className='image-home-screen' src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg' />
       </Center>
       <Space h="md" />
       <Center><h1>Predigten</h1></Center>
