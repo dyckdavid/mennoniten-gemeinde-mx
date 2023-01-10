@@ -51,24 +51,47 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Space h="md" />
-      <Center><h1>Sontags Predigt</h1></Center>
       <Space h="md" />
       
         <Link href="/predigten">
-      <Button radius="sm" size="xl" uppercase compact>
+        <Button radius="sm" size="xl" uppercase compact className='back-button-sermons-page'>
       Züruck
     </Button></Link>
       <Space h="xl" />
-      <AspectRatio ratio={14 / 8}>
+      <Center>
+      <div className='sermons-center-container'>
+        <Center>
+        <Space h="xl" />
       <iframe
-      className='live-stream'
+      className='sermosn-media-video'
         src="https://youtube.com/embed/ZMK6g1NLSqU"
         title="Live"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
-    </AspectRatio>
+      </Center>
+      <h1 className='sermons-title'>Sontags Predigt Titel</h1>
+      <p className='sermons-speaker'>John Dyck</p>
+
+
+      <audio controls className='audio-sermon'>
+      <source src="/path/to/audio.mp3" type="audio/mpeg" />
+      <p>Your browser does not support the audio element.</p>
+    </audio>
+    <Link href="/download">
+        <Button radius="sm" size="xl" uppercase compact className='download-button'>
+      Download
+    </Button></Link>
+
+    
+
+
+      </div>
+      </Center>
+
+      <Space h="xl" />
+      
     </>
   )
 }
