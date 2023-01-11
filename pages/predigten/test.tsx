@@ -10,7 +10,7 @@ import { Card, Badge, Button, Group } from '@mantine/core';
 import Cards from '../components/card'
 import { Text, Space } from '@mantine/core';
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
-import { db } from '../components/firebase/clientApp';
+import { db } from '../../firebase/clientApp';
 import { useEffect, useState } from 'react';
 import { Table } from '@mantine/core';
 import { createStyles } from '@mantine/core';
