@@ -18,7 +18,7 @@ import {
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import { Center } from '@mantine/core'
+import { Center, Footer } from '@mantine/core'
 import { Image } from '@mantine/core';
 import Link from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
@@ -43,25 +43,37 @@ import { Props } from "next/dist/client/script";
 import { title } from "process";
 
 
-
+  
+  const DetailedPage: NextPage<Props> = () => {
+    
+  
+    return (
+      <>
+        <div className="noise" />
+        
+          <h1>data</h1>
+        
+          <h1>Data 2</h1>
+        
+      </>
+    );
+  };
   
   export const getServerSideProps: GetServerSideProps = async (
     context: GetServerSidePropsContext
   ) => {
     const id = (context.params as ParsedUrlQuery).id as string;
-    const docRef = doc(db, "sermons", id);
+    const docRef = doc(db, "listings", id);
     const docSnap = await getDoc(docRef);
     const data = docSnap.data();
-    
   
     return {
       props: {
         data,
       },
     };
-
-    
   };
   
+  export default DetailedPage;
 
-
+  
