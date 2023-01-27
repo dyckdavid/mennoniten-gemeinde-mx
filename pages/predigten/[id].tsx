@@ -40,6 +40,7 @@ import firebase from 'firebase/compat/app'
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from "node:querystring";
 import { Props } from "next/dist/client/script";
+import { title } from "process";
 
 
 
@@ -51,12 +52,16 @@ import { Props } from "next/dist/client/script";
     const docRef = doc(db, "sermons", id);
     const docSnap = await getDoc(docRef);
     const data = docSnap.data();
+    
   
     return {
       props: {
         data,
       },
     };
+
+    
   };
   
+
 
