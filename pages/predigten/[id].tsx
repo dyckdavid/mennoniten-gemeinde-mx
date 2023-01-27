@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable react-hooks/rules-of-hooks */
 import {
     GetServerSideProps,
@@ -37,6 +38,25 @@ import 'firebase/firestore'
 import 'firebase/firestore'
 import firebase from 'firebase/compat/app'
 import { GetStaticProps } from 'next';
+import { ParsedUrlQuery } from "node:querystring";
+import { Props } from "next/dist/client/script";
 
 
+
+  
+  export const getServerSideProps: GetServerSideProps = async (
+    context: GetServerSidePropsContext
+  ) => {
+    const id = (context.params as ParsedUrlQuery).id as string;
+    const docRef = doc(db, "sermons", id);
+    const docSnap = await getDoc(docRef);
+    const data = docSnap.data();
+  
+    return {
+      props: {
+        data,
+      },
+    };
+  };
+  
 
