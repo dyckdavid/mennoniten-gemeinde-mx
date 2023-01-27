@@ -24,7 +24,6 @@ import { Loader } from '@mantine/core';
 
 
 
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Cards() {
@@ -38,16 +37,19 @@ export default function Cards() {
     }, []);
 
     if (data.length === 0) {
-        return <Center>Loading...</Center>;
+        return <Center><Space h="xl" /><Loader variant="bars" /></Center>;
     }
 
 
   return (
     <>
-    
+    <Space h="md" />
 
     
     {data.map((item: DocumentData) => (
+      
+      <div key={item.id}>
+        
       <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
 
       
@@ -69,13 +71,14 @@ export default function Cards() {
       </Text>
       
 
-      <Link href="./sermons">
+      <Link href={`/predigten/${item.id}`}>
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
       Öffnen
       </Button>
       </Link>
       
     </Card>
+    </div>
     ))}
     
 

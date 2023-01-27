@@ -58,6 +58,8 @@ export default function Home() {
       <Space h="md" />
       <Center><h1>Predigten</h1></Center>
       <Space h="md" />
+      <h1 className='last-sermons-text'>Hören sie unsere letzte Predigten an!</h1>
+      <Space h="md" />
       <Card></Card>
       <Space h="md" />
       <Center>

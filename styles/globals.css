@@ -280,8 +280,8 @@ nav{
 
 
 .image-home-screen {
-  width: 95%;
-  height: auto;
+  width: 93%;
+  height: 750px;
   margin-top: 10px;
   border-radius: 25px;
 
@@ -427,4 +427,9 @@ nav{
   
   }
 
+}
+
+.last-sermons-text {
+  margin-left: 100px;
+  color: rgb(57, 57, 57);
 }
