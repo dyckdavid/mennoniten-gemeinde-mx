@@ -26,7 +26,7 @@ const Navbar = () => {
       <nav className={`nav`}>
         <Link href={"/"} legacyBehavior>
           <a>
-            <img className="navbar__logo" src="http://mennonitengemeinde.mx/2.jpg" ></img>
+            <img className="navbar__logo" src="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/3.png?alt=media&token=492879b0-b1c2-427a-a71e-4747ed4563e6" ></img>
           </a>
         </Link>
         <Burger
