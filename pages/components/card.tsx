@@ -37,7 +37,7 @@ export default function Cards() {
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
       <Link href="./sermons">
@@ -61,7 +61,7 @@ Enrique Bartsch
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
       <Link href="./sermons">
@@ -85,7 +85,7 @@ Enrique Bartsch
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
       <Link href="./sermons">
@@ -109,7 +109,7 @@ Enrique Bartsch
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
       <Link href="./sermons">
@@ -133,7 +133,7 @@ Enrique Bartsch
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
       <Link href="./sermons">
@@ -157,7 +157,7 @@ Enrique Bartsch
       </Group>
 
       <Text size="sm" color="dimmed">
-Enrique Bartsch
+Name
       </Text>
 
 

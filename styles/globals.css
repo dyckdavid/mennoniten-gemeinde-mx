@@ -214,13 +214,15 @@ nav{
   flex-direction: column;
   position: fixed;
   top: 60px;
-  width: 288px;
+  width: 100%;
   row-gap: 24px;
-  right: -288px;
+  right: -100%;
   padding: 24px 16px;
   transition: all 0.2s;
   min-height: calc(100vh - 60px);
   background-color: #008cff;
+  text-align: center;
+  font-size: 19px;
 }
 .nav__menu-list.active{
   right: 0;
@@ -281,7 +283,7 @@ nav{
 
 .image-home-screen {
   width: 93%;
-  height: 750px;
+  height: 700px;
   margin-top: 10px;
   border-radius: 25px;
 
