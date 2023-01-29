@@ -14,7 +14,6 @@ import { MediaQuery } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons';
 import { Space } from '@mantine/core';
 import { collection, DocumentData, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase/clientApp';
 import { useEffect, useState } from 'react';
 import { Table } from '@mantine/core';
 import { createStyles } from '@mantine/core';
@@ -27,18 +26,7 @@ import { Loader } from '@mantine/core';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Cards() {
-    const [data, setData] = useState<DocumentData>([]);
-
-    useEffect(() => {
-        getDocs(collection(db, "sermons")).then((querySnapshot) => {
-            const items = querySnapshot.docs.map((doc) => doc.data());
-            setData(items);
-        });
-    }, []);
-
-    if (data.length === 0) {
-        return <Center><Space h="xl" /><Loader variant="bars" /></Center>;
-    }
+   
 
 
   return (
@@ -46,9 +34,9 @@ export default function Cards() {
     <Space h="md" />
 
     
-    {data.map((item: DocumentData) => (
+    
       
-      <div key={item.id}>
+      <div >
         
       <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
 
@@ -56,22 +44,22 @@ export default function Cards() {
       
       <Group position="apart" mt="md" mb="xs">
       
-        <Text weight={500}>{item.title}</Text>
+        <Text weight={500}></Text>
         
         
         <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
-        {item.date}
+        Date
         </Badge>
         
       </Group>
       
       <Text size="sm" color="dimmed">
-{item.speaker}
+Speaker
       </Text>
       
 
-      <Link href={`/predigten/${item.id}`}>
+      <Link href="/live">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
       Öffnen
       </Button>
@@ -79,7 +67,7 @@ export default function Cards() {
       
     </Card>
     </div>
-    ))}
+    
     
 
     </>
