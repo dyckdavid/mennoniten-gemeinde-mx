@@ -11,8 +11,8 @@ import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@m
 
 const MENU_LIST = [
   { text: "Hause", href: "/" },
-  { text: "Predigten", href: "/" },
-  { text: "Live", href: "/" },
+  { text: "Predigten", href: "/predigten" },
+  { text: "Live", href: "/live" },
 ];
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);

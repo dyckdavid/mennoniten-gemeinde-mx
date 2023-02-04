@@ -2,12 +2,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
 import { Center } from '@mantine/core'
-import { Image } from '@mantine/core';
-import Link from 'next/link'
 import { Card, Badge, Button, Group } from '@mantine/core';
-import Cards from '../components/card'
+import Cards from '../firestore/index'
 import { Text, Space } from '@mantine/core';
 
 

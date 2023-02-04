@@ -16,6 +16,6 @@
     "incremental": true,
     "strictPropertyInitialization": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/components/SermonCard.js", "pages/firestore/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/components/SermonCard.js", "pages/firestore/index.js", "pages/predigten/index.js"],
   "exclude": ["node_modules", "functions"]
 }
