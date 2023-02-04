@@ -26,7 +26,7 @@ export default function Cards() {
     
 
       
-        <div key={item.id}>
+        <div >
       <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
       <Card.Section>
 
@@ -36,7 +36,7 @@ export default function Cards() {
         <Text weight={500}>Sontags Predigt</Text>
         <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
-          {item.date}
+          date
         </Badge>
       </Group>
 
