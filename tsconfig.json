@@ -1,3 +1,5 @@
+
+
 {
   "compilerOptions": {
     "target": "es5",
@@ -15,6 +17,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/components/card.tsxx", pages/components/card.tsxsx", "pages/live/index.js", "pages/firestore/index.js", "firebase/config.js", "firebase/config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
