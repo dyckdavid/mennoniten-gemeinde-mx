@@ -23,7 +23,9 @@ export default function Hause() {
       <div>
         <Center>
           <h1>COMING SOON</h1>
-          <p>Check Back later</p>
+        </Center>
+        <Center>
+          <p>Check back later</p>
         </Center>
       </div>
     
