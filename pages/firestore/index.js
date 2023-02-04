@@ -8,7 +8,7 @@ import { Loader } from '@mantine/core';
 import { db } from '../../firebase/config.js';
 import { useEffect, useState} from 'react';
 import { collection, getDocs } from 'firebase/firestore/lite';
-import { SermonsCard } from '../components/SermonCard.js';
+import { SermonsCard } from '../../components/SermonCard';
 
 
 
