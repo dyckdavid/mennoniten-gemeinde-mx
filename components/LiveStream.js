@@ -15,7 +15,7 @@ export const LiveStream = ({ stream }) => {
 
         return (
             <Center>
-            <h1>Keine Streams Live im Moment</h1>
+            <h3>Keine Streams Live im Moment</h3>
             </Center>
         )
 
