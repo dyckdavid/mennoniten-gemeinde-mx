@@ -283,7 +283,7 @@ nav{
 
 .image-home-screen {
   width: 93%;
-  height: 700px;
+  height: auto;
   margin-top: 10px;
   border-radius: 25px;
 
@@ -312,6 +312,15 @@ nav{
     width: 48%;
     display: block;
     margin-bottom: 20px;
+  }
+
+  .image-home-screen {
+    width: 93%;
+    height: auto;
+    border-radius: 25px;
+    margin-top: 10px;
+
+  
   }
 
 
@@ -378,6 +387,15 @@ nav{
   border-radius: 9px;
 }
 
+.sermons-center-container-no-iframe {
+  align-items: center;
+  width: 95%;
+  height: 300px;
+  background-color: white;
+  border: 2px solid rgb(212, 211, 211);
+  border-radius: 9px;
+}
+
 .sermons-title {
   margin-left: 40px;
   margin-top: 30px;
@@ -400,38 +418,46 @@ nav{
   margin-left: 40px;
 }
 
-.stream-main-stream-page {
-  width: 95%;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-}
-
-.live-stream-main-iframe {
-  width: 95%;
-  height: 600px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  margin-bottom: 20px;
-
-}
 
 
-@media screen and (max-width: 600px) {
-  .live-stream-main-iframe {
-    width: 95%;
-    height: 400px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    margin-bottom: 20px;
-  
-  }
 
-}
 
 .last-sermons-text {
   margin-left: 100px;
   color: rgb(57, 57, 57);
+}
+
+.text-over-image-home {
+  position: absolute;
+  top: 55%;
+  color: white;
+  font-size: 65px;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 600px) {
+
+
+  .last-sermons-text {
+    margin-left: 30px;
+    color: rgb(57, 57, 57);
+  }
+
+  .text-over-image-home {
+    position: absolute;
+    top: 30%;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+  }
+
+}
+
+
+.live-stream-actual {
+  position: absolute;
+  top: 15%;
+  width: 95%;
+  height: 90%;
 }

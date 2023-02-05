@@ -15,6 +15,36 @@ export default function Sermon({ sermon }) {
     const router = useRouter();
     const { title, name, date, link, audio, speaker } = sermon
 
+
+    if (!link) {
+        return (
+            <><Space h="md" /><Space h="md" /><Button radius="sm" size="xl" uppercase compact className='back-button-sermons-page' onClick={() => router.back()}>
+                Züruck
+            </Button><Space h="xl" /><Center>
+                    <div className='sermons-center-container-no-iframe '>
+
+                        <h1 className='sermons-title'>{title}</h1>
+                        <p className='sermons-speaker'>{speaker}</p>
+
+
+                        <audio controls className='audio-sermon'>
+                            <source src={audio} type="audio/mpeg" />
+                            <p>Your browser does not support the audio element.</p>
+                        </audio>
+                        <Link href={`${audio}`}>
+                            <Button radius="sm" size="xl" uppercase compact className='download-button'>
+                                Download
+                            </Button></Link>
+
+
+
+
+                    </div>
+                </Center><Space h="xl" /></>
+        )
+      }
+
+
     return (
         <>
               <Head>

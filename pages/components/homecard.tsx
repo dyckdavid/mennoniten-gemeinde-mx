@@ -53,7 +53,7 @@ export default function CardsHome() {
         <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
-          1/8/22
+          29/01/23
         </Badge>
       </Group>
 
@@ -61,7 +61,7 @@ export default function CardsHome() {
         
 Enrique Bartsch
       </Text>
-      <Link href="/sermons">
+      <Link href="/sermons/J7rd7mNay9naMdkXqLKy">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
       Öffnen
       </Button>
@@ -80,14 +80,14 @@ Enrique Bartsch
         <Badge color="red" variant="light" size="xl">
         
             <IconCalendar size={16} className="align-calendar"></IconCalendar>
-         2/8/22
+         22/01/23
         </Badge>
       </Group>
 
       <Text size="sm" color="dimmed">
-John Dyck
+Peter Martens
       </Text>
-      <Link href="/sermons">
+      <Link href="/sermons/UBqzeDcaz7urtbYL7kl9">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
       Öffnen
       </Button>
@@ -106,14 +106,14 @@ John Dyck
         <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
-          3/8/22
+          15/01/23
         </Badge>
       </Group>
 
       <Text size="sm" color="dimmed">
-Riky Wall
+John Dyck
       </Text>
-    <Link href="/sermons">
+    <Link href="/sermons/WJ9cpjT0ny0ZZciB9ee0">
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
         Öffnen
       </Button>
