@@ -16,6 +16,7 @@ export const LiveStream = ({ stream }) => {
         return (
             <Center>
             <h3>Keine Streams Live im Moment</h3>
+            <p>Sontag um 9:00 UHR Begint der Live Stream</p>
             </Center>
         )
 
