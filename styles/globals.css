@@ -463,3 +463,18 @@ nav{
   width: 93%;
   height: 90%;
 }
+
+.live-no-stream {
+  margin-top: 20%;
+}
+
+.live-true-stream {
+  width: 60%;
+  height: auto;
+  margin-top: 10%;
+}
+
+.live-video {
+  width: 120%;
+  height: 300px;
+}

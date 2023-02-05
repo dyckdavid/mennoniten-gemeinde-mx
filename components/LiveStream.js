@@ -5,7 +5,8 @@ import React from 'react';
 import { Center } from '@mantine/core'
 import { Space } from '@mantine/core';
 import Head from 'next/head'
-import { AspectRatio } from '@mantine/core';
+
+
 
 
 export const LiveStream = ({ stream }) => {
@@ -14,10 +15,33 @@ export const LiveStream = ({ stream }) => {
     if (!url) {
 
         return (
-            <Center>
-            <h3>Keine Streams Live im Moment</h3>
-            <p>Sontag um 9:00 UHR Begint der Live Stream</p>
-            </Center>
+            <>
+
+<Space h="xl" />
+
+<Card
+      shadow="sm"
+      p="xl"
+      component="a"
+      href="/"
+      target="_blank"
+      className='live-no-stream'
+      withBorder
+    >
+      <Card.Section>
+        <Center>
+        <h3>Sontag um 9:00 UHR</h3>
+        </Center>
+      </Card.Section>
+
+
+      <Text mt="xs" color="dimmed" size="xl">
+        Keine Live Streams in Moment verfügbar
+      </Text>
+    </Card>
+            
+            
+            </>
         )
 
     }
@@ -26,9 +50,21 @@ export const LiveStream = ({ stream }) => {
     return (
         <>
 
-    <Center>
-            <iframe
-            className='live-stream-actual'
+
+
+        <Card
+      shadow="sm"
+      p="xl"
+      component="a"
+      href="/"
+      target="_blank"
+      className='live-true-stream'
+      withBorder
+    >
+      <Card.Section>
+        <Center>
+        <iframe
+                className='live-video'
 
               src={`${url}`}
               title="Live"
@@ -36,6 +72,13 @@ export const LiveStream = ({ stream }) => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen />
         </Center>
+      </Card.Section>
+
+
+      <Text mt="xs" color="dimmed" size="xl">
+        {Title}
+      </Text>
+    </Card>
 
 
 

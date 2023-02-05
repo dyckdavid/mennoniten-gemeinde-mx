@@ -31,7 +31,7 @@ export default function Sermon({ sermon }) {
                             <source src={audio} type="audio/mpeg" />
                             <p>Your browser does not support the audio element.</p>
                         </audio>
-                        <Link href={`${audio}`}>
+                        <Link href={`${audio}`} download>
                             <Button radius="sm" size="xl" uppercase compact className='download-button'>
                                 Download
                             </Button></Link>
@@ -82,7 +82,7 @@ export default function Sermon({ sermon }) {
       <source src={audio} type="audio/mpeg" />
       <p>Your browser does not support the audio element.</p>
     </audio>
-    <Link href={`${audio}`}>
+    <Link href={`${audio}`} download>
         <Button radius="sm" size="xl" uppercase compact className='download-button'>
       Download
     </Button></Link>
