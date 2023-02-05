@@ -14,7 +14,9 @@ export const LiveStream = ({ stream }) => {
     if (!url) {
 
         return (
+            <Center>
             <h1>Keine Streams Live im Moment</h1>
+            </Center>
         )
 
     }

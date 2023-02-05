@@ -457,7 +457,9 @@ nav{
 
 .live-stream-actual {
   position: absolute;
+  right: 5px;
+  left: 5px;
   top: 15%;
-  width: 95%;
+  width: 93%;
   height: 90%;
 }
