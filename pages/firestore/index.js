@@ -9,10 +9,12 @@ import { db } from '../../firebase/config.js';
 import { useEffect, useState} from 'react';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { SermonsCard } from '../../components/SermonCard';
-
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 
 export default function Live() {
+
 
   const [sermons, setSermons] = useState([])
 

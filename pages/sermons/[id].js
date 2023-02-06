@@ -25,6 +25,7 @@ export default function Sermon({ sermon }) {
 
                         <h1 className='sermons-title'>{title}</h1>
                         <p className='sermons-speaker'>{speaker}</p>
+                        <p>{date}</p>
 
 
                         <audio controls className='audio-sermon'>
