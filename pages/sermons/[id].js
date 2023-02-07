@@ -99,7 +99,7 @@ export default function Sermon({ sermon }) {
     )
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     const id = params.id
     const sermonSnapshot = await getDoc(doc(db, 'sermons', id))
     const sermon = sermonSnapshot.data()
@@ -111,22 +111,3 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export async function getStaticPaths() {
-    const sermonCollection = collection(db, 'sermons')
-    const sermonSnapshot = await getDocs(sermonCollection)
-    const sermons = sermonSnapshot.docs.map(doc => {
-        const data = doc.data()
-        data.id = doc.id
-        return data
-    })
-    const paths = sermons.map(sermon => ({
-        params: {
-            id: sermon.id
-        }
-    }))
-    return {
-        paths,
-        fallback: "blocking"
-    }
-
-}
