@@ -13,7 +13,7 @@ import Head from 'next/head'
 
 export default function Sermon({ sermon }) {
     const router = useRouter();
-    const { title, date, link, audio, speaker, no } = sermon
+    const { title, date, link, audio, speaker, no, id } = sermon
 
 
     if (!link) {
