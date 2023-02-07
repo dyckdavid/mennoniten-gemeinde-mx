@@ -10,7 +10,7 @@ import Head from 'next/head'
 
 
 export const LiveStream = ({ stream }) => {
-    const { url, Title, date, id } = stream;
+    const { url, Title, date, id, order, dates } = stream;
 
     if (!url) {
 

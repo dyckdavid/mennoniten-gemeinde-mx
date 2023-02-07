@@ -7,10 +7,12 @@ import { Space } from '@mantine/core';
 import { Loader } from '@mantine/core';
 import { db } from '../../firebase/config.js';
 import { useEffect, useState} from 'react';
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { collection, getDocs } from 'firebase/firestore';
 import { SermonsCard } from '../../components/SermonCard';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { query, orderBy, limit, ref } from "firebase/firestore"
+
 
 
 export default function Live() {
@@ -20,14 +22,13 @@ export default function Live() {
 
   useEffect(() => {
     async function getSermons() {
-      const sermonCollection = collection(db, 'sermons')
-      const sermonSnapshot = await getDocs(sermonCollection)
+      const sermonSnapshot = await getDocs(collection(db, 'sermons'))
       const sermons = sermonSnapshot.docs.map(doc => {
         const data = doc.data()
         data.id = doc.id
         return data
       })
-      setSermons(sermons)
+      setSermons([...sermons].sort((a, b) => b.no.localeCompare(a.no)))
     }
     getSermons()
   }, [])
