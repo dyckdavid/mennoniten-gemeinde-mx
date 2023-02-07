@@ -429,10 +429,12 @@ nav{
 
 .text-over-image-home {
   position: absolute;
-  top: 55%;
+  top: 53%;
   color: white;
   font-size: 65px;
   text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 
@@ -444,6 +446,14 @@ nav{
     color: rgb(57, 57, 57);
   }
 
+
+
+}
+
+
+@media screen and (max-width: 1000px) {
+
+
   .text-over-image-home {
     position: absolute;
     top: 30%;
@@ -453,6 +463,8 @@ nav{
   }
 
 }
+
+
 
 
 .live-stream-actual {
@@ -466,6 +478,8 @@ nav{
 
 .live-no-stream {
   margin-top: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .live-true-stream {
