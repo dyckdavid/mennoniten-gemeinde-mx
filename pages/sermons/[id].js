@@ -13,7 +13,7 @@ import Head from 'next/head'
 
 export default function Sermon({ sermon }) {
     const router = useRouter();
-    const { title, date, link, audio, speaker, no, id } = sermon
+    const { title, name, date, link, audio, speaker } = sermon
 
 
     if (!link) {
@@ -25,14 +25,13 @@ export default function Sermon({ sermon }) {
 
                         <h1 className='sermons-title'>{title}</h1>
                         <p className='sermons-speaker'>{speaker}</p>
-                        <p>{date}</p>
 
 
                         <audio controls className='audio-sermon'>
                             <source src={audio} type="audio/mpeg" />
                             <p>Your browser does not support the audio element.</p>
                         </audio>
-                        <Link href={`${audio}`} download>
+                        <Link href={`${audio}`}>
                             <Button radius="sm" size="xl" uppercase compact className='download-button'>
                                 Download
                             </Button></Link>
@@ -83,7 +82,7 @@ export default function Sermon({ sermon }) {
       <source src={audio} type="audio/mpeg" />
       <p>Your browser does not support the audio element.</p>
     </audio>
-    <Link href={`${audio}`} download>
+    <Link href={`${audio}`}>
         <Button radius="sm" size="xl" uppercase compact className='download-button'>
       Download
     </Button></Link>
