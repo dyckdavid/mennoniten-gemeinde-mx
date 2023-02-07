@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite'
 import { db } from '../../firebase/config'
 import { Inter } from '@next/font/google'
 import { Center } from '@mantine/core'
