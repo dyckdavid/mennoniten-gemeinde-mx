@@ -30,13 +30,13 @@ export const LiveStream = ({ stream }) => {
     >
       <Card.Section>
         <Center>
-        <h3>Sontag um 9:00 UHR</h3>
+        <h2>Sontag um 9:00 UHR</h2>
         </Center>
       </Card.Section>
 
 
       <Text mt="xs" color="dimmed" size="xl">
-        Keine Live Streams in Moment verfügbar
+        Keine Live Streams in Moment verfügbar!
       </Text>
     </Card>
             
