@@ -40,7 +40,6 @@ export default function Live() {
 
     
     <><Head>
-      <title>Sermons</title>
       <link rel="icon" href="/favicon.ico"></link>
     </Head><div>
         {sermons.map((sermon, index) => (
