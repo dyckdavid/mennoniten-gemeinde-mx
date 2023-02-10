@@ -437,6 +437,12 @@ nav{
   margin-right: 40px;
 }
 
+.live-true-stream {
+  width: 75%;
+  height: auto;
+  margin-top: 10%;
+}
+
 
 @media screen and (max-width: 600px) {
 
@@ -444,6 +450,12 @@ nav{
   .last-sermons-text {
     margin-left: 30px;
     color: rgb(57, 57, 57);
+  }
+
+  .live-true-stream {
+    width: 95%;
+    height: auto;
+    margin-top: 10%;
   }
 
 
@@ -482,11 +494,7 @@ nav{
   margin-right: 10px;
 }
 
-.live-true-stream {
-  width: 75%;
-  height: auto;
-  margin-top: 10%;
-}
+
 
 .live-video {
   width: 120%;
