@@ -35,6 +35,7 @@ const Navbar = () => {
       title={title}
       color="#ffffff"
       className={`nav__menu-bar-two`}
+      size="lg"
     />
 
         <div className={`${navActive ? "active" : ""} nav__menu-list`}>
