@@ -26,12 +26,25 @@ import {
   Button,
 } from '@mantine/core';
 import { Modal, Group } from '@mantine/core';
+import Head from 'next/head'
+import { TextInput } from '@mantine/core';
+import { Space } from '@mantine/core';
+import { Checkbox } from '@mantine/core';
+import Table from './components/table'
+
+
+
 
 export default function AppShellDemo() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const [open, setOpen] = useState(false);
   return (
+    <>
+    <Head>
+        <title>admin - Mennoniten Gemeinde</title>
+    </Head>
+    
     <AppShell
       styles={{
         main: {
@@ -41,7 +54,7 @@ export default function AppShellDemo() {
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <Navbar p="xl" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
+        <Navbar p="sm" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
           <Button>Sermons</Button>
           <Button>Live Streams</Button>
           <Button>Monatsblat</Button>
@@ -75,14 +88,50 @@ export default function AppShellDemo() {
       <Modal
         opened={open}
         onClose={() => setOpen(false)}
-        title="Add Live Stream !!!"
+        title=""
       >
-        {/* Modal content */}
+        <TextInput
+      placeholder="Title"
+      label="Live Stream Title"
+      description="Appears on bottom live stream card"
+      withAsterisk
+    />
+    <Space h="md" />
+    <TextInput
+      placeholder="URL"
+      label="Live stream Link "
+      description=""
+      withAsterisk
+    />
+    <Space h="md" />
+    <TextInput
+      placeholder="Date"
+      label="Live Stream Date"
+      description=""
+      withAsterisk
+    />
+    <Space h="md" />
+    <Checkbox
+      label="PUBLIC / PRIVATE"
+      description="If Live Stream is Public or Privet"
+    />
+
+<Space h="xl" />
+
+<Button size="lg" compact>
+      Add Live Stream
+    </Button>
+
+
       </Modal>
 
       <Group position="center">
         <Button onClick={() => setOpen(true)}>Add Live Stream</Button>
       </Group>
+
+      <Space h="xl" />
+<Table></Table>
     </AppShell>
+    </>
   );
 }
