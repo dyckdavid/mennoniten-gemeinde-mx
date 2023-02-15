@@ -6,13 +6,14 @@ import React, { useState } from "react";
 import NavItem from "./NavItem";
 import { Text, Space } from '@mantine/core';
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
+import { link } from "fs";
 
 
 
 const MENU_LIST = [
-  { text: "Hause", href: "/" },
-  { text: "Predigten", href: "/predigten" },
-  { text: "Live", href: "/live" },
+  { text: "Hause", link: "/", links: [], },
+  { text: "Predigten", link: "/predigten", links: [], },
+  { text: "Live", link: "/live", links: [], },
 ];
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);

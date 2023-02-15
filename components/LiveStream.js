@@ -5,6 +5,7 @@ import React from 'react';
 import { Center } from '@mantine/core'
 import { Space } from '@mantine/core';
 import Head from 'next/head'
+import Link from "next/link";
 
 
 
@@ -19,28 +20,28 @@ export const LiveStream = ({ stream }) => {
 
 <Space h="xl" />
 
+<Link href="/">
 <Card
       shadow="sm"
       p="xl"
       component="a"
-      href="/"
       target="_blank"
       className='live-no-stream'
       withBorder
     >
       <Card.Section>
         <Center>
-        <h2>Sontag um 9:00 UHR</h2>
+        <h3>Keine Live Streams in Moment verfügbar!</h3>
         </Center>
       </Card.Section>
 
 
       <Text mt="xs" color="dimmed" size="xl">
-        Keine Live Streams in Moment verfügbar!
+        Sontag um 9:00 UHR
       </Text>
     </Card>
             
-            
+            </Link>
             </>
         )
 
