@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { Text, Space } from '@mantine/core';
 import Card from './components/homecard'
 import { Button } from '@mantine/core';
-
+import Streams from './components/streamshome'
 
 
 
@@ -69,6 +69,7 @@ export default function Home() {
     </Button></Link>
       </Center>
       <Space h="xl" />
+      <Streams></Streams>
 
 
 

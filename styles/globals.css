@@ -500,3 +500,13 @@ nav{
   width: 120%;
   height: 300px;
 }
+
+.admin-live-card {
+  width: 80%;
+  padding-left: 20px;
+}
+
+.padding-text-live-admin {
+  padding-left: 20px;
+  padding-top: 20px;
+}

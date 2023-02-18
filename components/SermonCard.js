@@ -2,10 +2,15 @@ import NextLink from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons';
 import React from 'react';
+import { IconUser } from '@tabler/icons-react';
+import { Space } from '@mantine/core';
+import { useEffect, useState} from 'react';
 
 
 export const SermonsCard = ({ sermon }) => {
     const { name, title, date, speaker, id, audio, link } = sermon;
+
+    const [isLoading, setIsLoading] = useState(false);
     return (
         <>
 
@@ -27,9 +32,17 @@ export const SermonsCard = ({ sermon }) => {
       </Text>
 
       <NextLink passHref href={`/sermons/${id}`}>
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+      <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => {
+        setIsLoading(true);
+        <Button loading>
+      Öffnen
+    </Button>
+      }}
+      loading={isLoading}
+      >
       Öffnen
       </Button>
+      
       </NextLink>
     </Card>
 

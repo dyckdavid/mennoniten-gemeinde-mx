@@ -31,7 +31,8 @@ import { TextInput } from '@mantine/core';
 import { Space } from '@mantine/core';
 import { Checkbox } from '@mantine/core';
 import Table from './components/table'
-
+import Cards from './components/card'
+import Nav from './components/nav'
 
 
 
@@ -45,75 +46,37 @@ export default function AppShellDemo() {
         <title>admin - Mennoniten Gemeinde</title>
     </Head>
     
-    <AppShell
-      styles={{
-        main: {
-          background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-        },
-      }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={
-        <Navbar p="sm" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <Button>Sermons</Button>
-          <Button>Live Streams</Button>
-          <Button>Monatsblat</Button>
-          <Button>Settings</Button>
-        </Navbar>
-      }
-      
-      footer={
-        <Footer height={60} p="md">
-          Mennoniten-Gemeinde
-        </Footer>
-      }
-      header={
-        <Header height={{ base: 70, md: 70 }} p="md">
-          <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }} >
-              <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
+    
 
-            <Text>Admin Page for Mennoniten Gemeinde</Text>
-          </div>
-        </Header>
-      }
-    >
       <Modal
         opened={open}
         onClose={() => setOpen(false)}
-        title=""
+        title="Add Live Stream"
       >
         <TextInput
       placeholder="Title"
       label="Live Stream Title"
-      description="Appears on bottom live stream card"
+      description=""
       withAsterisk
     />
     <Space h="md" />
     <TextInput
       placeholder="URL"
-      label="Live stream Link "
+      label=""
       description=""
       withAsterisk
     />
     <Space h="md" />
     <TextInput
       placeholder="Date"
-      label="Live Stream Date"
+      label=""
       description=""
       withAsterisk
     />
     <Space h="md" />
     <Checkbox
       label="PUBLIC / PRIVATE"
-      description="If Live Stream is Public or Privet"
+      description="Set Live Stream to Public or Private"
     />
 
 <Space h="xl" />
@@ -125,13 +88,17 @@ export default function AppShellDemo() {
 
       </Modal>
 
+      <Space h="xl" />
+
       <Group position="center">
         <Button onClick={() => setOpen(true)}>Add Live Stream</Button>
       </Group>
 
       <Space h="xl" />
-<Table></Table>
-    </AppShell>
+
+      <Cards />
+
+      
     </>
   );
 }

@@ -8,16 +8,15 @@ const elements = [
 
 
  export default function Tables() {
-    const rows = elements.map((element) => (
-      <tr key={element.title}>
-        <td>{element.title}</td>
-        <td>{element.url}</td>
-        <td>{element.date}</td>
-        <td>{element.action}</td>
-        <td>{element.edit}</td>
-        <td>{element.delete}</td>
+      <tr >
+        <td>Gottes Dients</td>
+        <td>https://youtube.com</td>
+        <td>20/20/23</td>
+        <td>public</td>
+        <td>edit</td>
+        <td>delete</td>
       </tr>
-    ));
+    
   
     return (
       <Table striped highlightOnHover>
@@ -31,7 +30,7 @@ const elements = [
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>{rows}</tbody>
+        
       </Table>
     );
   }

@@ -20,7 +20,7 @@ export const LiveStream = ({ stream }) => {
 
 <Space h="xl" />
 
-<Link href="/">
+<Link href="/live">
 <Card
       shadow="sm"
       p="xl"
