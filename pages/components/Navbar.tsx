@@ -11,9 +11,9 @@ import { link } from "fs";
 
 
 const MENU_LIST = [
-  { text: "Hause", link: "/", links: [], },
-  { text: "Predigten", link: "/predigten", links: [], },
-  { text: "Live", link: "/live", links: [], },
+  { text: "HAUSE", link: "/", links: [], },
+  { text: "PREDIGTEN", link: "/predigten", links: [], },
+  { text: "LIVE", link: "/live", links: [], },
 ];
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);
