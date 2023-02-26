@@ -51,13 +51,12 @@ export const LiveStream = ({ stream }) => {
     return (
         <>
 
-
+<Link href="/live">
 
         <Card
       shadow="sm"
       p="xl"
       component="a"
-      href="/"
       target="_blank"
       className='live-true-stream'
       withBorder
@@ -82,7 +81,7 @@ export const LiveStream = ({ stream }) => {
     </Card>
 
 
-
+</Link>
 
 
 
