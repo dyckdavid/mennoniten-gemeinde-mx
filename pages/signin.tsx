@@ -42,13 +42,13 @@ import {
         
   
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <TextInput label="Email" placeholder="email" required />
-          <PasswordInput label="Password" placeholder="Password" required mt="md" />
+          <TextInput label="email" placeholder="email" required />
+          <PasswordInput label="password" placeholder="Password" required mt="md" />
           <Group position="apart" mt="lg">
             
           </Group>
           <Button fullWidth mt="xl">
-            Sign in
+            Sign In
           </Button>
         </Paper>
       </Container>
