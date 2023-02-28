@@ -50,67 +50,52 @@ import Link from 'next/link'
   const [open, setOpen] = useState(false);
   return (
     <>
-    <Head>
-        <title>admin - Mennoniten Gemeinde</title>
-    </Head>
-    
-    
+    {isLogged === true && (
+    <><Head>
+          <title>admin - Mennoniten Gemeinde</title>
+        </Head><Modal
+          opened={open}
+          onClose={() => setOpen(false)}
+          title="Add Live Stream"
+        >
+            <TextInput
+              placeholder="Title"
+              label="Live Stream Title"
+              description=""
+              withAsterisk />
+            <Space h="md" />
+            <TextInput
+              placeholder="URL"
+              label=""
+              description=""
+              withAsterisk />
+            <Space h="md" />
+            <TextInput
+              placeholder="Date"
+              label=""
+              description=""
+              withAsterisk />
+            <Space h="md" />
+            <Checkbox
+              label="PUBLIC / PRIVATE"
+              description="Set Live Stream to Public or Private" />
 
-      <Modal
-        opened={open}
-        onClose={() => setOpen(false)}
-        title="Add Live Stream"
-      >
-        <TextInput
-      placeholder="Title"
-      label="Live Stream Title"
-      description=""
-      withAsterisk
-    />
-    <Space h="md" />
-    <TextInput
-      placeholder="URL"
-      label=""
-      description=""
-      withAsterisk
-    />
-    <Space h="md" />
-    <TextInput
-      placeholder="Date"
-      label=""
-      description=""
-      withAsterisk
-    />
-    <Space h="md" />
-    <Checkbox
-      label="PUBLIC / PRIVATE"
-      description="Set Live Stream to Public or Private"
-    />
-
-<Space h="xl" />
-
-{isLogged === false && (
-  <Fragment>
-<Button size="lg" compact>
-      Add Live Stream
-    </Button>
-  </Fragment>
-
-)}
-
-      </Modal>
-
-      <Space h="xl" />
-
-      <Group position="center">
-        <Button onClick={() => setOpen(true)}>Add Live Stream</Button>
-      </Group>
-
-      <Space h="xl" />
-
-      <Cards />
+            <Space h="xl" />
 
 
+            <Fragment>
+              <Button size="lg" compact>
+                Add Live Stream
+              </Button>
+            </Fragment>
+
+
+
+          </Modal><Space h="xl" /><Group position="center">
+            <Button onClick={() => setOpen(true)}>Add Live Stream</Button>
+          </Group><Space h="xl" /><Cards /></>
+
+      )}
     </>
   );
 }
