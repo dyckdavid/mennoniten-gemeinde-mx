@@ -13,28 +13,6 @@ import Streams from './components/streamshome'
 
 
 
-const links = [
-  {
-    link: '/',
-    label: 'Hause',
-    links: [],
-  },
-  {
-    link: '/predigten',
-    label: 'Predigten',
-    links: [],
-
-  },
-  {
-    link: '/live',
-    label: 'Live',
-    links: [],
-  },
-
-];
-
-
-
 
 
 
@@ -52,7 +30,7 @@ export default function Home() {
       </Head>
       <Center>
 
-      <img className='image-home-screen' src='https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg' />
+      <img className='image-home-screen' src='https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp' />
       <p className='text-over-image-home'>Willkommen zu Mennoniten Gemeinde</p>
       </Center>
       <Space h="md" />

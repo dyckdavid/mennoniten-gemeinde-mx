@@ -33,10 +33,18 @@ import { Checkbox } from '@mantine/core';
 import Table from './components/table'
 import Cards from './components/card'
 import Nav from './components/nav'
+import { useAuthUser } from '../../hooks/useAuthUser';
+import AuthContext from '../../context/AuthContext';
+import { Fragment, useContext } from 'react';
+import Link from 'next/link'
+
+ function AppShellDemo() {
+
+  useAuthUser();
+
+  const { isLogged } = useContext(AuthContext);
 
 
-
-export default function AppShellDemo() {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const [open, setOpen] = useState(false);
@@ -81,10 +89,14 @@ export default function AppShellDemo() {
 
 <Space h="xl" />
 
+{isLogged === false && (
+  <Fragment>
 <Button size="lg" compact>
       Add Live Stream
     </Button>
+  </Fragment>
 
+)}
 
       </Modal>
 
@@ -98,7 +110,9 @@ export default function AppShellDemo() {
 
       <Cards />
 
-      
+
     </>
   );
 }
+
+export default AppShellDemo;
