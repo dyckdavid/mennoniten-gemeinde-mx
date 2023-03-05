@@ -9,6 +9,7 @@ export default function Cards() {
 
         <Card.Section>
           <h1 className='padding-text-live-admin'>Gottes Dients</h1>
+          <h2 className='padding-text-live-admin'>John Dyck</h2>
         </Card.Section>
   
         <Group position="apart" mt="md" mb="xs">

@@ -6,7 +6,7 @@ import { Center } from '@mantine/core'
 import { Space } from '@mantine/core';
 import Head from 'next/head'
 import Link from "next/link";
-
+import { IconCastOff } from '@tabler/icons-react';
 
 
 
@@ -17,10 +17,15 @@ export const LiveStream = ({ stream }) => {
 
         return (
             <>
+<Center>
+<IconCastOff />
+</Center>
+
 
 <Space h="xl" />
 
 <Link href="/live">
+
 <Card
       shadow="sm"
       p="xl"
@@ -39,6 +44,7 @@ export const LiveStream = ({ stream }) => {
       <Text mt="xs" color="dimmed" size="xl">
         Sontag um 9:00 UHR
       </Text>
+
     </Card>
             
             </Link>
@@ -52,6 +58,8 @@ export const LiveStream = ({ stream }) => {
         <>
 
 <Link href="/live">
+
+  
 
         <Card
       shadow="sm"
