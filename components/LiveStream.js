@@ -61,6 +61,9 @@ export const LiveStream = ({ stream }) => {
       className='live-true-stream'
       withBorder
     >
+      <Text mt="xs" color="dimmed" size="xl">
+        {Title}
+      </Text>
       <Card.Section>
         <Center>
         <iframe
@@ -75,9 +78,7 @@ export const LiveStream = ({ stream }) => {
       </Card.Section>
 
 
-      <Text mt="xs" color="dimmed" size="xl">
-        {Title}
-      </Text>
+      
     </Card>
 
 

@@ -30,7 +30,7 @@ export default function Home() {
       </Head>
       <Center>
 
-      <img className='image-home-screen' src='https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp' />
+      <img className='image-home-screen' src='https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/Soothing-nature-backgrounds-2.jpg.webp?alt=media&token=ae6aaec2-9f89-40ad-a803-a55d5bcc1713' />
       <p className='text-over-image-home'>Willkommen zu Mennoniten Gemeinde</p>
       </Center>
       <Space h="md" />
@@ -48,7 +48,13 @@ export default function Home() {
       </Center>
       <Space h="xl" />
       <Streams></Streams>
-
+      <Center>
+        <Link href="/live">
+      <Button radius="sm" size="xl" uppercase compact>
+      Live Streams
+    </Button></Link>
+      </Center>
+      <Space h="xl" />
 
 
 
