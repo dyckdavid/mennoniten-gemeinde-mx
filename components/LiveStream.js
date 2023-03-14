@@ -11,7 +11,7 @@ import { IconCastOff } from '@tabler/icons-react';
 
 
 export const LiveStream = ({ stream }) => {
-    const { url, Title, date, id, order } = stream;
+    const { url, Title, date, speaker, id, order } = stream;
 
     if (!url) {
 
@@ -60,7 +60,7 @@ export const LiveStream = ({ stream }) => {
 <Link href="/live">
 
   
-
+<Center>
         <Card
       shadow="sm"
       p="xl"
@@ -81,14 +81,20 @@ export const LiveStream = ({ stream }) => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen />
         </Center>
+        <Group position="apart" mt="md" mb="xs" className='info-live-stream'>
+        <Text weight={500} size="xl">{Title}</Text>
+        <Badge color="pink" variant="light">
+          13 MÄRZ 2023
+        </Badge>
+      </Group>
       </Card.Section>
-      <Text mt="xs" color="dimmed" size="xl">
-        {Title}
+      <Text mt="xs" color="dimmed" size="lg">
+        {speaker}
       </Text>
 
       
     </Card>
-
+</Center>
 
 </Link>
 
