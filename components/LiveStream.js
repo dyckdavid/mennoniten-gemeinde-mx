@@ -84,7 +84,7 @@ export const LiveStream = ({ stream }) => {
         <Group position="apart" mt="md" mb="xs" className='info-live-stream'>
         <Text weight={500} size="xl">{Title}</Text>
         <Badge color="pink" variant="light">
-          13 MÄRZ 2023
+         {date}
         </Badge>
       </Group>
       </Card.Section>
