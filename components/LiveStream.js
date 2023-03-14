@@ -44,6 +44,13 @@ export const LiveStream = ({ stream }) => {
       <Text mt="xs" color="dimmed" size="xl">
         Sontag um 9:00 UHR
       </Text>
+      <Link href="/predigten">
+      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
+        Predigten
+      </Button>
+      
+      </Link>
+
 
     </Card>
             
