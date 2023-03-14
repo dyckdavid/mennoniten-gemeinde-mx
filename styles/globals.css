@@ -158,6 +158,13 @@ a {
   font-size: 60px;
 }
 
+.actual-sermons-card {
+  width: 90%;
+  margin-top: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
 
 
 @font-face {
@@ -299,6 +306,8 @@ nav{
 
 }
 
+
+
 .navbar__logo {
   width: 100px;
   height: auto;
@@ -384,6 +393,37 @@ nav{
   margin-top: 20px;
 
 }
+
+.video-responsive {
+  position: relative;
+  display: block;
+  width: 800px;
+  overflow: hidden;
+}
+
+
+.video-responsive::before {
+  display: block;
+  content: "";
+  padding-top: 56.25%;
+}
+
+.video-responsive-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+.audio_sermon {
+  width: 70%;
+  
+}
+
 .back-button-sermons-page {
   margin-left: 20px;
 }
@@ -395,6 +435,21 @@ nav{
   background-color: white;
   border: 2px solid rgb(212, 211, 211);
   border-radius: 9px;
+}
+
+.card--predigten {
+  width: 98%;
+}
+
+.sermons--center {
+  width: 98%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.sermosn-media-video-actual {
+  width: 100%;
 }
 
 .sermons-center-container-no-iframe {

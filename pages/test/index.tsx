@@ -18,58 +18,56 @@ import { useEffect, useState } from 'react';
 import { Table } from '@mantine/core';
 import { createStyles } from '@mantine/core';
 import { Loader } from '@mantine/core';
+import { IconArrowNarrowLeft } from '@tabler/icons-react';
+import { useRouter } from 'next/router';
+import { IconDownload } from '@tabler/icons-react';
 
 
 
-
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Cards() {
-   
-
 
   return (
     <>
-    <Space h="md" />
-
-    
-    
-      
-      <div >
-        
-      <Card shadow="sm" p="lg" radius="md" withBorder className='card__predigten'>
-
-      
-      
+    <Center>
+    <Card shadow="sm" radius="md" withBorder className='actual-sermons-card'>
+      <Center>
+      <Card.Section component="a" href="https://mantine.dev/" className='video-responsive'>
+      <iframe
+      className='video-responsive-item'
+        src="https://player.vimeo.com/video/807724461?h=3127d0da7f&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        title="Live"
+        width="1920" height="1080"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+      </Card.Section>
+</Center>
       <Group position="apart" mt="md" mb="xs">
-      
-        <Text weight={500}></Text>
-        
-        
-        <Badge color="red" variant="light" size="xl">
-        <IconCalendar size={16} className="align-calendar"></IconCalendar>
-        Date
+        <Text weight={700}>Abendversamlung #1</Text>
+        <Badge color="pink" variant="light" size="xl">
+          13/03/2023
         </Badge>
-        
       </Group>
-      
-      <Text size="sm" color="dimmed">
-Speaker
-      </Text>
-      
 
-      <Link href="/live">
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-      Öffnen
-      </Button>
-      </Link>
+      <Text size="sm" color="dimmed">
+        Donald Neufeld
+      </Text>
+
+      <Group position="apart" mt="md" mb="xs">
+      <audio controls className='audio_sermon'>
+      <source src="" type="audio/mpeg" />
+      </audio>
+      <a href="" download>
+        <Button radius="sm" size="xl" uppercase compact className='download_button'>
+      <IconDownload /><Space w="xs" /> Download
+    </Button></a>
+      </Group>
+
       
     </Card>
-    </div>
-    
-    
-
+    </Center>
     </>
   )
 }

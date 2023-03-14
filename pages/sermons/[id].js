@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head'
 import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import { IconDownload } from '@tabler/icons-react';
+import { Group, Card, Badge } from '@mantine/core';
 
 
 
@@ -33,27 +34,40 @@ export default function Sermon({ sermon }) {
             
             <Space h="md" /><Space h="md" /><Button radius="sm" size="xl" uppercase compact className='back-button-sermons-page' onClick={() => router.back()}>
                <IconArrowNarrowLeft /><Space w="xs" /> ZÜRUCK
-            </Button><Space h="xl" /><Center>
-                    <div className='sermons-center-container-no-iframe '>
+            </Button><Space h="xl" />
+            <>
+    <Center>
+    <Card shadow="sm" radius="md" withBorder className='actual-sermons-card'>
+      <Center>
+      
+</Center>
+      <Group position="apart" mt="md" mb="xs">
+        <Text weight={700}>{title}</Text>
+        <Badge color="pink" variant="light" size="xl">
+          {date}
+        </Badge>
+      </Group>
 
-                        <h1 className='sermons-title'>{title}</h1>
-                        <p className='sermons-speaker'>{speaker}</p>
+      <Text size="sm" color="dimmed">
+        {name}
+      </Text>
 
+      <Group position="apart" mt="md" mb="xs">
+      <audio controls className='audio_sermon'>
+      <source src={audio} type="audio/mpeg" />
+      </audio>
+      <a href={`${audio}`} download>
+        <Button radius="sm" size="xl" uppercase compact className='download_button'>
+      <IconDownload /><Space w="xs" /> Download
+    </Button></a>
+      </Group>
 
-                        <audio controls className='audio-sermon'>
-                            <source src={audio} type="audio/mpeg" />
-                            <p>Your browser does not support the audio element.</p>
-                        </audio>
-                        <a href={`${audio}`} download>
-                            <Button radius="sm" size="xl" uppercase compact className='download-button'>
-                            <IconDownload /><Space w="xs" /> Download
-                            </Button></a>
-
-
-
-
-                    </div>
-                </Center><Space h="xl" /></>
+      
+    </Card>
+    </Center>
+    </>
+            
+            <Space h="xl" /></>
         )
       }
 
@@ -74,37 +88,47 @@ export default function Sermon({ sermon }) {
         <IconArrowNarrowLeft /><Space w="xs" /> ZÜRUCK
     </Button>
       <Space h="xl" />
+      <>
+    <Center>
+    <Card shadow="sm" radius="md" withBorder className='actual-sermons-card'>
       <Center>
-      <div className='sermons-center-container'>
-        <Center>
-        <Space h="xl" />
+      <Card.Section component="a" href="https://mantine.dev/" className='video-responsive'>
       <iframe
-      className='sermosn-media-video'
+      className='video-responsive-item'
         src={link}
         title="Live"
+        width="1920" height="1080"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
-      </Center>
-      <h1 className='sermons-title'>{title}</h1>
-      <p className='sermons-speaker'>{speaker}</p>
+      </Card.Section>
+</Center>
+      <Group position="apart" mt="md" mb="xs">
+        <Text weight={700}>{title}</Text>
+        <Badge color="pink" variant="light" size="xl">
+          {date}
+        </Badge>
+      </Group>
 
+      <Text size="sm" color="dimmed">
+        {name}
+      </Text>
 
-      <audio controls className='audio-sermon'>
+      <Group position="apart" mt="md" mb="xs">
+      <audio controls className='audio_sermon'>
       <source src={audio} type="audio/mpeg" />
-      <p></p>
-    </audio>
-    <a href={`${audio}`} download>
-        <Button radius="sm" size="xl" uppercase compact className='download-button'>
+      </audio>
+      <a href={`${audio}`} download>
+        <Button radius="sm" size="xl" uppercase compact className='download_button'>
       <IconDownload /><Space w="xs" /> Download
     </Button></a>
+      </Group>
 
-    
-
-
-      </div>
-      </Center>
+      
+    </Card>
+    </Center>
+    </>
 
       <Space h="xl" />
         
