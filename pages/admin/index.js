@@ -78,7 +78,7 @@ import Link from 'next/link'
             <Space h="md" />
             <Checkbox
               label="PUBLIC / PRIVATE"
-              description="Set Live Stream to Public or Private" />
+              description="Public for everyone / Private for admins only" />
 
             <Space h="xl" />
 
