@@ -79,7 +79,7 @@ function AuthenticationTitle() {
   
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <TextInput label="email" placeholder="email" onChange={changeUser} name="email" required />
-          <PasswordInput label="password" placeholder="Password" onChange={changeUser} name="password" required mt="md" />
+          <PasswordInput label="Password" placeholder="Password" onChange={changeUser} name="password" required mt="md" />
           <Group position="apart" mt="lg">
             
           </Group>
