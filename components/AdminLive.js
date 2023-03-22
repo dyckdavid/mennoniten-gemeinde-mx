@@ -106,11 +106,11 @@ export const AdminLive = ({ stream }) => {
   
               <div style={{ display: 'flex' }}>
                 <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => setOpen(true)}>
-                  EDIT STREAM
+                  EDIT
                 </Button>
                 <Space w="md" />
                 <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-                  DELETE STREAM
+                  DELETE
                 </Button>
   
               </div>
