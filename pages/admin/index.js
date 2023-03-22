@@ -52,7 +52,7 @@ import Link from 'next/link'
     <>
     {isLogged === true && (
     <><Head>
-          <title>admin - Mennoniten Gemeinde</title>
+          <title>admin - Live stream</title>
         </Head><Modal
           opened={open}
           onClose={() => setOpen(false)}
