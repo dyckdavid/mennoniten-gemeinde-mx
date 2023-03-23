@@ -1,19 +1,6 @@
 import { useState } from 'react';
 import { Navbar, Center, Tooltip, UnstyledButton, createStyles, Stack } from '@mantine/core';
-import {
-  TablerIcon,
-  IconHome2,
-  IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
-  IconSettings,
-  IconLogout,
-  IconSwitchHorizontal,
-} from '@tabler/icons';
-import { MantineLogo } from '@mantine/ds';
-import { ScrollArea } from '@mantine/core';
+
 import {
   AppShell,
   Header,
@@ -25,11 +12,8 @@ import {
   useMantineTheme,
   Button,
 } from '@mantine/core';
-import { Modal, Group } from '@mantine/core';
 import Head from 'next/head'
-import { TextInput } from '@mantine/core';
-import { Space } from '@mantine/core';
-import { Checkbox } from '@mantine/core';
+
 
 
 

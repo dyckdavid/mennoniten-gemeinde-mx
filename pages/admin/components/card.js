@@ -4,9 +4,7 @@ import { db } from '../../../firebase/config.js';
 import { useEffect} from 'react';
 import { collection, getDocs } from 'firebase/firestore/lite';
 import { AdminLive } from '../../../components/AdminLive';
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import { query, orderBy, limit, ref } from "firebase/firestore"
+
 
 
 export default function Cards() {

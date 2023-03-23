@@ -1,6 +1,4 @@
-import NextLink from 'next/link'
 import { Card, Text, Badge, Button, Group } from '@mantine/core';
-import { IconCalendar } from '@tabler/icons';
 import React from 'react';
 import { Center } from '@mantine/core'
 import { Space } from '@mantine/core';
