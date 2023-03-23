@@ -1,12 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable jsx-a11y/alt-text */
+
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
 import { Center } from '@mantine/core'
-import { Image } from '@mantine/core';
 import Link from 'next/link'
-import { Text, Space } from '@mantine/core';
+import { Space } from '@mantine/core';
 import Card from './components/homecard'
 import { Button } from '@mantine/core';
 import Streams from './components/streamshome'
