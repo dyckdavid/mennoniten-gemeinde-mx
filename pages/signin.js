@@ -15,7 +15,8 @@ import {
     getAuth,
     GoogleAuthProvider,
     GithubAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    signOut
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import { signInWithEmailAndPassword } from 'firebase/auth';

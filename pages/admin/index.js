@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { MantineLogo } from '@mantine/ds';
 import { ScrollArea } from '@mantine/core';
 import {
@@ -16,12 +15,15 @@ import { useAuthUser } from '../../hooks/useAuthUser';
 import AuthContext from '../../context/AuthContext';
 import { Fragment, useContext } from 'react';
 import Link from 'next/link'
+import App from './components/streamCard';
 
  function AppShellDemo() {
 
   useAuthUser();
 
   const { isLogged } = useContext(AuthContext);
+
+
 
 
   const theme = useMantineTheme();
@@ -32,7 +34,9 @@ import Link from 'next/link'
     {isLogged === true && (
     <><Head>
           <title>admin - Live stream</title>
-        </Head><Modal
+        </Head>
+        
+        <Modal
           opened={open}
           onClose={() => setOpen(false)}
           title="Add Live Stream"
@@ -75,6 +79,8 @@ import Link from 'next/link'
           </Group><Space h="xl" /><Cards /></>
 
       )}
+
+      <App />
     </>
   );
 }

@@ -26,9 +26,6 @@ export const AdminLive = ({ stream }) => {
 
 
 
-    function updateStreamData(id, updatedData) {
-        db.ref(`streams/${id}`).set(updatedData);
-      }
       
 
     return (
