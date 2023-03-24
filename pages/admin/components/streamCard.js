@@ -24,6 +24,7 @@ import "firebase/database";
 
 
 
+
 function App() {
     const [streamList, setStreamList] = useState([]);
 
@@ -39,6 +40,18 @@ function App() {
     const [urlValue, setUrlValue] = useState("");
     const [speakerValue, setSpeakerValue] = useState();
 
+
+    const handleChange = async (stream) => {
+      const newValue = !stream.public;
+      // Update the value in Firestore
+      const streamDoc = doc(db, "streamslive", stream.id);
+      await updateDoc(streamDoc, { public: newValue });
+      // Update the state
+      const updatedStreamList = streamList.map((item) =>
+        item.id === stream.id ? { ...item, public: newValue } : item
+      );
+      setStreamList(updatedStreamList);
+    };
 
 
     const [updatedTitle, setUpdatedTitle] = useState("");
@@ -59,14 +72,17 @@ function App() {
         }
     };
 
+    useEffect(() => {
+      getStreamList();
+  }, []);
+
+
     const updateStreamTitle = async (id) => {
         const movieDoc = doc(db, "streamslive", id);
         await updateDoc(movieDoc, { Title: updatedTitle });
       };
 
-    useEffect(() => {
-        getStreamList();
-    }, []);
+
 
     const onSubmitMovie = async () => {
         try {
@@ -85,8 +101,8 @@ function App() {
       };
 
       const deleteMovie = async (id) => {
-        const movieDoc = doc(db, "streamslive", id);
-        await deleteDoc(movieDoc);
+        const streamDoc = doc(db, "streamslive", id);
+        await deleteDoc(streamDoc);
       };
 
 
@@ -110,22 +126,30 @@ function App() {
             <Space h="md" />
             <TextInput
               placeholder="URL"
-              label=""
+              label="link"
               onChange={(e) => setUrlValue(e.target.value)}
               description=""
               withAsterisk />
             <Space h="md" />
             <TextInput
               placeholder="Date"
-              label=""
+              label="Date"
               description=""
               onChange={(e) => setNewDate(e.target.value)}
+              withAsterisk />
+              <Space h="md" />
+            <TextInput
+              placeholder="Speaker"
+              label="Speaker"
+              description=""
+              onChange={(e) => setNewSpeaker(e.target.value)}
               withAsterisk />
             <Space h="md" />
             <Checkbox
               label="PUBLIC / PRIVATE"
+              checked={isPublic}
               onChange={(e) => setIsPublic(e.target.checked)}
-              description="Public for everyone / Private for admins only" />
+              description="Public for everyone / Private for admins only!" />
 
             <Space h="xl" />
 
@@ -189,7 +213,7 @@ function App() {
                 <Space h="md" />
                 <TextInput
                   placeholder="url"
-                  label=""
+                  label="Link"
                   description=""
                   value={stream.url}
                   onChange={(event) => setUrlValue(event.target.value)}
@@ -214,7 +238,7 @@ function App() {
                 <Checkbox
                   label="PUBLIC / PRIVATE"
                   checked={stream.public}
-                  onChange={(event) => setIsNewPublic(event.target.checked)}
+                  onChange={() => handleChange(stream)}
                   description="Public for everyone / Private for admins only" />
 
 
@@ -237,7 +261,7 @@ function App() {
 
                       <Card.Section>
                         <h1 className='padding-text-live-admin'>{stream.Title}</h1>
-                        <h2 className='padding-text-live-admin'>{stream.date}</h2>
+                        <h2 className='padding-text-live-admin'>{stream.speaker}</h2>
                       </Card.Section>
 
                       <Group position="apart" mt="md" mb="xs">
@@ -246,6 +270,11 @@ function App() {
                           {stream.date}
                         </Badge>
                       </Group>
+                      <Checkbox
+              label="Public or Private"
+              checked={stream.public}
+              onChange={() => handleChange(stream)}
+            />
 
 
                       <div style={{ display: 'flex' }}>
@@ -254,7 +283,7 @@ function App() {
                         </Button>
                         <Space w="md" />
                         <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => deleteMovie(stream.id)}>
-                          DELETE
+                          DELETE 
                         </Button>
 
                       </div>
