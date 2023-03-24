@@ -10,6 +10,18 @@ import {
 } from "firebase/firestore";
 import { ref, uploadBytes } from "firebase/storage";
 import Link from 'next/link'
+import React from 'react';
+import { Center } from '@mantine/core'
+import { Space } from '@mantine/core';
+import Head from 'next/head'
+import { TextInput } from '@mantine/core';
+import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Modal } from '@mantine/core';
+import { Checkbox } from '@mantine/core';
+import { Fragment, useContext } from 'react';
+import firebase from "firebase/app";
+import "firebase/database";
+
 
 
 function App() {
@@ -18,7 +30,14 @@ function App() {
     const [newStreamTitle, setNewStreamTitle] = useState("");
     const [newDate, setNewDate] = useState("");
     const [newSpeaker, setNewSpeaker] = useState("");
+    const [isNewPublic, setIsNewPublic] = useState();
     const [isPublic, setIsPublic] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [opens, setOpens] = useState(false);
+    const [titleValue, setTitleValue] = useState();
+    const [dateValue, setDateValue] = useState();
+    const [urlValue, setUrlValue] = useState("");
+    const [speakerValue, setSpeakerValue] = useState();
 
 
 
@@ -55,6 +74,8 @@ function App() {
             Title: newStreamTitle,
             date: newDate,
             public: isPublic,
+            url: urlValue,
+            speaker: speakerValue,
             userId: auth?.currentUser?.uid,
           });
           getMovieList();
@@ -71,9 +92,58 @@ function App() {
 
     return (
         <>
+        <><Head>
+          <title>admin - Live stream</title>
+        </Head>
+        
+        <Modal
+          opened={opens}
+          onClose={() => setOpens(false)}
+          title="Add Live Stream"
+        >
+            <TextInput
+              placeholder="Title"
+              label="Live Stream Title"
+              onChange={(e) => setNewStreamTitle(e.target.value)}
+              description=""
+              withAsterisk />
+            <Space h="md" />
+            <TextInput
+              placeholder="URL"
+              label=""
+              onChange={(e) => setUrlValue(e.target.value)}
+              description=""
+              withAsterisk />
+            <Space h="md" />
+            <TextInput
+              placeholder="Date"
+              label=""
+              description=""
+              onChange={(e) => setNewDate(e.target.value)}
+              withAsterisk />
+            <Space h="md" />
+            <Checkbox
+              label="PUBLIC / PRIVATE"
+              onChange={(e) => setIsPublic(e.target.checked)}
+              description="Public for everyone / Private for admins only" />
+
+            <Space h="xl" />
+
+
+            <Fragment>
+              <Button size="lg" compact onClick={onSubmitMovie}>
+                Add Live Streaming
+              </Button>
+            </Fragment>
+
+
+
+          </Modal><Space h="xl" /><Group position="center">
+            <Button onClick={() => setOpens(true)}>Add Live Stream</Button>
+          </Group><Space h="xl" /></>
         <div>
         <input
-          placeholder="Movie title..."
+          placeholder="Stream title..."
           onChange={(e) => setNewStreamTitle(e.target.value)}
         />
         <input
@@ -89,24 +159,107 @@ function App() {
         <label> Public or Private</label>
         <button onClick={onSubmitMovie}> Submit Movie</button>
             {streamList.map((stream) => (
-                <div key={stream.id}>
-                    <h1 style={{ color: stream.public ? "green" : "red" }}>{stream.Title}</h1>
-                    <p>{stream.date}</p>
-                    <p>{stream.public ? "yes" : <p>{stream.date}</p>}</p>
+                <><div key={stream.id}>
+                <h1 style={{ color: stream.public ? "green" : "red" }}>{stream.Title}</h1>
+                <p>{stream.date}</p>
+                <p>{stream.public ? "yes" : <p>{stream.date}</p>}</p>
 
-                    <input
-                    value={stream.Title}
-              placeholder="new title..."
-              onChange={(e) => setUpdatedTitle(e.target.value)}
-            />
-            <button onClick={() => updateStreamTitle(stream.id)}>
-              {" "}
-              Update Title
-            </button>
-            <button onClick={() => deleteMovie(stream.id)}> Delete Movie</button>
+                <input
+                  value={stream.Title}
+                  placeholder="new title..."
+                  onChange={(e) => setUpdatedTitle(e.target.value)} />
+                <button onClick={() => updateStreamTitle(stream.id)}>
+                  {" "}
+                  Update Title
+                </button>
+                <button onClick={() => deleteMovie(stream.id)}> Delete stream</button>
 
 
-                </div>
+              </div><><Modal
+                opened={open}
+                onClose={() => setOpen(false)}
+                title="Edit Live Stream"
+              >
+                <TextInput
+                  placeholder="Title"
+                  label="Live Stream Title"
+                  description=""
+                  value={stream.Title}
+                  onChange={(event) => setTitleValue(event.target.value)} />
+                <Space h="md" />
+                <TextInput
+                  placeholder="url"
+                  label=""
+                  description=""
+                  value={stream.url}
+                  onChange={(event) => setUrlValue(event.target.value)}
+                  withAsterisk />
+                <Space h="md" />
+                <TextInput
+                  placeholder="speaker"
+                  label=""
+                  description=""
+                  value={stream.speaker}
+                  onChange={(event) => setSpeakerValue(event.target.value)}
+                  withAsterisk />
+                <Space h="md" />
+                <TextInput
+                  placeholder="date"
+                  label=""
+                  description=""
+                  value={stream.date}
+                  onChange={(event) => setDateValue(event.target.value)}
+                  withAsterisk />
+                <Space h="md" />
+                <Checkbox
+                  label="PUBLIC / PRIVATE"
+                  checked={stream.public}
+                  onChange={(event) => setIsNewPublic(event.target.checked)}
+                  description="Public for everyone / Private for admins only" />
+
+
+                <Space h="xl" />
+
+
+
+
+                <Fragment>
+                  <Button size="lg" compact>
+                    Update Live Stream
+                  </Button>
+                </Fragment>
+
+
+
+
+              </Modal><Center>
+                    <Card shadow="sm" p="lg" radius="md" withBorder className='admin-live-card'>
+
+                      <Card.Section>
+                        <h1 className='padding-text-live-admin'>{stream.Title}</h1>
+                        <h2 className='padding-text-live-admin'>{stream.date}</h2>
+                      </Card.Section>
+
+                      <Group position="apart" mt="md" mb="xs">
+                        <Text weight={505}>{stream.url}</Text>
+                        <Badge color="red" variant="light" size="xl">
+                          {stream.date}
+                        </Badge>
+                      </Group>
+
+
+                      <div style={{ display: 'flex' }}>
+                        <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => setOpen(true)}>
+                          EDIT
+                        </Button>
+                        <Space w="md" />
+                        <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => deleteMovie(stream.id)}>
+                          DELETE
+                        </Button>
+
+                      </div>
+                    </Card>
+                  </Center></></>
             ))}
         </div>
         

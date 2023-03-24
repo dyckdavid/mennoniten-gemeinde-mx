@@ -43,7 +43,7 @@
     "embla-carousel-react": "^7.0.5",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
-    "firebase": "^9.17.1",
+    "firebase": "^9.18.0",
     "firebase-admin": "^11.5.0",
     "firebase-client": "^0.1.1",
     "next": "13.1.1",

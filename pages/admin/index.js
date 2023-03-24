@@ -28,61 +28,22 @@ import App from './components/streamCard';
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const [open, setOpen] = useState(false);
+
   return (
     <>
     {isLogged === true && (
-    <><Head>
+      <>
+        <Head>
           <title>admin - Live stream</title>
         </Head>
-        
-        <Modal
-          opened={open}
-          onClose={() => setOpen(false)}
-          title="Add Live Stream"
-        >
-            <TextInput
-              placeholder="Title"
-              label="Live Stream Title"
-              description=""
-              withAsterisk />
-            <Space h="md" />
-            <TextInput
-              placeholder="URL"
-              label=""
-              description=""
-              withAsterisk />
-            <Space h="md" />
-            <TextInput
-              placeholder="Date"
-              label=""
-              description=""
-              withAsterisk />
-            <Space h="md" />
-            <Checkbox
-              label="PUBLIC / PRIVATE"
-              description="Public for everyone / Private for admins only" />
-
-            <Space h="xl" />
-
-
-            <Fragment>
-              <Button size="lg" compact>
-                Add Live Stream
-              </Button>
-            </Fragment>
-
-
-
-          </Modal><Space h="xl" /><Group position="center">
-            <Button onClick={() => setOpen(true)}>Add Live Stream</Button>
-          </Group><Space h="xl" /><Cards /></>
-
-      )}
-
-      <App />
+        <App />
+      </>
+    )}
+    
     </>
-  );
+  )
+  
+ 
 }
 
 export default AppShellDemo;
