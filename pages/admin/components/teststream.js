@@ -98,7 +98,6 @@ function App() {
             userId: auth?.currentUser?.uid,
           });
           getMovieList();
-          setOpens(false);
         } catch (err) {
           console.error(err);
         }
@@ -107,7 +106,6 @@ function App() {
       const deleteMovie = async (id) => {
         const streamDoc = doc(db, "streamslive", id);
         await deleteDoc(streamDoc);
-        
       };
 
       const updateStream = async () => {
@@ -116,6 +114,7 @@ function App() {
           await updateDoc(streamDoc, {
             Title: titleValue,
             date: dateValue,
+            public: isNewPublic,
             url: urlValue,
             speaker: speakerValue,
           });
@@ -133,7 +132,6 @@ function App() {
         setDateValue(stream.date);
         setSpeakerValue(stream.speaker);
         setUrlValue(stream.url);
-        setIsPublic(stream.public);
         setOpen(true);
       };
 
@@ -198,10 +196,37 @@ function App() {
             <Button onClick={() => setOpens(true)}>Add Live Stream</Button>
           </Group><Space h="xl" /></>
         <div>
-        
+        <input
+          placeholder="Stream title..."
+          onChange={(e) => setNewStreamTitle(e.target.value)}
+        />
+        <input
+          placeholder="Release Date..."
+          type="number"
+          onChange={(e) => setNewDate(Number(e.target.value))}
+        />
+        <input
+          type="checkbox"
+          checked={isPublic}
+          onChange={(e) => setIsPublic(e.target.checked)}
+        />
+        <label> Public or Private</label>
+        <button onClick={onSubmitMovie}> Submit Movie</button>
             {streamList.map((stream) => (
                 <><div key={stream.id}>
-               
+                <h1 style={{ color: stream.public ? "green" : "red" }}>{stream.Title}</h1>
+                <p>{stream.date}</p>
+                <p>{stream.public ? "yes" : <p>{stream.date}</p>}</p>
+
+                <input
+                  value={stream.Title}
+                  placeholder="new title..."
+                  onChange={(e) => setUpdatedTitle(e.target.value)} />
+                <button onClick={() => updateStreamTitle(stream.id)}>
+                  {" "}
+                  Update Title
+                </button>
+                <button onClick={() => deleteMovie(stream.id)}> Delete stream</button>
 
 
               </div><><Modal
