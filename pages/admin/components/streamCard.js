@@ -21,6 +21,7 @@ import { Checkbox } from '@mantine/core';
 import { Fragment, useContext } from 'react';
 import firebase from "firebase/app";
 import "firebase/database";
+import { useCallback } from 'react';
 
 
 
@@ -62,22 +63,22 @@ function App() {
     const streamCollectionRef = collection(db, "streamslive");
 
 
-    const getStreamList = async () => {
-        try {
-            const data = await getDocs(streamCollectionRef);
-            const filterData = data.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-            setStreamList(filterData);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    const getStreamList = useCallback(async () => {
+      try {
+        const data = await getDocs(streamCollectionRef);
+        const filterData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setStreamList(filterData);
+      } catch (err) {
+        console.error(err);
+      }
+    }, []);
 
     useEffect(() => {
       getStreamList();
-  }, []);
+  }, [getStreamList]);
 
 
       const handleSuccess = () => {
@@ -209,13 +210,17 @@ function App() {
           </Modal><Space h="xl" /><Group position="center">
             <Button onClick={() => setOpens(true)} disabled={streamList.length > 0}>Add Live Stream</Button>
           </Group><Space h="xl" />
-          {streamList.length === 0 && (
-  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-    No Stream available. Click the "Add Live Stream" button to add one.
-  </div>
-)}
+
           
           </>
+
+          {streamList.length === 0 && (
+            <Center>
+
+    No Stream available. Click the Add Live Stream button to add one.
+
+  </Center>
+)}
         <div>
         
             {streamList.map((stream) => (
@@ -285,7 +290,7 @@ function App() {
                     <Card shadow="sm" p="lg" radius="md" withBorder className='admin-live-card'>
 
                       <Card.Section>
-                        <h1 className='padding-text-live-admin' style={{ color: stream.public ? "green" : "red" }}>{stream.Title}</h1>
+                        <h1 className='padding-text-live-admin' style={{ color: stream.public ? 'green' : 'red' }}>{stream.Title}</h1>
                         <h2 className='padding-text-live-admin'>{stream.speaker}</h2>
                       </Card.Section>
 
