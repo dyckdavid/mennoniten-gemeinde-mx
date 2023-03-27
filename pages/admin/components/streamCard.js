@@ -80,35 +80,47 @@ function App() {
   }, []);
 
 
-    const updateStreamTitle = async (id) => {
-        const movieDoc = doc(db, "streamslive", id);
-        await updateDoc(movieDoc, { Title: updatedTitle });
+      const handleSuccess = () => {
+        setOpens(false); // Close the popup
+        getStreamList(); // Refresh the movie list
       };
+      
+      const handleSubmit = () => {
+        onSubmitMovie()
+          .then(handleSuccess)
+          .catch((error) => console.error("Error uploading the live stream:", error));
+      };
+      
 
 
-
-    const onSubmitMovie = async () => {
-        try {
-          await addDoc(streamCollectionRef, {
-            Title: newStreamTitle,
-            date: newDate,
-            public: isPublic,
-            url: urlValue,
-            speaker: speakerValue,
-            userId: auth?.currentUser?.uid,
-          });
-          getMovieList();
-          setOpens(false);
-        } catch (err) {
-          console.error(err);
-        }
+      const onSubmitMovie = () => {
+        return new Promise(async (resolve, reject) => {
+          try {
+            await addDoc(streamCollectionRef, {
+              Title: newStreamTitle,
+              date: newDate,
+              public: isPublic,
+              url: urlValue,
+              speaker: speakerValue,
+              userId: auth?.currentUser?.uid,
+            });
+            resolve();
+          } catch (err) {
+            console.error(err);
+            reject(err);
+          }
+        });
       };
 
       const deleteMovie = async (id) => {
         const streamDoc = doc(db, "streamslive", id);
         await deleteDoc(streamDoc);
-        
+      
+        // Update the state after successful deletion
+        const updatedStreamList = streamList.filter((stream) => stream.id !== id);
+        setStreamList(updatedStreamList);
       };
+      
 
       const updateStream = async () => {
         try {
@@ -187,7 +199,7 @@ function App() {
 
 
             <Fragment>
-              <Button size="lg" compact onClick={onSubmitMovie}>
+              <Button size="lg" compact onClick={handleSubmit}>
                 Add Live Streaming
               </Button>
             </Fragment>
@@ -195,8 +207,15 @@ function App() {
 
 
           </Modal><Space h="xl" /><Group position="center">
-            <Button onClick={() => setOpens(true)}>Add Live Stream</Button>
-          </Group><Space h="xl" /></>
+            <Button onClick={() => setOpens(true)} disabled={streamList.length > 0}>Add Live Stream</Button>
+          </Group><Space h="xl" />
+          {streamList.length === 0 && (
+  <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+    No Stream available. Click the "Add Live Stream" button to add one.
+  </div>
+)}
+          
+          </>
         <div>
         
             {streamList.map((stream) => (
