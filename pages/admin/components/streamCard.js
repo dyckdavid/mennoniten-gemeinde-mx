@@ -62,6 +62,19 @@ function App() {
 
     const streamCollectionRef = collection(db, "streamslive");
 
+    const initializeCollection = async () => {
+      try {
+        // Create a temporary document with a random ID
+        const tempDocRef = await addDoc(streamCollectionRef, { temp: true });
+    
+        // Delete the temporary document immediately
+        await deleteDoc(tempDocRef);
+      } catch (err) {
+        console.error("Error initializing the collection:", err);
+      }
+    };
+    
+
 
     const getStreamList = useCallback(async () => {
       try {
@@ -77,8 +90,10 @@ function App() {
     }, []);
 
     useEffect(() => {
+      initializeCollection();
       getStreamList();
-  }, [getStreamList]);
+
+  }, []);
 
 
       const handleSuccess = () => {
