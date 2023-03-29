@@ -90,7 +90,6 @@ function App() {
     }, []);
 
     useEffect(() => {
-      initializeCollection();
       getStreamList();
 
   }, []);
@@ -101,11 +100,51 @@ function App() {
         getStreamList(); // Refresh the movie list
       };
       
-      const handleSubmit = () => {
-        onSubmitMovie()
-          .then(handleSuccess)
-          .catch((error) => console.error("Error uploading the live stream:", error));
+      const handleSubmit = async () => {
+        console.log("handleSubmit called"); // Add this line
+        try {
+          await addStream();
+          handleSuccess();
+        } catch (error) {
+          console.error("Error uploading the live stream:", error);
+        }
       };
+      
+      
+      
+      const addStream = () => {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const streamCollectionRef = collection(db, "streamslive");
+      
+            // Check if the collection exists
+            const collectionSnapshot = await getDocs(streamCollectionRef);
+      
+            console.log("collectionSnapshot:", collectionSnapshot); // Add this line
+      
+            // If the collection does not exist, initialize it
+            if (collectionSnapshot.empty) {
+              await initializeCollection();
+            }
+      
+            // Add the new live stream document
+            await addDoc(streamCollectionRef, {
+              Title: newStreamTitle,
+              date: newDate,
+              public: isPublic,
+              url: urlValue,
+              speaker: newSpeaker,
+              userId: auth?.currentUser?.uid,
+            });
+      
+            resolve();
+          } catch (err) {
+            console.error(err);
+            reject(err);
+          }
+        });
+      };
+      
       
 
 
