@@ -585,3 +585,8 @@ nav{
       opacity: .5;
   }
 }
+
+.stream-on-card {
+  width: 90%;
+  height: auto;
+}
