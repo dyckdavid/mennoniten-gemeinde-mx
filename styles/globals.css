@@ -571,3 +571,17 @@ nav{
   padding-left: 20px;
   padding-top: 20px;
 }
+
+
+.stream-off {
+  color: red;
+  animation: blink 1s linear infinite;
+  width: 15%;
+  height: auto;
+}
+
+@keyframes blink {
+  50% {
+      opacity: .5;
+  }
+}
