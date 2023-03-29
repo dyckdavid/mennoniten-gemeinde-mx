@@ -46,7 +46,7 @@ export default function Home() {
       <Space h="xl" />
       <Streams></Streams>
       <Center>
-        <Link href="/live">
+        <Link href="/streams/live">
       <Button radius="sm" size="xl" uppercase compact>
       Live Streams
     </Button></Link>
