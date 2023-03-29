@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="manifest" href="/manifest.json" />
+                <script src="/service-worker.js" />
               </Head>
       <Navbar />
       <Component {...pageProps} />
