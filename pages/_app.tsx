@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   content="Mennoniten - Gemeinde designed by David Dyck"
                 />
                 <link rel="icon" href="/favicon.ico" />
+                <link rel="manifest" href="/manifest.json" />
               </Head>
       <Navbar />
       <Component {...pageProps} />
