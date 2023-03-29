@@ -305,7 +305,7 @@ function App() {
                 <Space h="md" />
                 <TextInput
                   placeholder="speaker"
-                  label=""
+                  label="Name of Speaker"
                   description=""
                   value={speakerValue}
                   onChange={(event) => setSpeakerValue(event.target.value)}
@@ -313,7 +313,7 @@ function App() {
                 <Space h="md" />
                 <TextInput
                   placeholder="date"
-                  label=""
+                  label="stream date"
                   description=""
                   value={dateValue}
                   onChange={(event) => setDateValue(event.target.value)}
