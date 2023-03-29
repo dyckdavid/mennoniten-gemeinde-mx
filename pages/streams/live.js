@@ -5,8 +5,46 @@ import { IconAccessPointOff } from '@tabler/icons-react';
 import { IconAccessPoint } from '@tabler/icons-react';
 import { IconUser } from '@tabler/icons-react';
 import { IconCalendar } from '@tabler/icons-react';
+import { useEffect, useState} from "react";
+import {db, auth, storage } from "../../lib/config";
+import {
+    getDocs,
+    collection,
+    addDoc,
+    deleteDoc,
+    updateDoc,
+    doc,
+} from "firebase/firestore";
+import React from 'react';
+import { Fragment, useContext } from 'react';
+import { useCallback } from 'react';
+import Components from './components'
+import StreamCard from './streamcard'
 
 export default function Stream() {
+
+    const [streamList, setStreamList] = useState([]);
+    const streamCollectionRef = collection(db, "streamslive");
+
+        const getStreamList = useCallback(async () => {
+      try {
+        const data = await getDocs(streamCollectionRef);
+        const filterData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setStreamList(filterData);
+      } catch (err) {
+        console.error(err);
+      }
+    }, []);
+
+    useEffect(() => {
+      getStreamList();
+
+  }, []);
+
+
   return (
     <>
       <Head>
@@ -15,38 +53,16 @@ export default function Stream() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Space h="xl" />
-      <Title fw={700} ta="center">Live Streams</Title>
-      <Space h="xl" />
+      <Space h="xl" /><Title fw={700} ta="center">Live Streams</Title>
+       {streamList.map((stream) => (
+      <>
+
       <div>
-        <Center style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-          <Card shadow="sm" padding="lg" radius="md" withBorder className='stream-on-card'>
-          <IconAccessPoint color="red" size={30}/>
-            <Group position="apart" mt="md" mb="xs">
-            <Center style={{ display: "flex", alignItems: "center" }}>
-                <Text fz="lg"><IconUser size={18} />Speaker</Text>
-            </Center>
-              <Title weight={700} order={3}>Stream</Title>
-              <Center style={{ display: "flex", alignItems: "center" }}>
-              <Badge color="red" variant="light" size="lg" ta="center" ><IconCalendar size={18} style={{ marginTop: "0.5rem" }}/> 30/03/23</Badge>
-            </Center>
-            </Group>
-            <Card.Section>
-              <div style={{ position: "relative", overflow: "hidden", width: "100%", paddingTop: "56.25%" }}>
-                <iframe
-                  src="https://player.vimeo.com/video/804849206?h=7667f6d282&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                  title="Live"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ position: "absolute", top: "0", left: "0", width: "100%", height: "100%" }}
-                />
-              </div>
-            </Card.Section>
-          </Card>
-        </Center>
-        <Space h="xl" />
+      {stream.public ? <StreamCard /> : <Components />}
       </div>
+
+           </>
+      ))}
     </>
   );
 }
