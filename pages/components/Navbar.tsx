@@ -13,7 +13,7 @@ import { link } from "fs";
 const MENU_LIST = [
   { text: "HAUSE", link: "/", links: [], },
   { text: "PREDIGTEN", link: "/predigten", links: [], },
-  { text: "LIVE", link: "/live", links: [], },
+  { text: "LIVE", link: "/streams/live", links: [], },
 ];
 const Navbar = () => {
   const [navActive, setNavActive] = useState(false);
