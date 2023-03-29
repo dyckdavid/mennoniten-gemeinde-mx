@@ -24,8 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="manifest" href="/manifest.json" />
-                <Script src="/service-worker.js" strategy="afterInteractive" />
               </Head>
+              <Script src="/service-worker.js" strategy="afterInteractive" />
+
       <Navbar />
       <Component {...pageProps} />
       </ContextAuthProvider>
