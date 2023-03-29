@@ -12,6 +12,8 @@ import { createStyles } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons';
 import Streams from '../firestorelive/index'
+import { IconAccessPointOff } from '@tabler/icons-react';
+import { IconAccessPoint } from '@tabler/icons-react';
 
 export default function CardsHome() {
 
@@ -19,9 +21,11 @@ export default function CardsHome() {
         <>
         <Space h="md" />
         <Center><h1>Live Streams</h1></Center>
+        <Space h="xl" />
+        <Text tt="uppercase" fz="xl" fs="italic" fw={700} ta="center">Hier finden Sie einige Predigten, die wir live streamen.</Text>
 
         <Center>
-        <Streams></Streams>
+        <IconAccessPoint color="red" size={100} />
         </Center>
         <Space h="xl" />
         </>
