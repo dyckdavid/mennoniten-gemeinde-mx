@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { ContextAuthProvider } from '../context/AuthContext';
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Head from 'next/head'
+import Script from 'next/script';
 
 
 
@@ -23,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="manifest" href="/manifest.json" />
-                <script src="/service-worker.js" />
+                <Script src="/service-worker.js" strategy="afterInteractive" />
               </Head>
       <Navbar />
       <Component {...pageProps} />
