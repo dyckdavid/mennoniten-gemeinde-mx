@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Text, Space } from "@mantine/core";
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from "@mantine/core";
+import Logo from "./images/logo.jpg"
 
 const Navibar = () => {
   const [navActive, setNavActive] = useState(false);
@@ -13,21 +14,21 @@ const Navibar = () => {
     { text: "HAUSE", href: "/" },
     { text: "PREDIGTEN", href: "/predigten" },
     { text: "LIVE", href: "/streams/live" },
-    
   ];
 
   return (
     <header>
       <nav className={`nav`}>
-        <Link href={"/"} passHref>
-          
-            <img
-              className="navbar__logo"
-              src="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/2.jpg?alt=media&token=63222a19-3766-4d10-8387-0018c9ce900b"
-              alt="Logo"
-            />
-          
-        </Link>
+      <Link href={"/"} passHref>
+  <div className="navbar__logo">
+    <Image
+      src={Logo}
+      alt="MG"
+      width={100}
+      height={100}
+    />
+  </div>
+</Link>
         <Burger
           opened={navActive}
           onClick={() => setNavActive(!navActive)}
