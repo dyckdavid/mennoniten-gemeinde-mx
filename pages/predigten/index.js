@@ -5,7 +5,7 @@ import { Inter } from '@next/font/google'
 import { Center } from '@mantine/core'
 import { Card, Badge, Button, Group } from '@mantine/core';
 import Cards from '../firestore/index'
-import { Text, Space } from '@mantine/core';
+import { Text, Space, Title } from '@mantine/core';
 
 
 
@@ -22,7 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Space h="md" />
-      <Center><h1>Predigten</h1></Center>
+      <Center><Title fw={700} ta="center">Predigten</Title></Center>
       <Space h="md" />
       <Cards></Cards>
       <Space h="md" />
