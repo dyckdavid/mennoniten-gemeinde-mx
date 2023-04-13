@@ -326,7 +326,9 @@ nav{
   width: 32.25%;
 }
 
-@media screen and (max-width: 800px) {
+
+
+@media screen and (max-width: 1000px) {
   .card__predigten {
     width: 48%;
     display: block;
@@ -524,7 +526,7 @@ nav{
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
 
 
   .text-over-image-home {
@@ -590,3 +592,4 @@ nav{
   width: 90%;
   height: auto;
 }
+
