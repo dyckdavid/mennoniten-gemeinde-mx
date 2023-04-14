@@ -22,6 +22,7 @@ import { Fragment, useContext } from 'react';
 import firebase from "firebase/app";
 import "firebase/database";
 import { useCallback } from 'react';
+import withAuth from './withAuth';
 
 
 
@@ -42,6 +43,10 @@ function App() {
     const [urlValue, setUrlValue] = useState("");
     const [speakerValue, setSpeakerValue] = useState();
     const [currentStream, setCurrentStream] = useState(null);
+
+    
+
+  
 
 
     const handleChange = async (stream) => {
@@ -206,8 +211,12 @@ function App() {
 
 
     return (
+      
         <>
-        <><Head>
+        
+        <>
+        
+        <Head>
           <title>admin - Live stream</title>
         </Head>
         
@@ -264,6 +273,8 @@ function App() {
           </Modal><Space h="xl" /><Group position="center">
             <Button onClick={() => setOpens(true)} disabled={streamList.length > 0}>Add Live Stream</Button>
           </Group><Space h="xl" />
+
+
 
           
           </>
@@ -374,13 +385,16 @@ function App() {
                     </Card>
 
                     
-                  </Center></></>
+                  </Center>
+                  
+                  </></>
             ))}
         </div>
         
         </>
+      
     )
 }
 
 
-export default App;
+export default withAuth(App);
