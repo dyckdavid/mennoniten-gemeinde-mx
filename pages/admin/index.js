@@ -16,6 +16,8 @@ import AuthContext from '../../context/AuthContext';
 import { Fragment, useContext } from 'react';
 import Link from 'next/link'
 import App from './components/streamCard';
+import { getAuth, signOut } from 'firebase/auth';
+import { useRouter } from 'next/router';
 
  function AppShellDemo() {
 
@@ -24,7 +26,16 @@ import App from './components/streamCard';
   const { isLogged } = useContext(AuthContext);
 
 
-
+  const handleSignOut = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      // Redirect user to the sign in page or perform any other action after signing out
+      router.push('/signin');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
@@ -36,6 +47,9 @@ import App from './components/streamCard';
         <Head>
           <title>admin - Live stream</title>
         </Head>
+        <div style={{ position: 'absolute', top: 80, right: 10 }}>
+  <Button onClick={handleSignOut}>Sign Out</Button>
+</div>
         <App />
       </>
     )}
