@@ -51,7 +51,7 @@ export default function Stream() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Space h="xl" />
-      <Title fw={700} ta="center">Live Streams</Title>
+      <Title fw={700} ta="center">LIVE STREAMS</Title>
       {streamList.length === 0 ? (
         <Components />
       ) : (

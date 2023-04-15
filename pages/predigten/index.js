@@ -22,7 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Space h="md" />
-      <Center><Title fw={700} ta="center">Predigten</Title></Center>
+      <Center><Title fw={700} ta="center">PREDIGTEN</Title></Center>
       <Space h="md" />
       <Cards></Cards>
       <Space h="md" />
