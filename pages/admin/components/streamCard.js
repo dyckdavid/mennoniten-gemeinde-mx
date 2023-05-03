@@ -43,6 +43,7 @@ function App() {
     const [urlValue, setUrlValue] = useState("");
     const [speakerValue, setSpeakerValue] = useState();
     const [currentStream, setCurrentStream] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     
 
@@ -106,12 +107,14 @@ function App() {
       };
       
       const handleSubmit = async () => {
-        console.log("handleSubmit called"); // Add this line
+        setLoading(true); // Start loading
         try {
           await addStream();
           handleSuccess();
         } catch (error) {
           console.error("Error uploading the live stream:", error);
+        } finally {
+          setLoading(false); // End loading
         }
       };
       
@@ -244,29 +247,36 @@ function App() {
               label="Date"
               description=""
               onChange={(e) => setNewDate(e.target.value)}
-              withAsterisk />
+              />
               <Space h="md" />
             <TextInput
               placeholder="Speaker"
               label="Speaker"
               description=""
               onChange={(e) => setNewSpeaker(e.target.value)}
-              withAsterisk />
+             />
             <Space h="md" />
             <Checkbox
-              label="PUBLIC / PRIVATE"
+              label="PUBLIC / HIDDEN"
               checked={isPublic}
               onChange={(e) => setIsPublic(e.target.checked)}
-              description="Public for everyone / Private for admins only!" />
+              description="Public for everyone / HIDDEN for everyone" />
 
             <Space h="xl" />
 
 
             <Fragment>
-              <Button size="lg" compact onClick={handleSubmit}>
-                Add Live Streaming
-              </Button>
-            </Fragment>
+  <Button
+    size="lg"
+    compact
+    onClick={handleSubmit}
+    disabled={!newStreamTitle || !urlValue || loading}
+    loading={loading}
+  >
+    Add Live Streaming
+  </Button>
+</Fragment>
+
 
 
 
