@@ -322,7 +322,7 @@ function App() {
                   description=""
                   value={urlValue}
                   onChange={(event) => setUrlValue(event.target.value)}
-                  withAsterisk />
+                   />
                 <Space h="md" />
                 <TextInput
                   placeholder="speaker"
@@ -330,7 +330,7 @@ function App() {
                   description=""
                   value={speakerValue}
                   onChange={(event) => setSpeakerValue(event.target.value)}
-                  withAsterisk />
+                   />
                 <Space h="md" />
                 <TextInput
                   placeholder="date"
@@ -338,7 +338,7 @@ function App() {
                   description=""
                   value={dateValue}
                   onChange={(event) => setDateValue(event.target.value)}
-                  withAsterisk />
+                   />
                 <Space h="md" />
                 <Checkbox
                   label="PUBLIC / HIDDEN"
@@ -376,7 +376,7 @@ function App() {
                         </Badge>
                       </Group>
                       <Checkbox
-              label="Public or Private"
+              label="Public or Hidden"
               checked={stream.public}
               onChange={() => handleChange(stream)}
             />

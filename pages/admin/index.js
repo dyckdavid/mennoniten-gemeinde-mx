@@ -4,11 +4,6 @@ import { ScrollArea } from '@mantine/core';
 import {
   useMantineTheme,
   Button,
-  Container,
-  Col,
-  Row,
-  Paper,
-  Text,
 } from '@mantine/core';
 import { Modal, Group } from '@mantine/core';
 import Head from 'next/head'
