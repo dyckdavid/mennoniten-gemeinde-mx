@@ -341,10 +341,10 @@ function App() {
                   withAsterisk />
                 <Space h="md" />
                 <Checkbox
-                  label="PUBLIC / PRIVATE"
+                  label="PUBLIC / HIDDEN"
                   checked={stream.public}
                   onChange={() => handleChange(stream)}
-                  description="Public for everyone / Private for admins only" />
+                  description="Public for everyone / HIDDEN for everyone" />
 
 
                 <Space h="xl" />
