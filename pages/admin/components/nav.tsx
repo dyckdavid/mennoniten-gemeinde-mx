@@ -25,31 +25,10 @@ export default function AppShellDemo() {
   return (
     <>
     <Head>
-        <title>admin - Mennoniten Gemeinde</title>
+        <title>admin - Live Stream</title>
     </Head>
     
     <AppShell
-      styles={{
-        main: {
-          background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-        },
-      }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={
-        <Navbar p="sm" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
-          <Button>Sermons</Button>
-          <Button>Live Streams</Button>
-          <Button>Monatsblat</Button>
-          <Button>Settings</Button>
-        </Navbar>
-      }
-      
-      footer={
-        <Footer height={60} p="md">
-          Mennoniten-Gemeinde
-        </Footer>
-      }
       header={
         <Header height={{ base: 70, md: 70 }} p="md">
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
@@ -67,6 +46,20 @@ export default function AppShellDemo() {
           </div>
         </Header>
       }
+      
+      
+      navbar={
+        
+        <Navbar   hidden={!opened} width={{  lg: 250 }}>
+          <Button>Sermons</Button>
+          <Button>Live Streams</Button>
+          <Button>Monatsblat</Button>
+          <Button>Settings</Button>
+        </Navbar>
+      }
+      
+      
+      
     >
         
     </AppShell>

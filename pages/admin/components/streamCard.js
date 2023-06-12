@@ -8,8 +8,6 @@ import {
     updateDoc,
     doc,
 } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage";
-import Link from 'next/link'
 import React from 'react';
 import { Center } from '@mantine/core'
 import { Space } from '@mantine/core';
@@ -19,7 +17,6 @@ import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 import { Modal } from '@mantine/core';
 import { Checkbox } from '@mantine/core';
 import { Fragment, useContext } from 'react';
-import firebase from "firebase/app";
 import "firebase/database";
 import { useCallback } from 'react';
 import withAuth from './withAuth';
@@ -156,24 +153,7 @@ function App() {
       
 
 
-      const onSubmitMovie = () => {
-        return new Promise(async (resolve, reject) => {
-          try {
-            await addDoc(streamCollectionRef, {
-              Title: newStreamTitle,
-              date: newDate,
-              public: isPublic,
-              url: urlValue,
-              speaker: speakerValue,
-              userId: auth?.currentUser?.uid,
-            });
-            resolve();
-          } catch (err) {
-            console.error(err);
-            reject(err);
-          }
-        });
-      };
+
 
       const deleteMovie = async (id) => {
         const streamDoc = doc(db, "streamslive", id);

@@ -593,3 +593,6 @@ nav{
   height: auto;
 }
 
+.btn-admin-nav {
+  text-align: left;
+}

@@ -6,7 +6,7 @@ export default function Sermons() {
     return (
         <div>
             <Navbar>
-                <h1>admin Page</h1>
+                <h1>Sermons</h1>
             </Navbar>
             
         </div>

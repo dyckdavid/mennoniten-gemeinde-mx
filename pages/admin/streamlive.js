@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import Navbar from './navbar'
+import Streams from './components/streamCard'
 
 export default function Sermons() {
 
     return (
         <div>
             <Navbar>
-                <h1>admin Page</h1>
+                <Streams />
             </Navbar>
             
         </div>
