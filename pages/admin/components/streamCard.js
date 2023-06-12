@@ -20,6 +20,7 @@ import { Fragment, useContext } from 'react';
 import "firebase/database";
 import { useCallback } from 'react';
 import withAuth from './withAuth';
+import Link from 'next/link'
 
 
 
@@ -348,7 +349,11 @@ function App() {
                         <h1 className='padding-text-live-admin' style={{ color: stream.public ? 'green' : 'red' }}>{stream.Title}</h1>
                         <h2 className='padding-text-live-admin'>{stream.speaker}</h2>
                       </Card.Section>
-
+                      <Link href={stream.public ? "/streams/live" : ""}> 
+                       <Button color="red" disabled={!stream.public}>
+                         View Stream
+                        </Button>
+                      </Link>
                       <Group position="apart" mt="md" mb="xs">
                         <Text weight={505}>{stream.url}</Text>
                         <Badge color="red" variant="light" size="xl">
