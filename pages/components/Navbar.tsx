@@ -7,6 +7,8 @@ import NavItem from "./NavItem";
 import { Text, Space } from '@mantine/core';
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
 import { link } from "fs";
+import { IconLogin } from '@tabler/icons-react';
+import { ActionIcon } from '@mantine/core';
 
 
 
@@ -40,6 +42,7 @@ const Navbar = () => {
     />
 
         <div className={`${navActive ? "active" : ""} nav__menu-list`}>
+        
           {MENU_LIST.map((menu, idx) => (
             <div
               onClick={() => {
@@ -48,7 +51,14 @@ const Navbar = () => {
               }}
               key={menu.text}
             >
+              
               <NavItem active={activeIdx === idx} {...menu} />
+              {menu.text === "LIVE" && (
+      <ActionIcon color="red" size="xl">
+        <IconLogin size="2rem" />
+      </ActionIcon>
+    )}
+              
             </div>
           ))}
         </div>

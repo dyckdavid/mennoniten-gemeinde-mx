@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { DateInput } from '@mantine/dates';
 import Navbar from './navbar'
 import { Text, Space, Card, Image, Badge, Button, Group, Title } from '@mantine/core';
 import { useEffect} from "react";
@@ -32,13 +31,6 @@ import { ActionIcon } from '@mantine/core';
 import { IconAdjustments } from '@tabler/icons-react';
 import { IconTrashX } from '@tabler/icons-react';
 import { IconPencil } from '@tabler/icons-react';
-import { deleteObject } from "firebase/storage";
-import { getStorage } from "firebase/storage";
-import firebase from "firebase/compat/app";
-import { serverTimestamp } from "firebase/firestore";
-import { query, orderBy } from 'firebase/firestore';
-
-
 
 
 
@@ -63,8 +55,6 @@ export default function Sermons() {
     const [progress, setProgress] = useState(0);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploadFinished, setUploadFinished] = useState(false);
-    const [updatedAudioFile, setUpdatedAudioFile] = useState();
-
 
     
 
@@ -81,44 +71,43 @@ console.log(auth.currentUser);
       
       
       const addSermon = () => {
-        const storageRef = ref(storage, 'webloaded/' + audioFile.name);
+        const storageRef = ref(storage, 'sermons/' + audioFile.name);
         const uploadTask = uploadBytesResumable(storageRef, audioFile);
       
         uploadTask.on('state_changed', 
         (snapshot) => {
-            // Set the upload progress
-            var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-    
-            setUploadProgress(progress);
+          // Set the upload progress
+          var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+          setUploadProgress(progress);
         }, 
         (error) => {
-            // Handle unsuccessful uploads
+          // Handle unsuccessful uploads
         }, 
         async () => {
-            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log('File available at', downloadURL);
             // Now you can add the new sermon document with the audio URL
             const sermonCollectionRef = collection(db, "testsermons");
             await addDoc(sermonCollectionRef, {
-                title: newStreamTitle,
-                date: newDate,
-                public: isPublic,
-                link: linkValue,
-                speaker: newSpeaker,
-                audio: downloadURL, // Add the audio URL here
-                userId: auth?.currentUser?.uid,
-                createdAt: serverTimestamp()
+              title: newStreamTitle,
+              date: newDate,
+              public: isPublic,
+              link: linkValue,
+              speaker: newSpeaker,
+              audio: downloadURL, // Add the audio URL here
+              userId: auth?.currentUser?.uid,
             }).then(() => {
-                setUploadProgress(100);
-                setUploadFinished(true);
-                console.log('Sermon added successfully');
-                getStreamList();  // Refresh the list after adding the sermon
+              setUploadProgress(100);
+              setUploadFinished(true);
+              console.log('Sermon added successfully');
+              getStreamList();  // Refresh the list after adding the sermon
             }).catch((error) => {
-                console.error('Error adding sermon:', error);
+              console.error('Error adding sermon:', error);
             });
-            });
+          });
         });
-    }
+      }
       
     
     
@@ -160,8 +149,7 @@ console.log(auth.currentUser);
 
     const getStreamList = useCallback(async () => {
       try {
-        const q = query(streamCollectionRef, orderBy('createdAt', 'desc'));
-        const data = await getDocs(q);
+        const data = await getDocs(streamCollectionRef);
         const filterData = data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
@@ -174,14 +162,8 @@ console.log(auth.currentUser);
 
     useEffect(() => {
       getStreamList();
-  
-      // Debug: check the data length after 3 seconds
-      setTimeout(() => {
-        if (streamList.length === 0) {
-          console.log("No data after 3 seconds");
-        }
-      }, 3000);
-    }, [getStreamList, streamList]);
+
+  }, []);
 
 
       const handleSuccess = () => {
@@ -254,44 +236,20 @@ console.log(auth.currentUser);
 
       const updateStream = async () => {
         try {
-            const streamDoc = doc(db, "testsermons", currentStream.id);
-    
-            if (updatedAudioFile) {
-                // Delete the old audio file
-                const oldAudioRef = ref(storage, currentStream.audio);
-                await deleteObject(oldAudioRef);
-    
-                // Upload the new audio file
-                const newAudioRef = ref(storage, 'sermons/' + updatedAudioFile.name);
-                const uploadTask = uploadBytesResumable(newAudioRef, updatedAudioFile);
-                await uploadTask;
-                const newAudioURL = await getDownloadURL(uploadTask.snapshot.ref);
-    
-                // Update the sermon document with the new audio URL
-                await updateDoc(streamDoc, {
-                    title: titleValue,
-                    date: dateValue,
-                    link: linkValue,
-                    speaker: speakerValue,
-                    audio: newAudioURL,
-                });
-            } else {
-                // Update the sermon document without changing the audio
-                await updateDoc(streamDoc, {
-                    title: titleValue,
-                    date: dateValue,
-                    link: linkValue,
-                    speaker: speakerValue,
-                });
-            }
-    
-            setOpen(false);
-            setCurrentStream(null);
-            getStreamList();
+          const streamDoc = doc(db, "testsermons", currentStream.id);
+          await updateDoc(streamDoc, {
+            title: titleValue,
+            date: dateValue,
+            link: linkValue,
+            speaker: speakerValue,
+          });
+          setOpen(false);
+          setCurrentStream(null);
+          getStreamList();
         } catch (err) {
-            console.error(err);
+          console.error(err);
         }
-    };
+      };
 
       const handleEdit = (stream) => {
         setCurrentStream(stream);
@@ -300,7 +258,6 @@ console.log(auth.currentUser);
         setSpeakerValue(stream.speaker);
         setLinkValue(stream.link);
         setIsPublic(stream.public);
-        setUpdatedAudioFile(null);
         setOpen(true);
       };
 
@@ -345,7 +302,7 @@ console.log(auth.currentUser);
             <Space h="md" />
             <TextInput
               placeholder="Date"
-              label="Date (13/06/2023)"
+              label="Date"
               description=""
               onChange={(e) => setNewDate(e.target.value)}
               />
@@ -386,7 +343,7 @@ console.log(auth.currentUser);
     size="lg"
     compact
     onClick={handleSubmit}
-    disabled={!newStreamTitle || !newDate || loading}
+    disabled={!newStreamTitle || !linkValue || loading}
     loading={loading}
   >
     Add Sermon
@@ -397,9 +354,6 @@ console.log(auth.currentUser);
 
 
           </Modal><Space h="xl" /><Group position="center">
-            <Link href="/sermons">
-          <Button>Sermons Page</Button>
-          </Link>
             <Button onClick={() => setOpens(true)} >Add Sermon</Button>
           </Group><Space h="xl" />
 
@@ -408,7 +362,13 @@ console.log(auth.currentUser);
           
           </>
 
+          {streamList.length === 0 && (
+            <Center>
 
+    No Sermons available. Click the Add Sermon button to add one.
+
+  </Center>
+)}
         <div>
         
             {streamList.map((stream) => (
@@ -461,11 +421,6 @@ console.log(auth.currentUser);
 
 
                 <Space h="xl" />
-                <input type="file" onChange={e => setUpdatedAudioFile(e.target.files[0])} />
-                <Space h="xl" />
-                <Progress value={uploadProgress} radius="xl" size="xl" label={uploadProgress} />
-                <Space h="xl" />
-
 
 
 
@@ -480,57 +435,80 @@ console.log(auth.currentUser);
 
 
               </Modal><Center>
+                    <Card shadow="sm" p="lg" radius="md" withBorder className='admin-live-card'>
+
+                      <Card.Section>
+                        <h1 className='padding-text-live-admin' style={{ color: stream.public ? 'green' : 'red' }}>{stream.title}</h1>
+                        <h2 className='padding-text-live-admin'>{stream.speaker}</h2>
+                      </Card.Section>
+                      <Link href={stream.public ? "/streams/live" : ""}> 
+                       <Button color="red" disabled={!stream.public}>
+                         View Stream
+                        </Button>
+                      </Link>
+                      <Group position="apart" mt="md" mb="xs">
+                        <Text weight={505}>{stream.link}</Text>
+                        <Badge color="red" variant="light" size="xl">
+                          {stream.date}
+                        </Badge>
+                      </Group>
+                      <Checkbox
+              label="Public or Hidden"
+              checked={stream.public}
+              onChange={() => handleChange(stream)}
+            />
+
+
+                      <div style={{ display: 'flex' }}>
+                        <Button variant="light" color="blue" fullWidth mt="md" radius="md"onClick={() => handleEdit(stream)}>
+                          EDIT
+                        </Button>
+                        <Space w="md" />
+                        <Button variant="light" color="blue" fullWidth mt="md" radius="md" onClick={() => deleteMovie(stream.id)}>
+                          DELETE 
+                        </Button>
+
+                      </div>
+
+
+                    </Card>
 
 
                   </Center>
 
-                  
+                  <Center>
 
+                  <Table verticalSpacing="xs" className='table-width-sermon-admin' striped fontSize="md" highlightOnHover>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr key="name">
+      <td>{stream.id}</td>
+      <td>{stream.title}</td>
+      <td>{stream.date}</td>
+      <td><ActionIcon color="yellow" size="lg" onClick={() => handleEdit(stream)}>
+      <IconPencil size="1.125rem" />
+    </ActionIcon></td>
+      <td><ActionIcon color="red" size="lg" onClick={() => deleteMovie(stream.id)}>
+      <IconTrashX size="1.125rem" />
+    </ActionIcon></td>
+
+    </tr>
+      </tbody>
+    </Table>
+
+    </Center>
                   
                   </></>
             ))}
         </div>
-
-        <Center>
-  <Table verticalSpacing="xs" className='table-width-sermon-admin' striped fontSize="md" highlightOnHover>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {streamList.map((stream) => (
-        <tr key={stream.id}>
-          <td>{stream.id}</td>
-          <td>{stream.title}</td>
-          <td>{stream.date}</td>
-          <td>
-            <ActionIcon color="yellow" size="lg" onClick={() => handleEdit(stream)}>
-              <IconPencil size="1.125rem" />
-            </ActionIcon>
-          </td>
-          <td>
-            <ActionIcon color="red" size="lg" onClick={() => deleteMovie(stream.id)}>
-              <IconTrashX size="1.125rem" />
-            </ActionIcon>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
-</Center>
-
-{streamList.length === 0 && (
-            <Center>
-
-    No Sermons available. Click the Add Sermon button to add one.
-
-  </Center>
-)}
         
         </>
 
@@ -544,3 +522,4 @@ console.log(auth.currentUser);
     )
             
 }
+

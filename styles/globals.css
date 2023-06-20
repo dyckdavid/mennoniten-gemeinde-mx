@@ -567,6 +567,7 @@ nav{
 .admin-live-card {
   width: 90%;
   padding-left: 20px;
+  margin-bottom: 20px;
 }
 
 .padding-text-live-admin {
@@ -596,3 +597,8 @@ nav{
 .btn-admin-nav {
   text-align: left;
 }
+
+.table-width-sermon-admin {
+  width: 60%;
+}
+

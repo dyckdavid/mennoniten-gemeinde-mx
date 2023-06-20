@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Text, Space } from "@mantine/core";
 import { createStyles, Header, Menu, Group, Center, Burger, Container } from "@mantine/core";
 import Logo from "./images/logo.jpg"
+import { IconLogin } from '@tabler/icons-react';
+import { ActionIcon } from '@mantine/core';
+import Loginicon from './loginicon'
 
 const Navibar = () => {
   const [navActive, setNavActive] = useState(false);
@@ -14,6 +17,7 @@ const Navibar = () => {
     { text: "HAUSE", href: "/" },
     { text: "PREDIGTEN", href: "/predigten" },
     { text: "LIVE", href: "/streams/live" },
+    { text: <Loginicon />, href: "/signin" },
   ];
 
   return (
@@ -50,6 +54,7 @@ const Navibar = () => {
               <Link href={menu.href} passHref>
                 {menu.text}
               </Link>
+
             </div>
           ))}
         </div>

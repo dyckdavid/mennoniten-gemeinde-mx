@@ -45,6 +45,9 @@ import { IconCalendarEvent } from '@tabler/icons-react';
 import { IconCast } from '@tabler/icons-react';
 import { IconHeadphonesFilled } from '@tabler/icons-react';
 import { IconHeadset } from '@tabler/icons-react';
+import { IconLogout2 } from '@tabler/icons-react';
+import { IconLogout } from '@tabler/icons-react';
+import { ActionIcon } from '@mantine/core';
 
 
 
@@ -100,7 +103,10 @@ export default function AppShellDemo({ children }) {
         </Link>
         <Text>Admin</Text>
                           <div style={{ position: 'absolute', top: 12, right: 12 }} >
-  <Button onClick={handleSignOut} color="gray">Sign Out</Button>
+  
+  <ActionIcon color="red" size="xl" onClick={handleSignOut}>
+              <IconLogout size="2rem" />
+            </ActionIcon>
 </div>
                       </div>
                   </Header>}
