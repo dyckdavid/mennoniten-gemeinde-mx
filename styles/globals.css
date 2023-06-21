@@ -245,6 +245,12 @@ nav{
  transition: all 0.2s;
 }
 
+.nav-bar-login-icon {
+  margin-right: 5px;
+  margin-left: 0px;
+
+}
+
 .center{
   min-height: 600px;
   display: flex;
@@ -259,6 +265,8 @@ nav{
   .nav__menu-bar-two {
     display: none;
   }
+
+  
   .nav__menu-list{
     position: unset;
     flex-direction: row;
@@ -282,6 +290,7 @@ nav{
    width: 100%;
   }
 
+  
 
 
  
@@ -343,6 +352,24 @@ nav{
 
   
   }
+
+
+
+  
+
+
+}
+
+@media screen and (max-width: 768px) {
+
+
+  .nav-bar-login-icon {
+    margin-right: 5px;
+    margin-left: 0px;
+    display: none;
+  }
+
+  
 
 
 }
@@ -601,4 +628,5 @@ nav{
 .table-width-sermon-admin {
   width: 60%;
 }
+
 

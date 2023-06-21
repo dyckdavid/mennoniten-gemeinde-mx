@@ -15,9 +15,9 @@ const Navibar = () => {
 
   const MENU_LIST = [
     { text: "HAUSE", href: "/" },
-    { text: "PREDIGTEN", href: "/predigten" },
+    { text: "PREDIGTEN", href: "/sermons" },
     { text: "LIVE", href: "/streams/live" },
-    { text: <Loginicon />, href: "/signin" },
+    
   ];
 
   return (
@@ -57,6 +57,11 @@ const Navibar = () => {
 
             </div>
           ))}
+        </div>
+        <div className="nav-bar-login-icon">
+          <Link href="/signin">
+          <Loginicon />
+          </Link>
         </div>
       </nav>
     </header>

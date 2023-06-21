@@ -13,17 +13,20 @@ import { IconArrowNarrowLeft } from '@tabler/icons-react';
 import { IconDownload } from '@tabler/icons-react';
 import { Group, Card, Badge } from '@mantine/core';
 import { Timestamp } from 'firebase/firestore/lite'
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { useRef } from 'react';
 
 
 
 
 
-
-export default function Sermon({ sermon }) {
+export default function Sermon({ sermon  }) {
 
 
     const router = useRouter();
-    const { title, name, date, link, audio, speaker } = sermon
+    const { title, name, date, link, audio, speaker, audioUrl } = sermon;
+
+
 
 
     if (!link) {
@@ -65,6 +68,7 @@ export default function Sermon({ sermon }) {
         <Button radius="sm" size="xl" uppercase compact className='download_button'>
       <IconDownload /><Space w="xs" /> Download
     </Button></a>
+
       </Group>
 
       
@@ -97,7 +101,7 @@ export default function Sermon({ sermon }) {
     <Center>
     <Card shadow="sm" radius="md" withBorder className='actual-sermons-card'>
       <Center>
-      <Card.Section component="a" href="https://mantine.dev/" className='video-responsive'>
+      <Card.Section component="a" href="https://mennonitengemeinde.mx/" className='video-responsive'>
       <iframe
       className='video-responsive-item'
         src={link}
@@ -128,6 +132,7 @@ export default function Sermon({ sermon }) {
         <Button radius="sm" size="xl" uppercase compact className='download_button'>
       <IconDownload /><Space w="xs" /> Download
     </Button></a>
+
       </Group>
 
       
@@ -143,10 +148,12 @@ export default function Sermon({ sermon }) {
 
 export async function getServerSideProps({ params }) {
     const id = params.id;
+   
     const sermonSnapshot = await getDoc(doc(db, 'sermons', id));
     const sermon = sermonSnapshot.data();
     sermon.id = sermonSnapshot.id;
 
+   
     // If created exists and it's a Firestore Timestamp
     if (sermon.created instanceof Timestamp) {
         sermon.created = sermon.created.toDate().toISOString();
@@ -154,7 +161,8 @@ export async function getServerSideProps({ params }) {
 
     return {
         props: {
-            sermon
+            sermon,
+            
         },
     };
 }

@@ -98,7 +98,7 @@ console.log(auth.currentUser);
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log('File available at', downloadURL);
             // Now you can add the new sermon document with the audio URL
-            const sermonCollectionRef = collection(db, "testsermons");
+            const sermonCollectionRef = collection(db, "sermons");
             await addDoc(sermonCollectionRef, {
                 title: newStreamTitle,
                 date: newDate,
@@ -129,7 +129,7 @@ console.log(auth.currentUser);
     const handleChange = async (stream) => {
       const newValue = !stream.public;
       // Update the value in Firestore
-      const streamDoc = doc(db, "testsermons", stream.id);
+      const streamDoc = doc(db, "sermons", stream.id);
       await updateDoc(streamDoc, { public: newValue });
       // Update the state
       const updatedStreamList = streamList.map((item) =>
@@ -142,7 +142,7 @@ console.log(auth.currentUser);
 
     const [updatedTitle, setUpdatedTitle] = useState("");
 
-    const streamCollectionRef = collection(db, "testsermons");
+    const streamCollectionRef = collection(db, "sermons");
 
     const initializeCollection = async () => {
       try {
@@ -160,7 +160,7 @@ console.log(auth.currentUser);
 
     const getStreamList = useCallback(async () => {
       try {
-        const q = query(streamCollectionRef, orderBy('createdAt', 'desc'));
+        const q = query(streamCollectionRef, orderBy('created', 'desc'));
         const data = await getDocs(q);
         const filterData = data.docs.map((doc) => ({
           ...doc.data(),
@@ -180,7 +180,7 @@ console.log(auth.currentUser);
         if (streamList.length === 0) {
           console.log("No data after 3 seconds");
         }
-      }, 3000);
+      }, 5000);
     }, [getStreamList, streamList]);
 
 
@@ -207,7 +207,7 @@ console.log(auth.currentUser);
       const addStream = () => {
         return new Promise(async (resolve, reject) => {
           try {
-            const streamCollectionRef = collection(db, "testsermons");
+            const streamCollectionRef = collection(db, "sermons");
       
             // Check if the collection exists
             const collectionSnapshot = await getDocs(streamCollectionRef);
@@ -243,7 +243,7 @@ console.log(auth.currentUser);
 
 
       const deleteMovie = async (id) => {
-        const streamDoc = doc(db, "testsermons", id);
+        const streamDoc = doc(db, "sermons", id);
         await deleteDoc(streamDoc);
       
         // Update the state after successful deletion
@@ -254,7 +254,7 @@ console.log(auth.currentUser);
 
       const updateStream = async () => {
         try {
-            const streamDoc = doc(db, "testsermons", currentStream.id);
+            const streamDoc = doc(db, "sermons", currentStream.id);
     
             if (updatedAudioFile) {
                 // Delete the old audio file
