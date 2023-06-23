@@ -67,7 +67,15 @@ export default function Sermons() {
 
 
     
-
+    useEffect(() => {
+      // When the component is mounted, add the `adminPage` class to the body
+      document.body.classList.add('adminPage');
+  
+      // When the component is unmounted, remove the `adminPage` class from the body
+      return () => {
+        document.body.classList.remove('adminPage');
+      };
+    }, []);
 
 
     console.log(audioFile);
@@ -107,7 +115,7 @@ console.log(auth.currentUser);
                 speaker: newSpeaker,
                 audio: downloadURL, // Add the audio URL here
                 userId: auth?.currentUser?.uid,
-                createdAt: serverTimestamp()
+                created: serverTimestamp()
             }).then(() => {
                 setUploadProgress(100);
                 setUploadFinished(true);
@@ -453,6 +461,7 @@ console.log(auth.currentUser);
                   onChange={(event) => setDateValue(event.target.value)}
                    />
                 <Space h="md" />
+
                 <Checkbox
                   label="PUBLIC / HIDDEN"
                   checked={stream.public}

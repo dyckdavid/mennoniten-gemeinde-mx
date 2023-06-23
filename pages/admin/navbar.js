@@ -48,6 +48,7 @@ import { IconHeadset } from '@tabler/icons-react';
 import { IconLogout2 } from '@tabler/icons-react';
 import { IconLogout } from '@tabler/icons-react';
 import { ActionIcon } from '@mantine/core';
+import { IconHome2 } from '@tabler/icons-react';
 
 
 
@@ -126,6 +127,10 @@ export default function AppShellDemo({ children }) {
       }}
     >
       <div>
+      <Link href="/admin">
+        <Button fullWidth variant="light" color="blue" leftIcon={<IconHome2 size="1rem" />}>Admin Home</Button>
+        </Link>
+        <Space h="xs" />
       <Link href="/admin/sermons">
         <Button fullWidth variant="light" color="red" leftIcon={<IconHeadset size="1rem" />}>Sermons</Button>
         </Link>
