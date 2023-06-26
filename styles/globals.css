@@ -321,6 +321,7 @@ nav{
   height: auto;
   margin-top: 10px;
   border-radius: 25px;
+  position: relative;
 
 }
 
@@ -637,5 +638,90 @@ nav{
 .table-width-sermon-admin {
   width: 60%;
 }
+
+.lower-text-home-page {
+  color: rgb(102, 255, 0) !important;
+  font-size: 23px !important; 
+}
+
+
+.image-container {
+  /* Relative position is needed to allow the child text to be positioned relative to this parent */
+  position: relative;
+  width: 100%;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(46, 46, 46, 0.5); /* Change the last value (0.5) to adjust the opacity */
+}
+
+
+
+.centered-text {
+  /* Use absolute position to place the text on top of the image */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+
+  /* The transform property is used to ensure that the text is centered both horizontally and vertically */
+  transform: translate(-50%, -50%);
+  
+  /* Text alignment for horizontal centering */
+  text-align: center;
+  
+  /* Create a block context for children */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* Adjust this to increase/decrease space between elements */
+}
+
+.centered-text > div {
+  /* Set color and font-size */
+  color: white;
+  font-size: 32px; /* Set the size as per your requirement */
+  
+}
+
+.blue-line {
+  width: 90%;
+  border: none;
+  border-top: 2px solid blue;
+}
+
+
+@media (max-width: 600px) {
+  .centered-text > div {
+    font-size: 24px; /* Smaller font size */
+  }
+
+  .lower-text-home-page {
+    font-size: 16px !important; /* Smaller font size */
+  }
+}
+
+/* Media query for larger screens (e.g., desktops) */
+@media (min-width: 1200px) {
+  .centered-text > div {
+    font-size: 48px; /* Larger font size */
+  }
+
+  .lower-text-home-page {
+    font-size: 28px !important; /* Larger font size */
+  }
+}
+
+
 
 
