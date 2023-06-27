@@ -741,3 +741,12 @@ nav{
   
   
 }
+
+.streamTitleMobile {
+  text-align: center;
+}
+
+.streamSpeakerMobile,
+.streamDateMobile {
+  justify-content: flex-start;
+}

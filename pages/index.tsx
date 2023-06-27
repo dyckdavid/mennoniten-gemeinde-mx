@@ -65,7 +65,7 @@ export default function Home() {
       
       <Space h="md" />
       <Center>
-        <Link href="/predigten">
+        <Link href="/sermons">
       <Button radius="sm" size="xl" uppercase compact>
       Alle Predigten
     </Button></Link>

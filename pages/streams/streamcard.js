@@ -19,6 +19,7 @@ import React from 'react';
 import { Fragment, useContext } from 'react';
 import { useCallback } from 'react';
 import Components from './components'
+import { useMediaQuery } from '@mantine/core';
 
 
 export default function Stream() {
@@ -62,13 +63,13 @@ export default function Stream() {
                <Center style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                    <Card shadow="sm" padding="lg" radius="md" withBorder className='stream-on-card'>
                        <IconAccessPoint color="red" size={30} />
-                       <Group position="apart" mt="md" mb="xs">
-                           <Center style={{ display: "flex", alignItems: "center" }}>
-                               <Text fz="lg"><IconUser size={18} />{stream.speaker}</Text>
+                       <Group position="apart" mt="md" mb="xs" className="stream-meta">
+                           <Center style={{ display: "flex", alignItems: "center" }} className="stream-speaker">
+                               <Text fz="lg" className="stream-speaker-name"><IconUser size={18} />{stream.speaker}</Text>
                            </Center>
-                           <Title weight={700} order={3}>{stream.Title}</Title>
-                           <Center style={{ display: "flex", alignItems: "center" }}>
-                               <Badge color="red" variant="light" size="lg" ta="center"><IconCalendar size={18} style={{ marginTop: "0.5rem" }} /> {stream.date}</Badge>
+                           <Title weight={700} order={3} className="stream-title">{stream.Title}</Title>
+                           <Center style={{ display: "flex", alignItems: "center" }} className="stream-date">
+                               <Badge color="red" variant="light" size="lg" ta="center"><IconCalendar size={18} style={{ marginTop: "0.5rem" }} className="stream-date-badge"/> {stream.date}</Badge>
                            </Center>
                        </Group>
                        <Card.Section>
