@@ -15,6 +15,8 @@ import { Space } from '@mantine/core';
 import { createStyles } from '@mantine/core';
 import { ActionIcon } from '@mantine/core';
 import { IconCalendar } from '@tabler/icons';
+import { useEffect, useState } from "react";
+import { getRandomData } from "../../components/getRandomData";
 
 
 const useStyles = createStyles((theme) => ({
@@ -38,88 +40,56 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function CardsHome() {
     const { classes } = useStyles();
+    const [data, setData] = useState<any[]>([]);
+
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const randomData = await getRandomData();
+          console.log(randomData);
+          setData(randomData);
+        } catch (error) {
+          console.error('An error occurred: ', error);
+        }
+      }
+    
+      fetchData();
+    }, []);
+
+
   return (
     <>
 
 
-    <Center>
-      <Card shadow="sm" p="lg" radius="md" mt="md" withBorder className='conatiner-home-screen'>
+{data.map((item, index) => (
+  <Center key={index}>
+    <Card shadow="sm" p="lg" radius="md" mt="md" withBorder className='conatiner-home-screen'>
       <Card.Section>
 
       </Card.Section>
 
       <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
+        <Text weight={500}>{item.title}</Text>
         <Badge color="red" variant="light" size="xl">
         <IconCalendar size={16} className="align-calendar"></IconCalendar>
 
-          29/01/23
+          {item.date}
         </Badge>
       </Group>
 
       <Text size="sm" color="dimmed">
         
-Enrique Bartsch
+{item.name}
       </Text>
-      <Link href="/sermons/J7rd7mNay9naMdkXqLKy">
+      <Link href={`../testsermon/${item.id}`}>
       <Button variant="light" color="blue" fullWidth mt="md" radius="md">
       Öffnen
       </Button>
     </Link>
     </Card>
-    </Center>
-    <Space h="md" />
-    <Center>
-    <Card shadow="sm" p="lg" radius="md" withBorder className='conatiner-home-screen'>
-      <Card.Section>
-
-      </Card.Section>
-
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light" size="xl">
-        
-            <IconCalendar size={16} className="align-calendar"></IconCalendar>
-         22/01/23
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-Peter Martens
-      </Text>
-      <Link href="/sermons/UBqzeDcaz7urtbYL7kl9">
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-      Öffnen
-      </Button>
-    </Link>
-    </Card>
-    </Center>
-    <Space h="md" />
-    <Center>
-    <Card shadow="sm" p="lg" radius="md" withBorder className='conatiner-home-screen'>
-      <Card.Section>
-
-      </Card.Section>
-
-      <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Sontags Predigt</Text>
-        <Badge color="red" variant="light" size="xl">
-        <IconCalendar size={16} className="align-calendar"></IconCalendar>
-
-          15/01/23
-        </Badge>
-      </Group>
-
-      <Text size="sm" color="dimmed">
-John Dyck
-      </Text>
-    <Link href="/sermons/WJ9cpjT0ny0ZZciB9ee0">
-      <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-        Öffnen
-      </Button>
-    </Link>
-    </Card>
-</Center>
+  </Center>
+))}
 <Space h="xl" />
  
 
