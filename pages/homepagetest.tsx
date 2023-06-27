@@ -8,6 +8,7 @@ import Card from './components/homecard'
 import { Button } from '@mantine/core';
 import Streams from './components/streamshome'
 import Homeimage from "../components/images/home.png"
+import { IconPointFilled } from '@tabler/icons-react';
 
 
 
@@ -55,24 +56,25 @@ export default function Home() {
       <Space h="md" />
       <Center><h1>Predigten</h1></Center>
       <Space h="md" />
+      <Center>
+      <div className="home-sermons-div">
       <h2 className='last-sermons-text'>Hören sie unsere Predigten an!</h2>
       <Space h="md" />
+      
       <Card></Card>
+      
       <Space h="md" />
       <Center>
         <Link href="/predigten">
       <Button radius="sm" size="xl" uppercase compact>
-      Predigten
+      Alle Predigten
     </Button></Link>
+      </Center>
+      </div>
       </Center>
       <Space h="xl" />
       <Streams></Streams>
-      <Center>
-        <Link href="/streams/live">
-      <Button radius="sm" size="xl" uppercase compact>
-      Live Streams
-    </Button></Link>
-      </Center>
+     
       <Space h="xl" />
 
 

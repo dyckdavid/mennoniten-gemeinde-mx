@@ -1,0 +1,42 @@
+/* CardsHome.module.css */
+
+.container1 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 2em;
+  }
+  
+  .iconWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10em;
+  }
+  
+  .contentWrapper {
+    flex: 2;
+    background-color: white;
+    border-radius: 15px;
+    padding: 2em;
+  }
+  
+  @media (max-width: 600px) {
+    .container1 {
+      flex-direction: column; /* Changes direction to column on mobile */
+      align-items: center; /* Centers everything on mobile */
+    }
+  
+    .iconWrapper {
+      justify-content: center;
+      margin-left: 0em;
+    }
+  
+    .contentWrapper {
+      margin: auto;
+      margin-top: 2em; /* Margin above the content on mobile */
+      width: 100%; /* Ensures the content takes the full width on mobile */
+    }
+  }
+  
