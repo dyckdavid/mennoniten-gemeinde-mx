@@ -3,10 +3,7 @@ import Navbar from './navbar'
 import { Center } from '@mantine/core';
 import { Text } from '@mantine/core';
 import { Title } from '@mantine/core';
-import { Button, Group } from '@mantine/core';
-import { SpotlightProvider, spotlight } from '@mantine/spotlight';
-import { SpotlightAction } from '@mantine/spotlight';
-import { IconHome, IconDashboard, IconFileText, IconSearch } from '@tabler/icons-react';
+
 import { useEffect } from 'react';
 
 export default function Sermons() {
