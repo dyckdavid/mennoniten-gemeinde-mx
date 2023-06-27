@@ -29,7 +29,7 @@ export default function CardsHome() {
                 <Center><h1>Live Streams</h1></Center>
                 <Space h="xl" />
                 <Text tt="uppercase" fz="xl" fs="italic" fw={700} ta="center">
-                    Hier finden Sie einige Predigten, die wir live streamen.
+                    Hier finden Sie einige Predigten, die wir live streamen!
                 </Text>
                 <Space h="xl" />
                 <Center>
