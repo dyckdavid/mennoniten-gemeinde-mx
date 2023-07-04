@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef  } from 'react';
 import { db } from '../../lib/config';
 import { collection, getDocs, query, orderBy, startAfter, limit, doc } from 'firebase/firestore';
 import { Card, Title, Text, Badge, Button, Group, Pagination } from '@mantine/core';
@@ -17,7 +17,6 @@ import { Space, Center } from '@mantine/core';
 
 export default function Sermon() {
   const [sermons, setSermons] = useState([]);
-  const [lastDoc, setLastDoc] = useState(null);  // state for last document snapshot
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { page: queryPage } = router.query; // Getting page from query parameter
@@ -48,33 +47,40 @@ export default function Sermon() {
   
 
 
-  // Other parts of your code remain unchanged
+  const lastDoc = useRef(null);
+
 
   useEffect(() => {
     const fetchSermons = async () => {
       setIsLoading(true);
-  
-      // Fetch all documents up to the current page
+    
       const sermonsRef = collection(db, "sermons");
-      const q = query(sermonsRef, orderBy("created", "desc"), limit(18 * page));
-        
+      let q;
+      
+      // if it's not the first page and there is a last document from previous page
+      if (page > 1 && lastDoc.current) {
+        q = query(sermonsRef, orderBy("created", "desc"), startAfter(lastDoc.current), limit(18));
+      } else {
+        // For the first page, there's no need for startAfter
+        q = query(sermonsRef, orderBy("created", "desc"), limit(18));
+      }
+          
       const sermonsSnapshot = await getDocs(q);
-      const allSermons = sermonsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  
-      // Slice the required page
-      const startIndex = (page - 1) * 18;
-      const newSermons = allSermons.slice(startIndex, startIndex + 18);
-  
+      const newSermons = sermonsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    
+      // set the last document from this fetch
+      lastDoc.current = sermonsSnapshot.docs[sermonsSnapshot.docs.length - 1];
+      
       setSermons(newSermons);
       setIsLoading(false);
     };
-        
+          
     if (page !== undefined) {
       fetchSermons();
     }
-  }, [page]); // Reload when page changes
+  }, [page]);  // Reload when page changes
   
-
+  
 
 
   return (
