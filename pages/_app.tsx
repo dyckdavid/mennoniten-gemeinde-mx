@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'nprogress/nprogress.css'; // Import the nprogress styles
 import type { AppProps } from 'next/app';
 import Navbar from '../components/navibar';
 import { Fragment } from 'react';
@@ -6,6 +7,7 @@ import { ContextAuthProvider } from '../context/AuthContext';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
+import ProgressBar from '../components/ProgressBar';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -13,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <ProgressBar /> {/* Add this line */}
       <Fragment>
         <ContextAuthProvider>
           <Head>
