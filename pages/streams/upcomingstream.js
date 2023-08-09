@@ -56,7 +56,7 @@ export default function UpcomingStream() {
   height: '400px', 
   margin: 'auto', 
   backgroundColor: '#fff', 
-  backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fkm5church.png?alt=media&token=c7f3d11b-f90c-4ef4-b04a-19f333055120')", 
+  backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fkm5church-min.png?alt=media&token=c273bd55-23cb-4036-a7ff-294cf8bddcf8')", 
   backgroundSize: 'cover', 
   backgroundPosition: 'center', 
   display: 'flex', 
