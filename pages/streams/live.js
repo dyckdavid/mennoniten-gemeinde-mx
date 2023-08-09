@@ -20,6 +20,7 @@ import { Fragment, useContext } from 'react';
 import { useCallback } from 'react';
 import Components from './components'
 import StreamCard from './streamcard'
+import Upcomingstream from './upcomingstream'
 
 
 
@@ -63,7 +64,7 @@ export default function Stream() {
               {stream.public ? (
                 <StreamCard />
               ) : (
-                <Components />
+                <Upcomingstream />
               )}
             </div>
           ))}
