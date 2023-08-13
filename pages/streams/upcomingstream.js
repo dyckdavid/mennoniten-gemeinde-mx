@@ -98,7 +98,7 @@ const seconds = Math.floor((countdown / 1000) % 60);
             width: '100%',
             paddingTop: '66.66%', 
             position: 'relative',
-            backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fjake%20wedding-min.jpg?alt=media&token=acefc338-87a8-400f-84ac-ef2e2fef0c90')", 
+            backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fkm5church-min3.png?alt=media&token=f7b705ff-e3d7-43f8-a205-82b2bf62aa9f')", 
             backgroundSize: 'cover', 
             backgroundPosition: 'center', 
             backgroundRepeat: 'no-repeat', 
@@ -117,7 +117,7 @@ const seconds = Math.floor((countdown / 1000) % 60);
                 color: 'white' 
               }}
             >
-              Hochzeit Jake & Maria
+              Gottes Dients
             </Text>
 
             <Text 
