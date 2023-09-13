@@ -150,7 +150,7 @@ const [timeValue, setTimeValue] = useState("");
             resolve();
           } catch (err) {
             console.error(err);
-            reject(err);
+            
           }
         });
       };

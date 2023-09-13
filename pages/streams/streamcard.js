@@ -47,19 +47,12 @@ export default function Stream() {
 
   }, []);
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+useEffect(() => {
+  setIsMobile(window.innerWidth <= 767);
+}, []);
+
 
  
 
