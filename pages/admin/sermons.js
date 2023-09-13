@@ -305,6 +305,7 @@ console.log(auth.currentUser);
         setCurrentStream(stream);
         setTitleValue(stream.title);
         setDateValue(stream.date);
+        setTimeValue(data.time)
         setSpeakerValue(stream.speaker);
         setLinkValue(stream.link);
         setIsPublic(stream.public);

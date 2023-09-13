@@ -47,6 +47,21 @@ export default function Stream() {
 
   }, []);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+ 
 
   return (
     <>
@@ -60,25 +75,23 @@ export default function Stream() {
   <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fkm5church-min3.png?alt=media&token=f7b705ff-e3d7-43f8-a205-82b2bf62aa9f" />
   <meta property="og:url" content="https://mennonitengemeinde.mx/streams/live" />
       </Head>
-       {streamList.map((stream) => (
-      <>
+      {streamList.map((stream) => (
+        <>
+          <div key={stream.id}>
+            <Space h="xl" />
+            <div>
+              <Center style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                <Card shadow="sm" padding="lg" radius="md" withBorder className='stream-on-card'>
+                <IconAccessPoint style={{ display: 'block', margin: '0 auto' }} color="red" size={45} />
 
-
-      <div key={stream.id}>
-      <Space h="xl" /><div>
-               <Center style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                   <Card shadow="sm" padding="lg" radius="md" withBorder className='stream-on-card'>
-                       <IconAccessPoint color="red" size={30} />
-                       <Group position="apart" mt="md" mb="xs" className="stream-meta">
-                           <Center style={{ display: "flex", alignItems: "center" }} className="stream-speaker">
-                               <Text fz="lg" className="stream-speaker-name"><IconUser size={18} />{stream.speaker}</Text>
-                           </Center>
-                           <Title weight={700} order={3} className="stream-title">{stream.Title}</Title>
-                           <Center style={{ display: "flex", alignItems: "center" }} className="stream-date">
-                               <Badge color="red" variant="light" size="lg" ta="center"><IconCalendar size={18} style={{ marginTop: "0.5rem" }} className="stream-date-badge"/> {stream.date}</Badge>
-                           </Center>
-                       </Group>
-                       <Card.Section>
+                  <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginTop: '1rem', marginBottom: '1rem' }}>
+                    <Title style={{ order: isMobile ? 1 : 2, textAlign: isMobile ? 'center' : 'left' }} weight={700} order={3}>{stream.Title}</Title>
+                    <div style={{ display: 'flex', alignItems: 'center', order: isMobile ? 3 : 1 }}>
+                      <Text style={{ margin: '0 1rem' }} fz="lg"><IconUser size={18} />{stream.speaker}</Text>
+                      <Badge style={{ margin: '0 1rem' }} color="red" variant="light" size="lg"><IconCalendar size={18} /> {stream.date}</Badge>
+                    </div>
+                  </div>
+                  <Card.Section>
                            <div style={{ position: "relative", overflow: "hidden", width: "100%", paddingTop: "56.25%" }}>
                                <iframe
                                    src={`${stream.url}`}
@@ -89,16 +102,17 @@ export default function Stream() {
                                    style={{ position: "absolute", top: "0", left: "0", width: "100%", height: "100%" }} />
                            </div>
                        </Card.Section>
-                   </Card>
-               </Center>
-               <Space h="xl" />
-           </div>
-             </div>
-           </>
+                </Card>
+              </Center>
+              <Space h="xl" />
+            </div>
+          </div>
+        </>
       ))}
     </>
   );
 }
+
 
 
 

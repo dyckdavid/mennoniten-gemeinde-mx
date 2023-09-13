@@ -42,6 +42,9 @@ function App() {
     const [speakerValue, setSpeakerValue] = useState();
     const [currentStream, setCurrentStream] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [newTime, setNewTime] = useState("");
+const [timeValue, setTimeValue] = useState("");
+
 
     
 
@@ -137,6 +140,7 @@ function App() {
             await addDoc(streamCollectionRef, {
               Title: newStreamTitle,
               date: newDate,
+              time: newTime,
               public: isPublic,
               url: urlValue,
               speaker: newSpeaker,
@@ -172,6 +176,7 @@ function App() {
           await updateDoc(streamDoc, {
             Title: titleValue,
             date: dateValue,
+            time: timeValue,
             url: urlValue,
             speaker: speakerValue,
           });
@@ -187,6 +192,8 @@ function App() {
         setCurrentStream(stream);
         setTitleValue(stream.Title);
         setDateValue(stream.date);
+        setTimeValue(stream.time);  
+
         setSpeakerValue(stream.speaker);
         setUrlValue(stream.url);
         setIsPublic(stream.public);
@@ -230,6 +237,13 @@ function App() {
               onChange={(e) => setNewDate(e.target.value)}
               />
               <Space h="md" />
+              <TextInput
+  placeholder="Time"
+  label="Time"
+  description=""
+  onChange={(e) => setNewTime(e.target.value)}
+/>
+<Space h="md" />
             <TextInput
               placeholder="Speaker"
               label="Speaker"
@@ -321,6 +335,15 @@ function App() {
                   onChange={(event) => setDateValue(event.target.value)}
                    />
                 <Space h="md" />
+                <TextInput
+  placeholder="Time"
+  label="Stream Time"
+  description=""
+  value={timeValue}
+  onChange={(event) => setTimeValue(event.target.value)}
+/>
+<Space h="md" />
+
                 <Checkbox
                   label="PUBLIC / HIDDEN"
                   checked={stream.public}
