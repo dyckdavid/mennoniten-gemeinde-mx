@@ -9,6 +9,10 @@ import { title } from 'process';
 import NextLink from 'next/link'
 import { getDoc } from 'firebase/firestore';
 import { Space, Center } from '@mantine/core';
+import { Loader } from '@mantine/core';
+import React from 'react';
+import Paginations from './pagination'
+
 
 
 
@@ -19,7 +23,9 @@ export default function Sermon() {
   const [sermons, setSermons] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { page: queryPage } = router.query; // Getting page from query parameter
+  const { page: queryPage } = router.query;
+console.log("Query Page:", queryPage);
+const key = queryPage || 'initial';
   const [page, setPage] = useState(parseInt(queryPage, 10) || 1);
   const [loadingStates, setLoadingStates] = useState({});
   const [totalPages, setTotalPages] = useState(1);
@@ -29,7 +35,12 @@ export default function Sermon() {
 
   useEffect(() => {
     setPage(parseInt(queryPage, 10) || 1);
-  }, [queryPage]);
+}, [queryPage]);
+
+console.log("Setting page state to:", parseInt(queryPage, 10) || 1);
+console.log("Pagination current page prop:", parseInt(page, 10));
+
+
 
   useEffect(() => {
     const fetchTotalCount = async () => {
@@ -61,9 +72,9 @@ export default function Sermon() {
       if (page > 1 && lastDoc.current) {
         q = query(sermonsRef, orderBy("created", "desc"), startAfter(lastDoc.current), limit(18));
       } else {
-        // For the first page, there's no need for startAfter
         q = query(sermonsRef, orderBy("created", "desc"), limit(18));
       }
+      
           
       const sermonsSnapshot = await getDocs(q);
       const newSermons = sermonsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -85,6 +96,7 @@ export default function Sermon() {
 
   return (
     <>
+    <div key={key}>
       <Head>
             <title> Sermons - Mennoniten Gemeinde</title>
         <meta name="description" content="Mennoniten Gemeinde" />
@@ -95,11 +107,19 @@ export default function Sermon() {
             <Space h="md" />
       <Center><Title fw={700} ta="center">PREDIGTEN</Title></Center>
       <Space h="md" />
-      {sermons.map((sermon) => (
+
+      {isLoading && (
+      <Center>
+        <Loader size="xl" /> {/* Display spinner when data is being fetched */}
+      </Center>
+    )}
+
+      {!isLoading && sermons.map((sermon) => (
         <Card key={sermon.id} shadow="sm" p="lg" radius="md" withBorder className="card__predigten">
           <Card.Section>
 
 </Card.Section>
+
 
 <Group position="apart" mt="md" mb="xs">
   <Text weight={600} size="xl" lineClamp={1} className="verticalText">{sermon.title}</Text>
@@ -131,6 +151,8 @@ export default function Sermon() {
 </NextLink>
         </Card>
       ))}
+
+{!isLoading && (
       <>
   {/* your other components */}
   <div style={{ 
@@ -143,16 +165,21 @@ export default function Sermon() {
     padding: '.5rem 0',
     backgroundColor: '#fff' // change to match your page's background color
   }}>
-    <Pagination 
-      total={totalPages}
-      size="md" 
-      radius="md" 
-      currentPage={parseInt(page, 10)} 
-      onChange={page => router.replace(`/sermons/${page}`)} 
+    <Paginations
+      currentPage={parseInt(page, 10)}
+      totalPages={totalPages}
+      onPageChange={(newPage) => {
+        router.push(`/sermons/${newPage}`);
+      }}
     />
+
     
   </div>
+  
+
 </>
+)}
+</div>
     </>
   );
 }
