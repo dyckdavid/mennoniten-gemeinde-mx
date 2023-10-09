@@ -56,6 +56,7 @@ export default function Sermons() {
     const [opens, setOpens] = useState(false);
     const [titleValue, setTitleValue] = useState("");
     const [dateValue, setDateValue] = useState();
+    const [timeValue, setTimeValue] = useState();
     const [linkValue, setLinkValue] = useState("");
     const [speakerValue, setSpeakerValue] = useState();
     const [currentStream, setCurrentStream] = useState(null);
@@ -305,7 +306,7 @@ console.log(auth.currentUser);
         setCurrentStream(stream);
         setTitleValue(stream.title);
         setDateValue(stream.date);
-        setTimeValue(data.time)
+        setTimeValue(stream.time)
         setSpeakerValue(stream.speaker);
         setLinkValue(stream.link);
         setIsPublic(stream.public);
@@ -354,7 +355,7 @@ console.log(auth.currentUser);
             <Space h="md" />
             <TextInput
               placeholder="Date"
-              label="Date (13/06/2023)"
+              label="Date (13/06/23)"
               description=""
               onChange={(e) => setNewDate(e.target.value)}
               />
