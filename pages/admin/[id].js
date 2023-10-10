@@ -7,7 +7,7 @@ import {
     doc,
     updateDoc
 } from "firebase/firestore";
-import { TextInput, Button, Checkbox, Space } from '@mantine/core';
+import { TextInput, Button, Checkbox, Space, Card } from '@mantine/core';
 
 export default function EditSermon() {
     const router = useRouter();
@@ -58,19 +58,21 @@ export default function EditSermon() {
       }, []);
 
     return (
+        
         <div>
             <Navbar>
             <Button 
     onClick={() => router.back()} 
     style={{ 
         
-        top: '20px', 
-        left: '20px', 
+        top: '-10px', 
+        left: '20px',
         zIndex: 1000 // This ensures the button is above other content if there's any overlap
     }}
 >
     Go Back
 </Button>
+<Card shadow="sm" padding="lg" radius="md" withBorder>
 <Space h="xl" />
 
             <TextInput
@@ -111,7 +113,9 @@ export default function EditSermon() {
             <Button onClick={handleUpdateSermon}>
                 Update Sermon
             </Button>
+            </Card>
             </Navbar>
         </div>
+        
     );
 }
