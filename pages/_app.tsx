@@ -11,7 +11,7 @@ import ProgressBar from '../components/ProgressBar';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const showNavbar = router.pathname !== '/admin' && router.pathname !== '/admin/sermons' && router.pathname !== '/admin/components/streamCard' && router.pathname !== '/admin/text';
+  const showNavbar = router.pathname !== '/admin' && router.pathname !== '/admin/sermons' && router.pathname !== '/admin/components/streamCard' && router.pathname !== '/admin/text' && router.pathname !== '/admin/[id]';
 
   return (
     <>

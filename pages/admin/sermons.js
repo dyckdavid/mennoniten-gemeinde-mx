@@ -520,9 +520,12 @@ console.log(auth.currentUser);
           <td>{stream.title}</td>
           <td>{stream.date}</td>
           <td>
-            <ActionIcon color="yellow" size="lg" onClick={() => handleEdit(stream)}>
+          <Link href={`/admin/${stream.id}`}>
+            <ActionIcon color="yellow" size="lg">
               <IconPencil size="1.125rem" />
             </ActionIcon>
+          </Link>
+
           </td>
           <td>
             <ActionIcon color="red" size="lg" onClick={() => deleteMovie(stream.id)}>
