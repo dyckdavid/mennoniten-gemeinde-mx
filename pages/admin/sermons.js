@@ -503,9 +503,10 @@ console.log(auth.currentUser);
         </div>
 
         <Center>
-  <Table verticalSpacing="xs" className='table-width-sermon-admin' striped fontSize="md" highlightOnHover>
-    <thead>
-      <tr>
+        <div className="scrollable-container">
+  <Table verticalSpacing="xs" className='table-width-sermon-admin' striped fontSize="md" highlightOnHover  >
+    <thead className="sermon-table-margin">
+      <tr className="sermon-table-margin">
         <th>ID</th>
         <th>Title</th>
         <th>Date</th>
@@ -536,6 +537,7 @@ console.log(auth.currentUser);
       ))}
     </tbody>
   </Table>
+  </div>
 </Center>
 
 {streamList.length === 0 && (

@@ -65,9 +65,8 @@ export default function EditSermon() {
     onClick={() => router.back()} 
     style={{ 
         
-        top: '10px', 
+        top: '0px', 
         left: '20px',
-        zIndex: 1000 // This ensures the button is above other content if there's any overlap
     }}
 >
     Go Back

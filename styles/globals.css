@@ -767,3 +767,17 @@ nav{
 }
 
 
+
+.sermon-table-margin {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .table-width-sermon-admin th:nth-child(2), /* Adjust the child number according to the column you want to hide */
+  .table-width-sermon-admin td:nth-child(2) {
+    display: none;
+  }
+}
