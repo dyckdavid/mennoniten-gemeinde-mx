@@ -65,15 +65,16 @@ export default function EditSermon() {
     onClick={() => router.back()} 
     style={{ 
         
-        top: '-10px', 
+        top: '10px', 
         left: '20px',
         zIndex: 1000 // This ensures the button is above other content if there's any overlap
     }}
 >
     Go Back
 </Button>
-<Card shadow="sm" padding="lg" radius="md" withBorder>
 <Space h="xl" />
+<Card shadow="sm" padding="lg" radius="md" withBorder>
+
 
             <TextInput
                 name="title"
