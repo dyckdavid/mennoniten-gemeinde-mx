@@ -407,7 +407,7 @@ console.log(auth.currentUser);
 
 
           </Modal><Space h="xl" /><Group position="center">
-            <Link href="/sermons">
+            <Link href="/sermons/1">
           <Button>Sermons Page</Button>
           </Link>
             <Button onClick={() => setOpens(true)} >Add Sermon</Button>
