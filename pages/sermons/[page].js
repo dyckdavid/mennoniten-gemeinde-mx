@@ -58,40 +58,61 @@ console.log("Pagination current page prop:", parseInt(page, 10));
   
 
 
-  const lastDoc = useRef(null);
-
+  const lastDoc = useRef({});
 
   useEffect(() => {
     const fetchSermons = async () => {
       setIsLoading(true);
-    
-      const sermonsRef = collection(db, "sermons");
-      let q;
       
-      // if it's not the first page and there is a last document from previous page
-      if (page > 1 && lastDoc.current) {
-        q = query(sermonsRef, orderBy("created", "desc"), startAfter(lastDoc.current), limit(18));
-      } else {
-        q = query(sermonsRef, orderBy("created", "desc"), limit(18));
+      const fetchPage = async (startAfterDoc, pageSize) => {
+        const sermonsRef = collection(db, "sermons");
+        const queries = [orderBy("created", "desc"), limit(pageSize)];
+        if (startAfterDoc) {
+          queries.splice(1, 0, startAfter(startAfterDoc));
+        }
+        const q = query(sermonsRef, ...queries);
+        return await getDocs(q);
+      };
+      
+      let startAfterDoc = null;
+      if (page > 1) {
+        startAfterDoc = lastDoc.current[page - 1];
+        if (!startAfterDoc) {
+          // Fetch missing lastDocs
+          let lastAvailablePage = 1;
+          for (let i = page - 1; i >= 1; i--) {
+            if (lastDoc.current[i]) {
+              lastAvailablePage = i;
+              break;
+            }
+          }
+          const tempSnapshot = await fetchPage(lastDoc.current[lastAvailablePage], 18 * (page - lastAvailablePage));
+          let lastDocIndex = 0;
+          for (let i = lastAvailablePage + 1; i <= page; i++) {
+            lastDoc.current[i] = tempSnapshot.docs[lastDocIndex];
+            lastDocIndex += 18;
+          }
+          startAfterDoc = lastDoc.current[page - 1];
+        }
       }
       
-          
-      const sermonsSnapshot = await getDocs(q);
+      const sermonsSnapshot = await fetchPage(startAfterDoc, 18);
       const newSermons = sermonsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    
-      // set the last document from this fetch
-      lastDoc.current = sermonsSnapshot.docs[sermonsSnapshot.docs.length - 1];
+      
+      lastDoc.current[page] = sermonsSnapshot.docs[sermonsSnapshot.docs.length - 1];
       
       setSermons(newSermons);
       setIsLoading(false);
     };
+    
+    
           
     if (page !== undefined) {
       fetchSermons();
     }
   }, [page]);  // Reload when page changes
   
-  
+
 
 
   return (
