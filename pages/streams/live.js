@@ -39,11 +39,11 @@ export default function Stream() {
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [streamCollectionRef]);
 
   useEffect(() => {
     getStreamList();
-  }, []);
+  }, [getStreamList]);
 
   return (
     <>
