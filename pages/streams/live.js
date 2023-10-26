@@ -76,6 +76,7 @@ export default function Stream() {
       </Head>
       <Space h="xl" />
       <Title fw={700} ta="center">LIVE STREAMS</Title>
+      <Space h="xl" />
       {streamList.length === 0 ? (
         <Components />
       ) : (

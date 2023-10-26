@@ -3,6 +3,9 @@ import Head from 'next/head';
 import { db } from '../../lib/config';
 import { Card, Text } from '@mantine/core';
 import { collection, getDocs } from 'firebase/firestore';
+import {
+  Space,
+} from "@mantine/core";
 
 export default function UpcomingStream() {
   const [countdown, setCountdown] = useState(null);
@@ -75,10 +78,13 @@ export default function UpcomingStream() {
       `}</style>
 
       <div className="container">
+     
         <Card className="countdownCard">
-          <Text size="xl" align="center" style={{ fontSize: '40px', fontWeight: 'bold', color: 'black' }}>
+          
+          <Text size="md" align="center" style={{ fontSize: '30px', fontWeight: 'bold', color: 'black' }}>
           Nächster Live-Stream
           </Text>
+
           <Text size="xl" align="center" className="countdownText">
             {countdown !== null ? ` ${days}d ${hours}h ${minutes}m ${seconds}s` : 'Loading...'}
           </Text>
