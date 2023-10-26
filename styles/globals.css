@@ -781,3 +781,16 @@ nav{
     display: none;
   }
 }
+
+
+
+.verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+.centerEverything {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

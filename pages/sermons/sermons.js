@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { Center, Title, Text, Timeline } from '@mantine/core';
 import { db } from "../../lib/config"; 
 import { getDocs, query, collection, orderBy } from "firebase/firestore";
+import { IconCalendarStats } from '@tabler/icons-react';
 
 export default function Events() {
   const [events, setEvents] = useState([]);
