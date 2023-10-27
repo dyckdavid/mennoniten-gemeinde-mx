@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore/lite'
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+
 import { db } from '../../firebase/config'
 import { Inter } from '@next/font/google'
 import { Center } from '@mantine/core'
@@ -147,22 +148,29 @@ export default function Sermon({ sermon  }) {
 }
 
 export async function getServerSideProps({ params }) {
-    const id = params.id;
-   
-    const sermonSnapshot = await getDoc(doc(db, 'sermons', id));
-    const sermon = sermonSnapshot.data();
-    sermon.id = sermonSnapshot.id;
+  const id = params.id;
+ 
+  const sermonSnapshot = await getDoc(doc(db, 'sermons', id));
+  let sermon = sermonSnapshot.data();
 
-   
-    // If created exists and it's a Firestore Timestamp
-    if (sermon.created instanceof Timestamp) {
-        sermon.created = sermon.created.toDate().toISOString();
-    }
+  if (!sermon) {
+      // Handle the case when the sermon does not exist in the database
+      return {
+          notFound: true,
+      };
+  }
 
-    return {
-        props: {
-            sermon,
-            
-        },
-    };
+  sermon.id = sermonSnapshot.id;
+
+  // Convert the Firestore Timestamp to a JavaScript Date object and then to a string
+  if (sermon.created && sermon.created.toDate) {
+      sermon.created = sermon.created.toDate().toISOString();
+  }
+
+  // Ensure that you only pass serializable objects to the props
+  return {
+      props: {
+          sermon: JSON.parse(JSON.stringify(sermon)),
+      },
+  };
 }
