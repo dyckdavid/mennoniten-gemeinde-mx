@@ -91,7 +91,7 @@ export default function Stream() {
 
       {/* New Section for Upcoming Streams */}
       <Space h="xl" />
-      <Title fw={700} ta="center">Anstehende Streaming Veranstaltungen</Title>
+      <Title fw={700} ta="center">Streaming Veranstaltungen</Title>
       <Space h="xl" />
       {events.length === 0 ? (
         <Center><Text size="lg" className="textnoeventstreampage">Zurzeit sind keine Streaming-Veranstaltungen verfügbar. Wir bitten Sie, zu einem späteren Zeitpunkt erneut vorbeizuschauen.</Text></Center>
