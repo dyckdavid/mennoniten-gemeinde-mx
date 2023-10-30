@@ -7,7 +7,7 @@ import { Space } from '@mantine/core';
 import Card from './components/homecard'
 import { Button } from '@mantine/core';
 import Streams from './components/streamshome'
-import Homeimage from "../components/images/home.png"
+import Homeimage from "../components/images/km5.jpg"
 import { IconPointFilled } from '@tabler/icons-react';
 
 
@@ -45,7 +45,7 @@ export default function Home() {
           width={1000} // replace with your image's width
           height={500} // replace with your image's height
         />
-        <div className="overlay"></div>
+        <div></div>
       </div>
       <div className="centered-text">
         <div>Willkommen zu Mennoniten Gemeinde</div>

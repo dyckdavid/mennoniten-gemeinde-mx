@@ -71,7 +71,7 @@ export default function Stream() {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="Live Stream : Mennoniten Gemeinde" />
   <meta property="og:description" content="Mennoniten Gemeinde Designed and developed by David Dyck" />
-  <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/images%2Fkm5church-min3.png?alt=media&token=f7b705ff-e3d7-43f8-a205-82b2bf62aa9f" />
+  <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/km5.jpg?alt=media&token=b36c7f66-28ec-4999-9d68-14b52bdfd6a7&_gl=1*9u09pk*_ga*NDcwMDk1ODE2LjE2OTgzMzkyMjE.*_ga_CW55HF8NVT*MTY5ODY5ODYyMS42LjEuMTY5ODY5ODgxOC40NC4wLjA." />
   <meta property="og:url" content="https://mennonitengemeinde.mx/streams/live" />
       </Head>
       <Space h="xl" />
