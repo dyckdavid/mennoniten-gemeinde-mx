@@ -96,32 +96,39 @@ export default function Stream() {
       {events.length === 0 ? (
         <Center><Text size="lg" className="textnoeventstreampage">Zurzeit sind keine Streaming-Veranstaltungen verfügbar. Wir bitten Sie, zu einem späteren Zeitpunkt erneut vorbeizuschauen.</Text></Center>
       ) : (
-        <><Group position="center">
-            {events.map((event) => (
-              <Card
-                key={event.id}
-                radius="lg"
-                style={{
-                  width: "100%",
-                  maxWidth: "400px",
-                  marginBottom: "20px",
-                }}
-              >
-                <Text size="xl">{event.title}</Text>
-                <Badge>{new Date(event.createdAt?.toDate()).toLocaleDateString()}</Badge>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Button>
-                    <Link href="/events">Mehr</Link>
-                  </Button>
-                </div>
-              </Card>
-              
+        <>
+          <Group position="center">
+            {events.map((event) => {
+              const eventTime = new Date(event.createdAt?.toDate()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-
-
-
-            ))}
-          </Group><Space h="xl" /></>
+              return (
+                <Card
+                  key={event.id}
+                  radius="lg"
+                  style={{
+                    width: "100%",
+                    maxWidth: "400px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <Group position="apart" style={{ marginBottom: 10, alignItems: 'center' }}>
+                    <Text size="xl">{event.title}</Text>
+                    <Text size="xl" color="red">
+                      {eventTime}
+                    </Text>
+                  </Group>
+                  <Badge>{new Date(event.createdAt?.toDate()).toLocaleDateString()}</Badge>
+                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button>
+                      <Link href="/events">Mehr</Link>
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
+          </Group>
+          <Space h="xl" />
+        </>
       )}
     </>
     
