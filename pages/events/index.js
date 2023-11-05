@@ -48,14 +48,16 @@ export default function Events() {
         <meta name="description" content="Mennoniten Gemeinde" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Center>
+            <Title fw={700}>Veranstaltungen</Title>
+          </Center>
+          <Space h="xl" />
       <div className={styles.container1}>
         <div className={styles.iconWrapper}>
           <IconCalendarStats size={150} />
         </div>
         <div className={styles.contentWrapper}>
-          <Center>
-            <Title fw={700}>Veranstaltungen</Title>
-          </Center>
+          
           <Space h="xl" />
           {loading ? (
             <Center>Loading...</Center>
