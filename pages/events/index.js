@@ -62,7 +62,7 @@ export default function Events() {
           {loading ? (
             <Center>Loading...</Center>
           ) : events.length === 0 ? (
-            <Text>No events</Text>
+            <Text>Keine Veranstaltungen </Text>
           ) : (
             <Paper padding="md" radius="xl" style={{ width: '100%', backgroundColor: 'white', padding: '20px' }}>
               <Timeline bulletSize={50} lineWidth={4} style={{ width: '100%' }}>
