@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Center, Title, Text, Timeline, Paper, Col, Grid, Space } from '@mantine/core';
+import { Center, Title, Text, Timeline, Paper, Space } from '@mantine/core';
 import { db } from "../../lib/config";
 import { getDocs, query, collection, orderBy } from "firebase/firestore";
 import { IconCalendarStats } from '@tabler/icons-react';
@@ -17,7 +17,19 @@ export default function Events() {
       const q = query(eventsRef, orderBy("createdAt", "desc"));
       const querySnapshot = await getDocs(q);
       const eventsArray = querySnapshot.docs.map(doc => {
-        return { id: doc.id, ...doc.data() };
+        // Convert the Firestore timestamp to a JavaScript Date object
+        const dateObject = doc.data().createdAt?.toDate();
+        // Format the date and time with a hyphen '-'
+        const formattedDate = dateObject.toLocaleDateString();
+        const formattedTime = dateObject.getHours().toString().padStart(2, '0') + ':' + dateObject.getMinutes().toString().padStart(2, '0');
+        const dateTimeString = `${formattedDate} - ${formattedTime}`;
+
+        // Return the event object with the new dateTimeString property
+        return {
+          id: doc.id,
+          ...doc.data(),
+          dateTimeString, // Add this property with the formatted date-time string
+        };
       }).reverse();
       setEvents(eventsArray);
       setLoading(false);
@@ -36,19 +48,21 @@ export default function Events() {
         <meta name="description" content="Mennoniten Gemeinde" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Center>
+            <Title fw={700}>Veranstaltungen</Title>
+          </Center>
+          <Space h="xl" />
       <div className={styles.container1}>
         <div className={styles.iconWrapper}>
           <IconCalendarStats size={150} />
         </div>
         <div className={styles.contentWrapper}>
-          <Center>
-            <Title fw={700}>Veranstaltungen</Title>
-          </Center>
+          
           <Space h="xl" />
           {loading ? (
             <Center>Loading...</Center>
           ) : events.length === 0 ? (
-            <Text>No events</Text>
+            <Text>Keine Veranstaltungen </Text>
           ) : (
             <Paper padding="md" radius="xl" style={{ width: '100%', backgroundColor: 'white', padding: '20px' }}>
               <Timeline bulletSize={50} lineWidth={4} style={{ width: '100%' }}>
@@ -62,10 +76,10 @@ export default function Events() {
                     >
                       <div style={{ marginLeft: '20px' }}>
                         <Text size="xl">{event.title}</Text>
-                        <Text size="xl" c="blue" mt={10}>
-                          {new Date(event.createdAt?.toDate()).toLocaleDateString()}
+                        <Text size="xl" color="blue" mt={10}>
+                          {event.dateTimeString} {/* Use the formatted dateTimeString here */}
                         </Text>
-                        <Text size="md" mt={4}> {event.speaker}</Text>
+                        <Text size="md" mt={4}>{event.speaker}</Text>
                       </div>
                     </Timeline.Item>
                   );
