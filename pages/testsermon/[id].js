@@ -60,6 +60,9 @@ export default function Sermon({ sermon  }) {
       <Text size="sm" color="dimmed">
         {name}
       </Text>
+      <Text size="sm" color="dimmed">
+        {speaker}
+      </Text>
 
       <Group position="apart" mt="md" mb="xs">
       <audio controls className='audio_sermon'>
@@ -123,6 +126,10 @@ export default function Sermon({ sermon  }) {
 
       <Text size="sm" color="dimmed">
         {name}
+      </Text>
+
+      <Text size="sm" color="dimmed">
+        {speaker}
       </Text>
 
       <Group position="apart" mt="md" mb="xs">

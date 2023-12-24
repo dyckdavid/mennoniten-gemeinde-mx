@@ -5,6 +5,7 @@ import { db } from "../../lib/config";
 import { getDocs, query, collection, orderBy } from "firebase/firestore";
 import { IconCalendarStats } from '@tabler/icons-react';
 import styles from './styles.module.css';
+import { Loader } from '@mantine/core';
 
 export default function Events() {
   const [events, setEvents] = useState([]);
@@ -58,7 +59,9 @@ export default function Events() {
           </Center>
           <Space h="xl" />
           {loading ? (
-            <Center>Loading...</Center>
+            <Center>
+            <Loader size="xl" /> {/* Display spinner when data is being fetched */}
+          </Center>
           ) : events.length === 0 ? (
             <Text>No events</Text>
           ) : (
