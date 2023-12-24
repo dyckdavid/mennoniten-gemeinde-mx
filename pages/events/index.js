@@ -49,21 +49,23 @@ export default function Events() {
         <meta name="description" content="Mennoniten Gemeinde" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <Center>
+            <Title fw={700}>Veranstaltungen</Title>
+          </Center>
+          <Space h="xl" />
       <div className={styles.container1}>
         <div className={styles.iconWrapper}>
           <IconCalendarStats size={150} />
         </div>
         <div className={styles.contentWrapper}>
-          <Center>
-            <Title fw={700}>Veranstaltungen</Title>
-          </Center>
+          
           <Space h="xl" />
           {loading ? (
             <Center>
             <Loader size="xl" /> {/* Display spinner when data is being fetched */}
           </Center>
           ) : events.length === 0 ? (
-            <Text>No events</Text>
+            <Text>Keine Veranstaltungen </Text>
           ) : (
             <Paper padding="md" radius="xl" style={{ width: '100%', backgroundColor: 'white', padding: '20px' }}>
               <Timeline bulletSize={50} lineWidth={4} style={{ width: '100%' }}>
