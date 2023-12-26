@@ -130,10 +130,11 @@ export default function Sermon({ sermon }) {
       <audio controls className='audio_sermon'>
       <source src={audio} type="audio/mpeg" />
       </audio>
-      <a href={`${audio}`} download>
-        <Button radius="sm" size="xl" uppercase compact className='download_button'>
-      <IconDownload /><Space w="xs" /> Download
-    </Button></a>
+      {downloadUrl && (
+  <Button radius="sm" size="xl" uppercase compact className='download_button' onClick={handleDownload}>
+    <IconDownload /><Space w="xs" /> Download
+  </Button>
+)}
 
       </Group>
 
