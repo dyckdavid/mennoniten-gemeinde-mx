@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+// Use 'storage' as needed in your component
 
-import { db } from '../../firebase/config'
+import { db, storage } from '../../firebase/config'
 import { Inter } from '@next/font/google'
 import { Center } from '@mantine/core'
 import { Image } from '@mantine/core';
@@ -16,19 +17,80 @@ import { Group, Card, Badge } from '@mantine/core';
 import { Timestamp } from 'firebase/firestore/lite'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 
 
 
-export default function Sermon({ sermon  }) {
+
+export default function Sermon({ sermon }) {
+  const router = useRouter();
+    const { title, name, date, link, audio, speaker } = sermon;
+    
+    const [downloadUrl, setDownloadUrl] = useState(null);
+
+    useEffect(() => {
+      // Ensure the 'audio' reference is a valid path in your Firebase Storage
+      console.log('Audio reference:', audio);
+      
+      const storage = getStorage();
+      const audioRef = ref(storage, audio);
+  
+      getDownloadURL(audioRef)
+        .then((url) => {
+          console.log('Download URL:', url);
+          setDownloadUrl(url);
+        })
+        .catch((error) => {
+          console.error('Error getting download URL:', error);
+        });
+    }, [audio]);
+    
+    
+    
+
+    const getSimpleFileName = (url) => {
+      const decodedUrl = decodeURIComponent(url);
+      const urlParts = decodedUrl.split('/');
+      let fileName = urlParts[urlParts.length - 1].split('?')[0];
+      fileName = fileName.replace(/[^a-zA-Z0-9.-]/g, '_');
+      return fileName;
+    };
+  
+    const simpleFileName = getSimpleFileName(audio);
 
 
-    const router = useRouter();
-    const { title, name, date, link, audio, speaker, audioUrl } = sermon;
 
-
-
+    const handleDownload = async () => {
+      if (!downloadUrl) {
+        console.error('Download URL not set');
+        return;
+      }
+    
+      try {
+        const response = await fetch(downloadUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+    
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = getSimpleFileName(downloadUrl); // Ensure this returns a valid filename
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    
+        window.URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        console.error('Error during fetch:', error);
+      }
+    };
+    
+    
 
     if (!link) {
         return (
@@ -133,13 +195,14 @@ export default function Sermon({ sermon  }) {
       </Text>
 
       <Group position="apart" mt="md" mb="xs">
-      <audio controls className='audio_sermon'>
-      <source src={audio} type="audio/mpeg" />
-      </audio>
-      <a href={`${audio}`} download>
-        <Button radius="sm" size="xl" uppercase compact className='download_button'>
-      <IconDownload /><Space w="xs" /> Download
-    </Button></a>
+        <audio controls className='audio_sermon'>
+          <source src={downloadUrl || audio} type="audio/mpeg" />
+        </audio>
+        {downloadUrl && (
+  <Button radius="sm" size="xl" uppercase compact className='download_button' onClick={handleDownload}>
+    <IconDownload /><Space w="xs" /> Download
+  </Button>
+)}
 
       </Group>
 
