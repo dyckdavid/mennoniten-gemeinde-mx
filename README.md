@@ -1,10 +1,10 @@
 # Mennoniten Gemeinde Km5
 
 1.
-Clone this repository to your Local Computer with git
+Clone this repository to your Local Computer using git
 
 2.
-install node with macOS or Linux Terminal
+install npm with macOS or Linux Terminal
 
 ```bash
 npm install
@@ -28,6 +28,8 @@ Run on Dev mode
 npm run dev
 
 ```
+
+
 
 
 
