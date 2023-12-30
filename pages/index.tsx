@@ -7,7 +7,7 @@ import { Space } from '@mantine/core';
 import Card from './components/homecard'
 import { Button } from '@mantine/core';
 import Streams from './components/streamshome'
-import Homeimage from "../components/images/km5.jpg"
+import Homeimage from "../components/images/km5church.jpg"
 import { IconPointFilled } from '@tabler/icons-react';
 
 
@@ -27,14 +27,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json"></link>
       </Head>
-      <Center>
 
-
-
-
-
-      
-      </Center>
 
       <div className="image-container">
       <div className="image-wrapper">
