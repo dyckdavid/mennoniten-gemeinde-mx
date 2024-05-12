@@ -45,3 +45,14 @@
     color: white;
     border-color: #0056b3;
 }
+
+/* styles/MonthCalendar.module.css */
+.disabledMonth {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.month:hover:not(.disabledMonth) {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
