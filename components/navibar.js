@@ -16,7 +16,7 @@ const Navibar = () => {
   const MENU_LIST = [
     { text: "HAUSE", href: "/" },
     { text: "VERANSTALTUNGEN", href: "/events" },
-    { text: "MONATSBLAT", href: "/monatsblat" },
+    // { text: "MONATZBLAT", href: "/monatsblat" },
     { text: "PREDIGTEN", href: "/sermons/1" },
     { text: "LIVE", href: "/streams/live" },
     

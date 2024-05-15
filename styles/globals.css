@@ -91,6 +91,15 @@ body {
 
 body.adminPage {
   background-image: none;
+  min-height: 100vh;
+}
+
+.noBackground {
+  background: none !important;
+}
+
+body.jugendFreizeit {
+  background-image: none;
 }
 
 

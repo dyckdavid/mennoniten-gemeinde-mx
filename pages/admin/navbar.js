@@ -99,7 +99,7 @@ export default function AppShellDemo({ children }) {
                           
                           <Link href={"/"} legacyBehavior>
           <a>
-            <img className="navbar__logo" src="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/2.jpg?alt=media&token=63222a19-3766-4d10-8387-0018c9ce900b" ></img>
+            <img className="navbar__logo" src="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/2.jpg?alt=media&token=63222a19-3766-4d10-8387-0018c9ce900b" alt='logo-mg'></img>
           </a>
         </Link>
         <Text>Admin</Text>
