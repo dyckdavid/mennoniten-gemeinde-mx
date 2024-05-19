@@ -3,76 +3,89 @@ import { useRouter } from 'next/router';
 import { db } from "../../lib/config";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import styles from '../../styles/MonthCalendar.module.css';
-import Head from 'next/head'
+import Head from 'next/head';
+import { Text, Space, Card, Image, Badge, Button, Group, Title, Center } from '@mantine/core';
 
 
 export default function Monatzblat() {
     const router = useRouter();
-    const queryYear = router.query.year;
-    const queryMonth = router.query.month;
-    const [selectedYear, setSelectedYear] = useState(queryYear || new Date().getFullYear().toString());
-    const [selectedMonth, setSelectedMonth] = useState(queryMonth || new Date().toLocaleString('default', { month: 'long' }));
+    const [selectedYear, setSelectedYear] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState('');
     const [pdfUrl, setPdfUrl] = useState('');
     const [availableMonths, setAvailableMonths] = useState([]);
+    const [noDataAvailable, setNoDataAvailable] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        const fetchAvailableMonths = async (year) => {
-            const monatzblatCollection = collection(db, "monatzblat");
-            const q = query(monatzblatCollection, where("year", "==", year));
-            const querySnapshot = await getDocs(q);
-            const months = querySnapshot.docs.map(doc => doc.data().title);
-            setAvailableMonths(months);
-
-            if (!months.includes(selectedMonth) || !queryMonth) {
-                // Find the most recent month available or use the current month if none found
-                const sortedMonths = months.sort((a, b) => new Date(year, months.indexOf(b)) - new Date(year, months.indexOf(a)));
-                const recentAvailableMonth = sortedMonths.find(m => new Date(year, months.indexOf(m)).getTime() <= new Date().getTime());
-                setSelectedMonth(recentAvailableMonth || new Date().toLocaleString('default', { month: 'long' }));
-                router.replace(`/monatsblat/?year=${year}&month=${recentAvailableMonth || selectedMonth}`);
-            }
-        };
-
-        fetchAvailableMonths(selectedYear);
-    }, [selectedYear, router]);
-
-    useEffect(() => {
-        const fetchPdfUrl = async (year, month) => {
-            if (!availableMonths.includes(month)) {
-                setPdfUrl('');
-                return;
-            }
-            const monatzblatCollection = collection(db, "monatzblat");
-            const q = query(monatzblatCollection, where("year", "==", year), where("title", "==", month));
-            const querySnapshot = await getDocs(q);
-            if (!querySnapshot.empty) {
-                const docData = querySnapshot.docs[0].data();
-                setPdfUrl(docData.pdf);
-            } else {
-                console.log("No matching documents.");
-                setPdfUrl('');
-            }
-        };
-
-        if (selectedMonth) {
-            fetchPdfUrl(selectedYear, selectedMonth);
+        if (router.isReady) {
+            const queryYear = router.query.year || new Date().getFullYear().toString();
+            const queryMonth = router.query.month || new Date().toLocaleString('default', { month: 'long' });
+            setSelectedYear(queryYear);
+            setSelectedMonth(queryMonth);
+            fetchAvailableMonths(queryYear);
         }
-    }, [selectedYear, selectedMonth, availableMonths]);
-
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    const handleMonthClick = (monthName) => {
-        if (new Date(selectedYear, months.indexOf(monthName)).getTime() > new Date().getTime() || !availableMonths.includes(monthName)) {
-            return;
-        }
-        setSelectedMonth(monthName);
-        router.push(`/monatsblat/?year=${selectedYear}&month=${monthName}`);
-    };
+    }, [router.isReady, router.query.year, router.query.month]);
 
     const handleYearChange = (event) => {
         const newYear = event.target.value;
         setSelectedYear(newYear);
-        router.push(`/monatsblat/?year=${newYear}&month=${selectedMonth}`);
+        const newMonth = availableMonths.length > 0 ? availableMonths[0] : new Date().toLocaleString('default', { month: 'long' });
+        router.push(`/monatsblat/?year=${newYear}&month=${newMonth}`);
     };
+
+    const fetchAvailableMonths = async (year) => {
+        setIsLoading(true);
+        const monatzblatCollection = collection(db, "monatzblat");
+        const q = query(monatzblatCollection, where("year", "==", year));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+            setAvailableMonths([]);
+            setNoDataAvailable(true);
+            setPdfUrl('');
+            setIsLoading(false);
+            router.replace(`/monatsblat/?year=${year}&month=none`);
+            return;
+        }
+    
+        const months = querySnapshot.docs.map(doc => doc.data().title); // Correct definition and use
+        setAvailableMonths(months);
+        setNoDataAvailable(false);
+    
+        const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+        if (!months.includes(selectedMonth) || !queryMonth) {
+            const recentAvailableMonth = months.sort((a, b) => new Date(year, months.indexOf(b)) - new Date(year, months.indexOf(a)))[0];
+            setSelectedMonth(recentAvailableMonth || currentMonth);
+            router.replace(`/monatsblat/?year=${year}&month=${recentAvailableMonth || currentMonth}`);
+        }
+        setIsLoading(false);
+    };
+
+    useEffect(() => {
+        if (!noDataAvailable && selectedMonth) {
+            fetchPdfUrl(selectedYear, selectedMonth);
+        }
+    }, [selectedYear, selectedMonth, availableMonths]);
+
+    const fetchPdfUrl = async (year, month) => {
+        setIsLoading(true);
+        if (!availableMonths.includes(month)) {
+            setPdfUrl('');
+            setIsLoading(false);
+            return;
+        }
+        const monatzblatCollection = collection(db, "monatzblat");
+        const q = query(monatzblatCollection, where("year", "==", year), where("title", "==", month));
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+            const docData = querySnapshot.docs[0].data();
+            setPdfUrl(docData.pdf);
+        } else {
+            console.log("No matching documents.");
+            setPdfUrl('');
+        }
+        setIsLoading(false);
+    };
+
 
     return (
         <>
@@ -89,17 +102,38 @@ export default function Monatzblat() {
                     ))}
                 </select>
                 <div className={styles.months}>
-                    {months.map((monthName, index) => (
-                        <div key={monthName}
-                             className={`${styles.month} ${monthName === selectedMonth ? styles.selectedMonth : ''} ${!availableMonths.includes(monthName) || new Date(selectedYear, index).getTime() > new Date().getTime() ? styles.disabledMonth : ''}`}
-                             onClick={() => handleMonthClick(monthName)}>
-                            {monthName}
-                        </div>
-                    ))}
+                    {Array.from({ length: 12 }).map((_, index) => {
+                        const monthName = new Date(0, index).toLocaleString('default', { month: 'long' });
+                        return (
+                            <div key={monthName}
+                                className={`${styles.month} ${monthName === selectedMonth ? styles.selectedMonth : ''} ${!availableMonths.includes(monthName) ? styles.disabledMonth : ''}`}
+                                onClick={() => handleMonthClick(monthName)}>
+                                {monthName}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
-            {pdfUrl && (
-                <iframe src={pdfUrl} style={{ width: '100%', height: '500px', border: 'none', marginTop: '20px' }} title="Monthly PDF"></iframe>
+            {noDataAvailable ? (
+                <p>No Monatzblat found for the selected year and month. Please select a different month or year.</p>
+            ) : (
+                <div className={styles.container}>
+                    {pdfUrl && (
+                        <>
+                        <Center>
+                            <a href={pdfUrl} download={`${selectedMonth}-${selectedYear}-Monatzblat.pdf`}>
+                                <button type="button" className={styles.downloadButton}>Download PDF</button>
+                            </a>
+                            </Center>
+                            <Center>
+                            <div className={styles.iframeContainer}>
+                                <iframe src={pdfUrl} title="Monthly PDF" className={styles.pdfIframe}></iframe>
+                            </div>
+                            </Center>
+                        </>
+                    )}
+                    {isLoading && <p>Loading...</p>}
+                </div>
             )}
         </>
     );
