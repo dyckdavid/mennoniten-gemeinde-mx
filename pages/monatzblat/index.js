@@ -29,8 +29,7 @@ export default function Monatzblat() {
     const handleYearChange = (event) => {
         const newYear = event.target.value;
         setSelectedYear(newYear);
-        const newMonth = availableMonths.length > 0 ? availableMonths[0] : new Date().toLocaleString('default', { month: 'long' });
-        router.push(`/monatsblat/?year=${newYear}&month=${newMonth}`);
+        fetchAvailableMonths(newYear);
     };
 
     const fetchAvailableMonths = async (year) => {
@@ -43,20 +42,12 @@ export default function Monatzblat() {
             setNoDataAvailable(true);
             setPdfUrl('');
             setIsLoading(false);
-            router.replace(`/monatsblat/?year=${year}&month=none`);
+            router.replace(`/monatzblat/?year=${year}&month=none`);
             return;
         }
-    
-        const months = querySnapshot.docs.map(doc => doc.data().title); // Correct definition and use
+      
+        const months = querySnapshot.docs.map(doc => doc.data().month);
         setAvailableMonths(months);
-        setNoDataAvailable(false);
-    
-        const currentMonth = new Date().toLocaleString('default', { month: 'long' });
-        if (!months.includes(selectedMonth) || !queryMonth) {
-            const recentAvailableMonth = months.sort((a, b) => new Date(year, months.indexOf(b)) - new Date(year, months.indexOf(a)))[0];
-            setSelectedMonth(recentAvailableMonth || currentMonth);
-            router.replace(`/monatsblat/?year=${year}&month=${recentAvailableMonth || currentMonth}`);
-        }
         setIsLoading(false);
     };
 
@@ -64,17 +55,12 @@ export default function Monatzblat() {
         if (!noDataAvailable && selectedMonth) {
             fetchPdfUrl(selectedYear, selectedMonth);
         }
-    }, [selectedYear, selectedMonth, availableMonths]);
+    }, [selectedYear, selectedMonth, noDataAvailable]);
 
     const fetchPdfUrl = async (year, month) => {
         setIsLoading(true);
-        if (!availableMonths.includes(month)) {
-            setPdfUrl('');
-            setIsLoading(false);
-            return;
-        }
         const monatzblatCollection = collection(db, "monatzblat");
-        const q = query(monatzblatCollection, where("year", "==", year), where("title", "==", month));
+        const q = query(monatzblatCollection, where("year", "==", year), where("month", "==", month));
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
             const docData = querySnapshot.docs[0].data();
@@ -86,6 +72,32 @@ export default function Monatzblat() {
         setIsLoading(false);
     };
 
+    const handleMonthClick = (monthName) => {
+        if (!availableMonths.includes(monthName)) {
+            console.log("No data available for this month.");
+            return; // Prevents action on months without data
+        }
+        setSelectedMonth(monthName);
+        router.push(`/monatzblat/?year=${selectedYear}&month=${monthName}`);
+        fetchPdfUrl(selectedYear, monthName);
+    };
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const iframe = document.getElementById('myIframe');
+            if (iframe) {
+                iframe.onload = function () {
+                    resizeIframe(iframe);
+                };
+            }
+        }
+    }, []);
+
+    function resizeIframe(iframe) {
+        iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+
+    
 
     return (
         <>
@@ -101,18 +113,21 @@ export default function Monatzblat() {
                         <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
-                <div className={styles.months}>
-                    {Array.from({ length: 12 }).map((_, index) => {
-                        const monthName = new Date(0, index).toLocaleString('default', { month: 'long' });
-                        return (
-                            <div key={monthName}
-                                className={`${styles.month} ${monthName === selectedMonth ? styles.selectedMonth : ''} ${!availableMonths.includes(monthName) ? styles.disabledMonth : ''}`}
-                                onClick={() => handleMonthClick(monthName)}>
-                                {monthName}
-                            </div>
-                        );
-                    })}
-                </div>
+                <div className={styles.months} key={selectedYear}>
+    {Array.from({ length: 12 }).map((_, index) => {
+        const monthName = new Date(0, index).toLocaleString('default', { month: 'long' });
+        const isMonthAvailable = availableMonths.includes(monthName);
+        return (
+            <div key={monthName}
+                className={`${styles.month} ${monthName === selectedMonth ? styles.selectedMonth : ''} ${isMonthAvailable ? styles.enabledMonth : styles.disabledMonth}`}
+                onClick={() => isMonthAvailable && handleMonthClick(monthName)}>
+                {monthName}
+            </div>
+        );
+    })}
+</div>
+
+
             </div>
             {noDataAvailable ? (
                 <p>No Monatzblat found for the selected year and month. Please select a different month or year.</p>
@@ -127,7 +142,8 @@ export default function Monatzblat() {
                             </Center>
                             <Center>
                             <div className={styles.iframeContainer}>
-                                <iframe src={pdfUrl} title="Monthly PDF" className={styles.pdfIframe}></iframe>
+                                <iframe src={pdfUrl} style={{ width: '100%', height: '100vh', overflow: 'hidden', border: 'none' }} title="Monthly PDF" className={styles.pdfIframe} scrolling="no"></iframe>
+                                <br></br>
                             </div>
                             </Center>
                         </>

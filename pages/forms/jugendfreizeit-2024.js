@@ -30,10 +30,11 @@ export default function Jugendfreizeit() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Space h="xl" />
-            <Title fw={700} ta="center">Jugendfreizeit 2024</Title>
+            <Title fw={700} ta="center">Forms</Title>
             <Space h="xl" />
             <Center>
-            <iframe className='forms-iframe' src="https://docs.google.com/forms/d/e/1FAIpQLSeLE_S3gyUmYTP6v8AamWUmgeKSTcBegbqlP2RFTaTea33AcQ/viewform?embedded=true" width="640" height="974" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            {/* <iframe className='forms-iframe' src="https://docs.google.com/forms/d/e/1FAIpQLSeLE_S3gyUmYTP6v8AamWUmgeKSTcBegbqlP2RFTaTea33AcQ/viewform?embedded=true" width="640" height="974" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> */}
+            <p>No forms found!</p>
             </Center>
             </div>
         </>
