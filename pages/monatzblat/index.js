@@ -109,7 +109,7 @@ export default function Monatzblat() {
             </Head>
             <div className={styles.calendar}>
                 <select value={selectedYear} onChange={handleYearChange} className={styles.yearSelector}>
-                    {Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - 10 + i).map(year => (
+                    {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 2 + i).map(year => (
                         <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
