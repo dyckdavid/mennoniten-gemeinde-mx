@@ -111,6 +111,11 @@ console.log("Pagination current page prop:", parseInt(page, 10));
       fetchSermons();
     }
   }, [page]);  // Reload when page changes
+
+  const truncateTitle = (title, maxLength = 20) => {
+    return title.length > maxLength ? title.substring(0, maxLength) + '...' : title;
+  };
+
   
 
 
@@ -143,7 +148,7 @@ console.log("Pagination current page prop:", parseInt(page, 10));
 
 
 <Group position="apart" mt="md" mb="xs">
-  <Text weight={600} size="xl" lineClamp={1} className="verticalText">{sermon.title}</Text>
+  <Text weight={600} size="xl" lineClamp={1} className="verticalText">{truncateTitle(sermon.title)}</Text>
   <Badge color="red" variant="light" size="xl">
   <IconCalendar size={16} className="align-calendar"></IconCalendar>
     {sermon.date}

@@ -89,45 +89,54 @@ console.log(auth.currentUser);
       };
       
       
-      const addSermon = () => {
-        const storageRef = ref(storage, 'webloaded/' + audioFile.name);
-        const uploadTask = uploadBytesResumable(storageRef, audioFile);
+      const addSermon = async () => {
+        let downloadURL = null; // Changed to null to avoid adding an empty string
+        if (audioFile) {
+          const storageRef = ref(storage, 'webloaded/' + audioFile.name);
+          const uploadTask = uploadBytesResumable(storageRef, audioFile);
       
-        uploadTask.on('state_changed', 
-        (snapshot) => {
-            // Set the upload progress
-            var progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-    
-            setUploadProgress(progress);
-        }, 
-        (error) => {
-            // Handle unsuccessful uploads
-        }, 
-        async () => {
-            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log('File available at', downloadURL);
-            // Now you can add the new sermon document with the audio URL
-            const sermonCollectionRef = collection(db, "sermons");
-            await addDoc(sermonCollectionRef, {
-                title: newStreamTitle,
-                date: newDate,
-                public: isPublic,
-                link: linkValue,
-                speaker: newSpeaker,
-                audio: downloadURL, // Add the audio URL here
-                userId: auth?.currentUser?.uid,
-                created: serverTimestamp()
-            }).then(() => {
-                setUploadProgress(100);
-                setUploadFinished(true);
-                console.log('Sermon added successfully');
-                getStreamList();  // Refresh the list after adding the sermon
-            }).catch((error) => {
-                console.error('Error adding sermon:', error);
-            });
-            });
-        });
-    }
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+              setUploadProgress(progress);
+            },
+            (error) => {
+              console.error("Error during file upload:", error);
+            },
+            async () => {
+              downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+              await addSermonDoc(downloadURL); // Add the sermon document with audio URL
+            }
+          );
+        } else {
+          await addSermonDoc(downloadURL); // Add the sermon document without audio URL
+        }
+      };
+      
+      const addSermonDoc = async (downloadURL) => {
+        const sermonCollectionRef = collection(db, "sermons");
+        const newSermon = {
+          title: newStreamTitle,
+          date: newDate,
+          public: isPublic,
+          link: linkValue,
+          speaker: newSpeaker,
+          userId: auth?.currentUser?.uid,
+          created: serverTimestamp()
+        };
+        
+        if (downloadURL) {
+          newSermon.audio = downloadURL; // Only add audio field if there is a URL
+        }
+      
+        await addDoc(sermonCollectionRef, newSermon);
+      
+        setUploadProgress(100);
+        setUploadFinished(true);
+        console.log('Sermon added successfully');
+        getStreamList();
+      };
+      
       
     
     
@@ -341,7 +350,7 @@ console.log(auth.currentUser);
           {uploadFinished ? <Text>The sermon has been uploaded successfully!</Text> : null}
             <TextInput
               placeholder="Title"
-              label="Live Stream Title"
+              label="Sermon Title"
               onChange={(e) => setNewStreamTitle(e.target.value)}
               description=""
               withAsterisk />
@@ -355,14 +364,14 @@ console.log(auth.currentUser);
             <Space h="md" />
             <TextInput
               placeholder="Date"
-              label="Date (13/06/23)"
+              label="Date (04/07/24)"
               description=""
               onChange={(e) => setNewDate(e.target.value)}
               />
               <Space h="md" />
             <TextInput
               placeholder="Speaker"
-              label="Speaker"
+              label="John Dyck, Enrique Bartsch..."
               description=""
               onChange={(e) => setNewSpeaker(e.target.value)}
              />
@@ -382,11 +391,11 @@ console.log(auth.currentUser);
 
 
 <Space h="md" />
-            <Checkbox
+            {/* <Checkbox
               label="PUBLIC / HIDDEN"
               checked={isPublic}
               onChange={(e) => setIsPublic(e.target.checked)}
-              description="Public for everyone / HIDDEN for everyone" />
+              description="Public for everyone / HIDDEN for everyone" /> */}
 
             <Space h="xl" />
 

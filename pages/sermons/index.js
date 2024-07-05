@@ -41,10 +41,6 @@ import { IconCalendar } from '@tabler/icons';
 import { Pagination } from '@mantine/core';
 
 
-
-
-// After all your imports...
-
 function SermonsPage() {
     return <div>Redirecting...</div>;
   }
