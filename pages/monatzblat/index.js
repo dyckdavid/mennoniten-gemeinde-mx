@@ -8,106 +8,109 @@ import { Text, Space, Card, Image, Badge, Button, Group, Title, Center } from '@
 
 
 export default function Monatzblat() {
-    const router = useRouter();
-    const [selectedYear, setSelectedYear] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
-    const [pdfUrl, setPdfUrl] = useState('');
-    const [availableMonths, setAvailableMonths] = useState([]);
-    const [noDataAvailable, setNoDataAvailable] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const router = useRouter();
+    // const [selectedYear, setSelectedYear] = useState('');
+    // const [selectedMonth, setSelectedMonth] = useState('');
+    // const [pdfUrl, setPdfUrl] = useState('');
+    // const [availableMonths, setAvailableMonths] = useState([]);
+    // const [noDataAvailable, setNoDataAvailable] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        if (router.isReady) {
-            const queryYear = router.query.year || new Date().getFullYear().toString();
-            const queryMonth = router.query.month || new Date().toLocaleString('default', { month: 'long' });
-            setSelectedYear(queryYear);
-            setSelectedMonth(queryMonth);
-            fetchAvailableMonths(queryYear);
-        }
-    }, [router.isReady, router.query.year, router.query.month]);
+    // useEffect(() => {
+    //     if (router.isReady) {
+    //         const queryYear = router.query.year || new Date().getFullYear().toString();
+    //         const queryMonth = router.query.month || new Date().toLocaleString('default', { month: 'long' });
+    //         setSelectedYear(queryYear);
+    //         setSelectedMonth(queryMonth);
+    //         fetchAvailableMonths(queryYear);
+    //     }
+    // }, [router.isReady, router.query.year, router.query.month]);
 
-    const handleYearChange = (event) => {
-        const newYear = event.target.value;
-        setSelectedYear(newYear);
-        fetchAvailableMonths(newYear);
-    };
+    // const handleYearChange = (event) => {
+    //     const newYear = event.target.value;
+    //     setSelectedYear(newYear);
+    //     fetchAvailableMonths(newYear);
+    // };
 
-    const fetchAvailableMonths = async (year) => {
-        setIsLoading(true);
-        const monatzblatCollection = collection(db, "monatzblat");
-        const q = query(monatzblatCollection, where("year", "==", year));
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.empty) {
-            setAvailableMonths([]);
-            setNoDataAvailable(true);
-            setPdfUrl('');
-            setIsLoading(false);
-            router.replace(`/monatzblat/?year=${year}&month=none`);
-            return;
-        }
+    // const fetchAvailableMonths = async (year) => {
+    //     setIsLoading(true);
+    //     const monatzblatCollection = collection(db, "monatzblat");
+    //     const q = query(monatzblatCollection, where("year", "==", year));
+    //     const querySnapshot = await getDocs(q);
+    //     if (querySnapshot.empty) {
+    //         setAvailableMonths([]);
+    //         setNoDataAvailable(true);
+    //         setPdfUrl('');
+    //         setIsLoading(false);
+    //         router.replace(`/monatzblat/?year=${year}&month=none`);
+    //         return;
+    //     }
       
-        const months = querySnapshot.docs.map(doc => doc.data().month);
-        setAvailableMonths(months);
-        setIsLoading(false);
-    };
+    //     const months = querySnapshot.docs.map(doc => doc.data().month);
+    //     setAvailableMonths(months);
+    //     setIsLoading(false);
+    // };
 
-    useEffect(() => {
-        if (!noDataAvailable && selectedMonth) {
-            fetchPdfUrl(selectedYear, selectedMonth);
-        }
-    }, [selectedYear, selectedMonth, noDataAvailable]);
+    // useEffect(() => {
+    //     if (!noDataAvailable && selectedMonth) {
+    //         fetchPdfUrl(selectedYear, selectedMonth);
+    //     }
+    // }, [selectedYear, selectedMonth, noDataAvailable]);
 
-    const fetchPdfUrl = async (year, month) => {
-        setIsLoading(true);
-        const monatzblatCollection = collection(db, "monatzblat");
-        const q = query(monatzblatCollection, where("year", "==", year), where("month", "==", month));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-            const docData = querySnapshot.docs[0].data();
-            setPdfUrl(docData.pdf);
-        } else {
-            console.log("No matching documents.");
-            setPdfUrl('');
-        }
-        setIsLoading(false);
-    };
+    // const fetchPdfUrl = async (year, month) => {
+    //     setIsLoading(true);
+    //     const monatzblatCollection = collection(db, "monatzblat");
+    //     const q = query(monatzblatCollection, where("year", "==", year), where("month", "==", month));
+    //     const querySnapshot = await getDocs(q);
+    //     if (!querySnapshot.empty) {
+    //         const docData = querySnapshot.docs[0].data();
+    //         setPdfUrl(docData.pdf);
+    //     } else {
+    //         console.log("No matching documents.");
+    //         setPdfUrl('');
+    //     }
+    //     setIsLoading(false);
+    // };
 
-    const handleMonthClick = (monthName) => {
-        if (!availableMonths.includes(monthName)) {
-            console.log("No data available for this month.");
-            return; // Prevents action on months without data
-        }
-        setSelectedMonth(monthName);
-        router.push(`/monatzblat/?year=${selectedYear}&month=${monthName}`);
-        fetchPdfUrl(selectedYear, monthName);
-    };
+    // const handleMonthClick = (monthName) => {
+    //     if (!availableMonths.includes(monthName)) {
+    //         console.log("No data available for this month.");
+    //         return; // Prevents action on months without data
+    //     }
+    //     setSelectedMonth(monthName);
+    //     router.push(`/monatzblat/?year=${selectedYear}&month=${monthName}`);
+    //     fetchPdfUrl(selectedYear, monthName);
+    // };
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const iframe = document.getElementById('myIframe');
-            if (iframe) {
-                iframe.onload = function () {
-                    resizeIframe(iframe);
-                };
-            }
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         const iframe = document.getElementById('myIframe');
+    //         if (iframe) {
+    //             iframe.onload = function () {
+    //                 resizeIframe(iframe);
+    //             };
+    //         }
+    //     }
+    // }, []);
 
-    function resizeIframe(iframe) {
-        iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
-    }
+    // function resizeIframe(iframe) {
+    //     iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+    // }
 
     
 
     return (
         <>
             <Head>
-                <title>Monatzblat - Mennoniten Gemeinde</title>
+                <title>500 - Mennoniten Gemeinde</title>
                 <meta name="description" content="Mennoniten Gemeinde" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className={styles.calendar}>
+            <Center>
+                <Text>500 error</Text>
+            </Center>
+            {/* <div className={styles.calendar}>
                 <select value={selectedYear} onChange={handleYearChange} className={styles.yearSelector}>
                     {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - 2 + i).map(year => (
                         <option key={year} value={year}>{year}</option>
@@ -150,7 +153,7 @@ export default function Monatzblat() {
                     )}
                     {isLoading && <p>Loading...</p>}
                 </div>
-            )}
+            )} */}
         </>
     );
 }

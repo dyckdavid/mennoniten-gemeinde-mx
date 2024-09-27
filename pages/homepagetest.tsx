@@ -27,14 +27,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json"></link>
       </Head>
-      <Center>
-
-
-
-
-
-      
-      </Center>
 
       <div className="image-container">
       <div className="image-wrapper">
