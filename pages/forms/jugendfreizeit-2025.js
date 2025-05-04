@@ -26,8 +26,8 @@ export default function Jugendfreizeit() {
                 <title>Jugendfreizeit - Mennoniten Gemeinde</title>
                 <meta name="description" content="Mennoniten Gemeinde" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/jugendfreizeiut.PNG?alt=media&token=f83c00b8-5213-45be-bf3f-2aac5ef408b7" />
-                <link rel="icon" href="/favicon.ico" />
+                {/* <meta property="og:image" content="https://firebasestorage.googleapis.com/v0/b/mennoniten-gemeinde-797ac.appspot.com/o/jugendfreizeiut.PNG?alt=media&token=f83c00b8-5213-45be-bf3f-2aac5ef408b7" />
+                <link rel="icon" href="/favicon.ico" /> */}
             </Head>
             <Space h="xl" />
             <Title fw={700} ta="center">Jugendfreizeit 2025</Title>
